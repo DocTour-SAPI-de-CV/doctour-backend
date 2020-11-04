@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+telehealth:
+  name: Teleconsulta
+  price: 65.0
+  description: Serviço de teleconsulta, onde o médico e o paciente entram em uma sala estilo meet
+
+medical_visit:
+  name: Visita médica
+  price: 110.0
+  description: Serviço de visita médica, onde o médico vai até o local em que o paciente está hospedado
