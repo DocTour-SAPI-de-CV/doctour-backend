@@ -1,0 +1,48 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "config/**/*"
+    - "db/schema.rb"
+    - "db/seeds.rb"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "log/**/*"
+    - "scripts/**/*"
+
+Style/Documentation:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Bundler/GemComment:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "db/migrate/*"
+
+Metrics/MethodLength:
+  Exclude:
+    - "db/migrate/*"
+
+Metrics/AbcSize:
+  Exclude:
+    - "db/migrate/*"
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - "app/controllers/**/*_controller.rb"
