@@ -18,5 +18,4 @@ class UserEmailTest < ActiveSupport::TestCase
     assert_not @user.valid?
     assert_includes @user.errors[:email], "can't be blank"
   end
-
 end

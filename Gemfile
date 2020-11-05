@@ -12,9 +12,11 @@ gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # User Auth
-gem 'dotenv-rails', groups: [:development, :test] # Caso você queira isolar variáveis de ambiente no projeto
 gem 'devise'
+# User auth jwt
 gem 'devise-jwt'
+# Isolate design variables
+gem 'dotenv-rails', groups: %i[development test]
 # Email validator
 gem 'email_validator'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

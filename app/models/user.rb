@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
   validates :email,
             presence: true,
             uniqueness: { case_sensitive: false },
-            email: true    
+            email: true
 
   validates :password,
             presence: true,
