@@ -6,7 +6,7 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             email: true    
 
-  validates :encrypted_password,
+  validates :password,
             presence: true,
             length: { in: 8..72 }
 
