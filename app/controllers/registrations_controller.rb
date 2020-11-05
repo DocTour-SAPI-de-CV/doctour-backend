@@ -31,4 +31,5 @@ class RegistrationsController < Devise::RegistrationsController
         render json: resource.errors
       end
     end
+  end
 end
