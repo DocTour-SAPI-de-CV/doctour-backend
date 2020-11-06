@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  #Routes for divese
   devise_for :users,
     path: '',
     path_names: {
@@ -16,9 +17,19 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # root 'landing#index'
+
+  # Routes for Service
   post 'service', to: 'service#create'
   put 'service/:id', to: 'service#update'
   get 'service', to: 'service#show'
   get 'service/:id', to: 'service#index'
   delete 'service/:id', to: 'service#delete'
+
+  #Routes for Account
+  post 'account', to: 'account#create'
+  put 'account/:id', to: 'account#update'
+  get 'account', to: 'account#show'
+  get 'account/:id', to: 'account#index'
+  delete 'account/:id', to: 'account#delete'
+
 end
