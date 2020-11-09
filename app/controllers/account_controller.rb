@@ -32,7 +32,7 @@ class AccountController < ApplicationController
   end
 
   def update
-    if @category.nil?
+    if params[:category].nil?
       without_fields_error
     elsif !check_category(params[:category])
       render(json: {
@@ -40,7 +40,7 @@ class AccountController < ApplicationController
              })
     else
       @account = Account.find(params[:id])
-      update_category(@category)
+      update_category(params[:category])
     end
   end
 
