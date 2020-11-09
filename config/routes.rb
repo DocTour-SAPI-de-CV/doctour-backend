@@ -32,4 +32,11 @@ Rails.application.routes.draw do
   get 'account/:id', to: 'account#index'
   delete 'account/:id', to: 'account#delete'
 
+  #Routes for People
+  post 'people', to: 'people#create'
+  put 'people/:id', to: 'people#update'
+  get 'people', to: 'people#show'
+  get 'people/:id', to: 'people#index'
+  delete 'people/:id', to: 'people#delete'
+
 end

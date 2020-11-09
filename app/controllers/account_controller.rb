@@ -55,7 +55,7 @@ class AccountController < ApplicationController
       category: category
     )
     @account.save!
-    render(json: { "service_id created": @account.id })
+    render(json: { "account_id created": @account.id })
   end
 
   def without_fields_error
