@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   belongs_to :account
 
+  validates :account, uniqueness: true
+
   validates :email,
             presence: true,
             uniqueness: { case_sensitive: false },
