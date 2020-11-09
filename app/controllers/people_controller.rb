@@ -17,7 +17,7 @@ class PeopleController < ApplicationController
     people = People.new(people_params)
     render(json: { people: people }) if people.save
 
-    render(json: { error: people.errors })
+    render(json: { error: people.errors }) if !people.save
   end
 
   def delete
@@ -31,7 +31,7 @@ class PeopleController < ApplicationController
     people = People.find(params[:id])
     render(json: { people: people }) if people.update(people_params)
       
-    render(json: { error: people.errors })
+    render(json: { error: people.errors }) if !people.update(people_params)
   end
 
   private
