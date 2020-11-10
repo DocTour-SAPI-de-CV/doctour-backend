@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize, Lint/MissingCopEnableDirective
 class RegistrationsController < Devise::RegistrationsController
   respond_to :json
 

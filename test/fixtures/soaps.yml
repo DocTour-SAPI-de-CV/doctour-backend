@@ -1,10 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 soap_1:
-  subjective: sentiu dificuldade para respirar
-  objective: falta de ar
+  subjective: esta com calafrio e febre
+  objective: esta obeso
   assessment: certo que e virose
   plan: manda pra casa, repouso
   medical_description: arquivo.pdf
   medical_report: report.pdf
   observation: se seguir com falta de ar devera voltar
+
+soap_2:
+  subjective: sentiu febre
+  objective: esta obeso e sarampo
+  assessment: acredito que seja covid-19
+  plan: descansar em casa
+  medical_description: 
+  medical_report: 
+  observation: precisa ficar isolado em casa
