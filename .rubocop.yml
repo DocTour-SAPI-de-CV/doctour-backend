@@ -13,6 +13,9 @@ AllCops:
     - "log/**/*"
     - "scripts/**/*"
 
+Style/AsciiComments:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
@@ -38,6 +41,10 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - "db/migrate/*"
+  Max: 15
+
+Metrics/LineLength:
+  Max: 95
 
 Metrics/AbcSize:
   Exclude:

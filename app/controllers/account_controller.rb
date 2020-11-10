@@ -38,9 +38,7 @@ class AccountController < ApplicationController
     account = Account.find(params[:id])
     render(json: { account: account }) if account.update(account_params)
 
-    unless account.update(account_params)
-      render(json: { error: account.errors })
-    end
+    render(json: { error: account.errors }) unless account.update(account_params)
   end
 
   private

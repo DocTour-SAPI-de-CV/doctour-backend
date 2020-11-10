@@ -3,6 +3,6 @@
 class DashboardController < ApplicationController
   def show
     @dashboard = DashboardFinder.new(nil).find
-    render(json: { dashboard: @dashboard }) 
+    render(json: { dashboard: @dashboard })
   end
 end
