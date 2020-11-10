@@ -2,9 +2,9 @@
 
 require 'test_helper'
 
-class AccountTest < ActiveSupport::TestCase
+class PeopleTest < ActiveSupport::TestCase
   test 'fixture is valid' do
-    @objective = accounts(:felipe_account)
+    @objective = peoples(:person_felipe)
     assert @objective.valid?
   end
 end

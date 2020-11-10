@@ -62,6 +62,14 @@ Rails.application.routes.draw do
   get 'objective/:id', to: 'objective#index'
   delete 'objective/:id', to: 'objective#delete'
 
+
+  # Patient
+  post 'patient', to: 'patient#create'
+  put 'patient/:id', to: 'patient#update'
+  get 'patient', to: 'patient#show'
+  get 'patient/:id', to: 'patient#index'
+  delete 'patient/:id', to: 'patient#delete'
+
   # Specializations
   post 'specialization', to: 'specialization#create'
   put 'specialization/:id', to: 'specialization#update'
