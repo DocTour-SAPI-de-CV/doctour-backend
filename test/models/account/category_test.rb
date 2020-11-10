@@ -4,6 +4,6 @@ require 'test_helper'
 
 class AccountCategoryTest < ActiveSupport::TestCase
   setup do
-    @objective = accounts(:one)
+    @objective = accounts(:felipe_account)
   end
 end

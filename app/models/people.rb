@@ -3,6 +3,12 @@
 class People < ApplicationRecord
   before_validation :downcase_fields
 
+  belongs_to :account
+
+  has_one :patient, dependent: :destroy
+  
+  validates :account, uniqueness: true
+
   validates :first_name,
             format: { with: /[a-zA-Z]/ },
             length: { minimum: 2 },

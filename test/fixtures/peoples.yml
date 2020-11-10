@@ -1,0 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+person_felipe:
+    first_name: Felipe
+    last_name: Abacate
+    birthdate: <%= DateTime.now %>
+    gender: male
+    account: felipe_account
+  
+  

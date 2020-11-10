@@ -5,6 +5,8 @@ class Account < ApplicationRecord
 
   has_one :user, dependent: :destroy
 
+  has_one :people, dependent: :destroy
+
   validates :category,
             inclusion: {
               in: %w[
@@ -18,6 +20,6 @@ class Account < ApplicationRecord
             presence: true
 
   def downcase_fields
-    category.downcase!
+    category.downcase! if !category.nil?
   end
 end
