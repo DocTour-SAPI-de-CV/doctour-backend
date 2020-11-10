@@ -61,4 +61,11 @@ Rails.application.routes.draw do
   get 'objective', to: 'objective#show'
   get 'objective/:id', to: 'objective#index'
   delete 'objective/:id', to: 'objective#delete'
+
+  # Specializations
+  post 'specialization', to: 'specialization#create'
+  put 'specialization/:id', to: 'specialization#update'
+  get 'specialization', to: 'specialization#show'
+  get 'specialization/:id', to: 'specialization#index'
+  delete 'specialization/:id', to: 'specialization#delete'
 end
