@@ -47,4 +47,18 @@ Rails.application.routes.draw do
   delete 'soap/:id', to: 'soap#delete'
 
   get 'dashboard', to: 'dashboard#show'
+
+  # Subjectives
+  post 'subjective', to: 'subjective#create'
+  put 'subjective/:id', to: 'subjective#update'
+  get 'subjective', to: 'subjective#show'
+  get 'subjective/:id', to: 'subjective#index'
+  delete 'subjective/:id', to: 'subjective#delete'
+
+  # Objectives
+  post 'objective', to: 'objective#create'
+  put 'objective/:id', to: 'objective#update'
+  get 'objective', to: 'objective#show'
+  get 'objective/:id', to: 'objective#index'
+  delete 'objective/:id', to: 'objective#delete'
 end
