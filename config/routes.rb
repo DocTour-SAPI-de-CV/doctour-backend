@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # root 'landing#index'
 
-  # Routes for Service
+  # Services
   post 'service', to: 'service#create'
   put 'service/:id', to: 'service#update'
   get 'service', to: 'service#show'
@@ -38,5 +38,13 @@ Rails.application.routes.draw do
   get 'people', to: 'people#show'
   get 'people/:id', to: 'people#index'
   delete 'people/:id', to: 'people#delete'
+  
+  # Soaps
+  post 'soap', to: 'soap#create'
+  put 'soap/:id', to: 'soap#update'
+  get 'soap', to: 'soap#show'
+  get 'soap/:id', to: 'soap#index'
+  delete 'soap/:id', to: 'soap#delete'
 
+  get 'dashboard', to: 'dashboard#show'
 end

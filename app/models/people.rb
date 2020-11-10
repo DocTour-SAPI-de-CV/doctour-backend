@@ -25,6 +25,6 @@ class People < ApplicationRecord
             presence: { message: 'is required or invalid' }
 
   def downcase_fields
-    self.gender.downcase!
+    gender.downcase!
   end
 end
