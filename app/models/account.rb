@@ -2,7 +2,7 @@
 
 class Account < ApplicationRecord
   before_validation :downcase_fields
-  
+
   has_one :user, dependent: :destroy
 
   validates :category,
@@ -18,6 +18,6 @@ class Account < ApplicationRecord
             presence: true
 
   def downcase_fields
-    self.category.downcase!
+    category.downcase!
   end
 end

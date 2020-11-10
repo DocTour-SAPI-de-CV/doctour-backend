@@ -17,28 +17,30 @@ class AccountController < ApplicationController
     account = Account.new(account_params)
     render(json: { account: account }) if account.save
 
-    render(json: { error: account.errors }) if !account.save
+    render(json: { error: account.errors }) unless account.save
   end
 
   def create
     account = Account.new(account_params)
     render(json: { account: account }) if account.save
 
-    render(json: { error: account.errors }) if !account.save
+    render(json: { error: account.errors }) unless account.save
   end
 
   def delete
     @account = Account.find(params[:id])
     @account.destroy!
-    
+
     render(json: { "account_id deleted": params[:id] })
   end
 
   def update
     account = Account.find(params[:id])
     render(json: { account: account }) if account.update(account_params)
-      
-    render(json: { error: account.errors }) if !account.update(account_params)
+
+    unless account.update(account_params)
+      render(json: { error: account.errors })
+    end
   end
 
   private

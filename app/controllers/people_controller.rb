@@ -17,21 +17,21 @@ class PeopleController < ApplicationController
     people = People.new(people_params)
     render(json: { people: people }) if people.save
 
-    render(json: { error: people.errors }) if !people.save
+    render(json: { error: people.errors }) unless people.save
   end
 
   def delete
     @people = People.find(params[:id])
-		@people.destroy!
-		
+    @people.destroy!
+
     render(json: { "people_id deleted": params[:id] })
   end
 
   def update
     people = People.find(params[:id])
     render(json: { people: people }) if people.update(people_params)
-      
-    render(json: { error: people.errors }) if !people.update(people_params)
+
+    render(json: { error: people.errors }) unless people.update(people_params)
   end
 
   private
