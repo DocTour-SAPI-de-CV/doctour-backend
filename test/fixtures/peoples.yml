@@ -7,4 +7,9 @@ person_felipe:
     gender: male
     account: felipe_account
   
-  
+person_doctor_maria:
+    first_name: Maria
+    last_name: Silva
+    birthdate: <%= '1974-09-01'.to_date %>
+    gender: male
+    account: maria_account

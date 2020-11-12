@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+person_maria_phone:
+  person: person_doctor_maria
+  phone: maria_phone
+
+person_felipe_phone:
+  person: person_felipe
+  phone: gabriel_phone

@@ -5,8 +5,8 @@ soap_1:
   objective: esta obeso
   assessment: certo que e virose
   plan: manda pra casa, repouso
-  medical_description: arquivo.pdf
-  medical_report: report.pdf
+  medical_description: "medical_description.pdf"
+  medical_report: "medical_report.pdf"
   observation: se seguir com falta de ar devera voltar
 
 soap_2:

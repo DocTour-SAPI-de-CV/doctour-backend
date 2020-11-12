@@ -76,4 +76,46 @@ Rails.application.routes.draw do
   get 'specialization', to: 'specialization#show'
   get 'specialization/:id', to: 'specialization#index'
   delete 'specialization/:id', to: 'specialization#delete'
+
+  # Doctors
+  post 'doctor', to: 'doctor#create'
+  put 'doctor/:id', to: 'doctor#update'
+  get 'doctor', to: 'doctor#show'
+  get 'doctor/:id', to: 'doctor#index'
+  delete 'doctor/:id', to: 'doctor#delete'
+
+  # Doctors specializations
+  post 'doctor_specialization', to: 'doctors_specialization#create'
+  put 'doctor_specialization/:id', to: 'doctors_specialization#update'
+  get 'doctor_specialization', to: 'doctors_specialization#show'
+  get 'doctor_specialization/:id', to: 'doctors_specialization#index'
+  delete 'doctor_specialization/:id', to: 'doctors_specialization#delete'
+
+  # Objectives soaps
+  post 'objective_soap', to: 'objectives_soap#create'
+  put 'objective_soap/:id', to: 'objectives_soap#update'
+  get 'objective_soap', to: 'objectives_soap#show'
+  get 'objective_soap/:id', to: 'objectives_soap#index'
+  delete 'objective_soap/:id', to: 'objectives_soap#delete'
+
+  # Subjectives soaps
+  post 'subjective_soap', to: 'subjectives_soap#create'
+  put 'subjective_soap/:id', to: 'subjectives_soap#update'
+  get 'subjective_soap', to: 'subjectives_soap#show'
+  get 'subjective_soap/:id', to: 'subjectives_soap#index'
+  delete 'subjective_soap/:id', to: 'subjectives_soap#delete'
+
+  # Phones
+  post 'phone', to: 'phone#create'
+  put 'phone/:id', to: 'phone#update'
+  get 'phone', to: 'phone#show'
+  get 'phone/:id', to: 'phone#index'
+  delete 'phone/:id', to: 'phone#delete'
+
+  # People phones
+  post 'people_phone', to: 'people_phone#create'
+  put 'people_phone/:id', to: 'people_phone#update'
+  get 'people_phone', to: 'people_phone#show'
+  get 'people_phone/:id', to: 'people_phone#index'
+  delete 'people_phone/:id', to: 'people_phone#delete'
 end

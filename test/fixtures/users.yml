@@ -9,3 +9,15 @@ felipe_abacate:
     email: felipe@abacate.com.br
     encrypted_password: <%= User.new(:password => 'relogio123').encrypted_password %>
     jti: a63d6e56-b21a-43e5-bf0b-3a9bdc6db8fc
+
+maria_silva:
+    account: maria_account
+    email: maria@silva.com.br
+    encrypted_password: <%= User.new(:password => 'indeorum123').encrypted_password %>
+    jti: a63d6e56-b21a-43e5-be0b-3a9bdc6db8fc
+
+gabriel_souza:
+    account: gabriel_account
+    email: gabriel@souza.com.br
+    encrypted_password: <%= User.new(:password => '#admin@').encrypted_password %>
+    jti: a63d6e56-b21a-45e5-bf0b-3a9bdc6db8fc
