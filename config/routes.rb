@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # root 'landing#index'
+  post 'password_recovery', to:'password_recovery#index'
+  patch 'password_recovery', to:'password_recovery#recovery'
+
 
   # Services
   post 'service', to: 'service#create'
@@ -61,7 +64,6 @@ Rails.application.routes.draw do
   get 'objective', to: 'objective#show'
   get 'objective/:id', to: 'objective#index'
   delete 'objective/:id', to: 'objective#delete'
-
 
   # Patient
   post 'patient', to: 'patient#create'

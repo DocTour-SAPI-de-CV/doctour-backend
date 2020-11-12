@@ -35,6 +35,16 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.smtp_settings = {
+    address: Rails.application.credentials.mailer[:address],
+    port: Rails.application.credentials.mailer[:port],
+    domain: Rails.application.credentials.mailer[:domain],
+    user_name: Rails.application.credentials.mailer[:user_name],
+    password: Rails.application.credentials.mailer[:password],
+    authentication: Rails.application.credentials.mailer[:authentication],
+    enable_starttls_auto: Rails.application.credentials.mailer[:enable_starttls_auto]
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
