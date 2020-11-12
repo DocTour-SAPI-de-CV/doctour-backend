@@ -1,4 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 felipe_account:
+  category: client
+
+maria_account:
+  category: doctor
+
+gabriel_account:
   category: admin

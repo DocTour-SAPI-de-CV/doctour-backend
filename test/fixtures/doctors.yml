@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+doctor_maria:
+  person: person_doctor_maria
+  photo: "photo.jpg"
+  about: experiência na área de cardiologia
+

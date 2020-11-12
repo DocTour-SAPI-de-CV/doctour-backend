@@ -6,7 +6,12 @@ class People < ApplicationRecord
   belongs_to :account
 
   has_one :patient, dependent: :destroy
-  
+
+  has_one :doctor, dependent: :destroy
+
+  has_many :people_phones, dependent: :destroy
+  has_many :phones, through: :people_phones
+
   validates :account, uniqueness: true
 
   validates :first_name,

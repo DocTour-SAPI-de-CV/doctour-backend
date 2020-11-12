@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-class CreatePatients < ActiveRecord::Migration[6.0]
+class CreateDoctors < ActiveRecord::Migration[6.0]
   def change
-    create_table :patients, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.boolean :privacy_polity, null: false
-      t.boolean :terms_use, null: false
-
-      t.references :people,
+    create_table :doctors, id: :uuid, default: 'gen_random_uuid()' do |t|
+      t.references :person,
                    type: :uuid,
                    null: false,
                    foreign_key: {
@@ -14,6 +11,9 @@ class CreatePatients < ActiveRecord::Migration[6.0]
                      on_delete: :cascade
                    },
                    index: { unique: true }
+
+      t.binary :photo, null: false, limit: 3.megabyte
+      t.text :about, null: false
 
       t.timestamps
     end

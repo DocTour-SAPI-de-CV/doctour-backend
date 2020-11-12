@@ -20,6 +20,6 @@ class Account < ApplicationRecord
             presence: true
 
   def downcase_fields
-    category.downcase! if !category.nil?
+    category&.downcase!
   end
 end

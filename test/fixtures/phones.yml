@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+maria_phone:
+  country_code: 52
+  area_code: 998
+  number: 999999999
+
+felipe_phone:
+  country_code: 52
+  area_code: 998
+  number: 988888888
+
+gabriel_phone:
+  country_code: 55
+  area_code: 95
+  number: 988888888
