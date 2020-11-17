@@ -37,6 +37,6 @@ class PatientController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit(:privacy_polity, :terms_use, :people_id)
+    params.require(:patient).permit(:privacy_polity, :terms_use, :people_id, :client_ip)
   end
 end

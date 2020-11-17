@@ -10,6 +10,8 @@ class Patient < ApplicationRecord
                          message: 'You need to accept the Privacy Polity terms!' },
             presence: true
 
+  validates :client_ip, presence: true
+  
   validates :terms_use,
             inclusion: { in: [true],
                          message: 'You need to accept the terms of use!' },
