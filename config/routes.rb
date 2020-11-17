@@ -120,4 +120,18 @@ Rails.application.routes.draw do
   get 'people_phone', to: 'people_phone#show'
   get 'people_phone/:id', to: 'people_phone#index'
   delete 'people_phone/:id', to: 'people_phone#delete'
+
+  # Addresses
+  post 'address', to: 'address#create'
+  put 'address/:id', to: 'address#update'
+  get 'address', to: 'address#show'
+  get 'address/:id', to: 'address#index'
+  delete 'address/:id', to: 'address#delete'
+
+  # Addresses Person
+  post 'address_person', to: 'addresses_person#create'
+  put 'address_person/:id', to: 'addresses_person#update'
+  get 'address_person', to: 'addresses_person#show'
+  get 'address_person/:id', to: 'addresses_person#index'
+  delete 'address_person/:id', to: 'addresses_person#delete'
 end
