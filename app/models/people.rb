@@ -12,6 +12,9 @@ class People < ApplicationRecord
   has_many :people_phones, dependent: :destroy
   has_many :phones, through: :people_phones
 
+  has_many :addresses_people, dependent: :destroy
+  has_many :addresses, through: :addresses_people
+
   validates :account, uniqueness: true
 
   validates :first_name,

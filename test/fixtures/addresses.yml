@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+maria_address:
+  street: Av. Fernando Osório
+  street_number: 1000
+  zipcode: 96050000
+  country: Brasil
+  city: Pelotas
+  state: Rio Grande do Sul
+
+felipe_address:
+  street: Av. Fernando Osório
+  street_number: 1000
+  zipcode: 21050000
+  country: Brasil
+  city: São Paulo
+  state: São Paulo

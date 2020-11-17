@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-person_maria_phone:
+person_maria_address:
+  address: maria_address
   person: person_doctor_maria
-  phone: maria_phone
 
-person_felipe_phone:
+person_felipe_address:
+  address: felipe_address
   person: person_felipe
-  phone: felipe_phone
