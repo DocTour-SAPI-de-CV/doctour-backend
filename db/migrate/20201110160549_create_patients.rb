@@ -5,6 +5,7 @@ class CreatePatients < ActiveRecord::Migration[6.0]
     create_table :patients, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.boolean :privacy_polity, null: false
       t.boolean :terms_use, null: false
+      t.cidr :client_ip, null: false
 
       t.references :people,
                    type: :uuid,
