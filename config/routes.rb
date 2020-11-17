@@ -51,6 +51,8 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#show'
 
+  get 'dashboard_doctor/:id', to: 'dashboard_doctor#show'
+
   # Subjectives
   post 'subjective', to: 'subjective#create'
   put 'subjective/:id', to: 'subjective#update'
