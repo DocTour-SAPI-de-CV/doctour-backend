@@ -3,9 +3,11 @@
 class Account < ApplicationRecord
   before_validation :downcase_fields
 
-  has_one :user, dependent: :destroy
+  belongs_to :user, dependent: :destroy
 
   has_one :people, dependent: :destroy
+
+  validates :user, uniqueness: true
 
   validates :category,
             inclusion: {

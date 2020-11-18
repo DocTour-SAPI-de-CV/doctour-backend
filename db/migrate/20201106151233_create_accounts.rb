@@ -7,6 +7,15 @@ class CreateAccounts < ActiveRecord::Migration[6.0]
       t.string :category,
                null: false
 
+      t.references :user,
+      type: :uuid,
+      null: false,
+      foreign_key: {
+        on_update: :cascade,
+        on_delete: :cascade
+      },
+      index: { unique: true }
+
       t.timestamps
     end
   end

@@ -2,9 +2,12 @@
 
 felipe_account:
   category: client
+  user: felipe_abacate
 
 maria_account:
   category: doctor
+  user: maria_silva
 
 gabriel_account:
   category: admin
+  user: gabriel_souza
