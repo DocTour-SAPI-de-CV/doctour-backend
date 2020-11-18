@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post 'password_recovery', to:'password_recovery#index'
   patch 'password_recovery', to:'password_recovery#recovery'
 
+  # Filter
+  get 'patient_filter/:id', to: 'filter#patient'
 
   # Services
   post 'service', to: 'service#create'
