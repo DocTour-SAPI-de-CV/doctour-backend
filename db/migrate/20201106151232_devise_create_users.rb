@@ -15,14 +15,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       ## Rememberable
       t.datetime :remember_created_at
 
-      t.references :account,
-                   type: :uuid,
-                   null: false,
-                   foreign_key: {
-                     on_update: :cascade,
-                     on_delete: :cascade
-                   },
-                   index: { unique: true }
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at
