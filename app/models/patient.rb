@@ -16,4 +16,16 @@ class Patient < ApplicationRecord
             inclusion: { in: [true],
                          message: 'You need to accept the terms of use!' },
             presence: true
+
+  def created_at_mask
+    created_at.strftime("%m/%d/%Y at %I:%M%p")
+  end
+
+  def full_name
+    self.people.full_name
+  end
+
+  def email
+    self.people.account.user.email
+  end
 end
