@@ -11,21 +11,19 @@ class Patient < ApplicationRecord
             presence: true
 
   validates :client_ip, presence: true
-  
+
   validates :terms_use,
             inclusion: { in: [true],
                          message: 'You need to accept the terms of use!' },
             presence: true
 
   def created_at_mask
-    created_at.strftime("%m/%d/%Y at %I:%M%p")
+    created_at.strftime('%m/%d/%Y at %I:%M%p')
   end
 
-  def full_name
-    self.people.full_name
-  end
+  delegate :full_name, to: :people
 
   def email
-    self.people.account.user.email
+    people.account.user.email
   end
 end

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   # Filter
   get 'patient_filter/:id', to: 'filter#patient'
+  get 'diagnostic_filter', to: 'filter#diagnostic'
 
   # Services
   post 'service', to: 'service#create'
@@ -140,4 +141,13 @@ Rails.application.routes.draw do
   get 'address_person', to: 'addresses_person#show'
   get 'address_person/:id', to: 'addresses_person#index'
   delete 'address_person/:id', to: 'addresses_person#delete'
+
+  # Diagnostic
+  post 'diagnostic_import', to: 'diagnostic_import#index'
+  
+  put 'diagnostic/:id', to: 'diagnostic#update'
+  get 'diagnostic', to: 'diagnostic#show'
+  get 'diagnostic/:id', to: 'diagnostic#index'
+  post 'diagnostic', to: 'diagnostic#create'
+  delete 'diagnostic/:id', to: 'diagnostic#delete'
 end
