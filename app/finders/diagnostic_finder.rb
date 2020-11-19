@@ -3,9 +3,9 @@
 class DiagnosticFinder < ApplicationFinder
   def find(params)
     if params.key?(:name)
-      @diagnostic = Diagnostic.find_by_name(params[:name].downcase!)
+      @diagnostic = Diagnostic.find_by(name: params[:name].downcase!)
     elsif params.key?(:code)
-      @diagnostic = Diagnostic.find_by_code(params[:code])     
+      @diagnostic = Diagnostic.find_by(code: params[:code])
     end
 
     info
@@ -19,7 +19,7 @@ class DiagnosticFinder < ApplicationFinder
       }
     else
       {
-        error: "Must filter by code or name!"
+        error: 'Must filter by code or name!'
       }
     end
   end

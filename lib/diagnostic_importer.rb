@@ -19,12 +19,12 @@ class DiagnosticImporter
         @diagnostic_hash << {
           code: row.values[2].to_s,
           name: row.values[3].to_s,
-          created_at: Time.now,
-          updated_at: Time.now 
+          created_at: Time.zone.now,
+          updated_at: Time.zone.now
         }
       end
-      puts i
+      Rails.logger.info i
       i += 1
-    end    
+    end
   end
 end
