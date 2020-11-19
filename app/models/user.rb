@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
-  has_one :account
+  has_one :account, dependent: :destroy
 
   validates :email,
             presence: true,
