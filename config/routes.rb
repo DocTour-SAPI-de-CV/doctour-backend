@@ -128,6 +128,13 @@ Rails.application.routes.draw do
   get 'people_phone/:id', to: 'people_phone#index'
   delete 'people_phone/:id', to: 'people_phone#delete'
 
+  # language people
+  post 'languages_person', to: 'languages_person#create'
+  put 'languages_person/:id', to: 'languages_person#update'
+  get 'languages_person', to: 'languages_person#show'
+  get 'languages_person/:id', to: 'languages_person#index'
+  delete 'languages_person/:id', to: 'languages_person#delete'
+
   # Addresses
   post 'address', to: 'address#create'
   put 'address/:id', to: 'address#update'
@@ -150,4 +157,11 @@ Rails.application.routes.draw do
   get 'diagnostic/:id', to: 'diagnostic#index'
   post 'diagnostic', to: 'diagnostic#create'
   delete 'diagnostic/:id', to: 'diagnostic#delete'
+
+   # Language
+   put 'language/:id', to: 'language#update'
+   get 'language', to: 'language#show'
+   get 'language/:id', to: 'language#index'
+   post 'language', to: 'language#create'
+   delete 'language/:id', to: 'language#delete'
 end
