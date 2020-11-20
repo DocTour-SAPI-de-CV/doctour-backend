@@ -11,6 +11,6 @@ class Diagnostic < ApplicationRecord
             presence: true
 
   def downcase_fields
-    name.downcase!
+    name&.downcase!
   end
 end

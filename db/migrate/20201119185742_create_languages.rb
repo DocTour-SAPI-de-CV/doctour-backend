@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class CreateDiagnostics < ActiveRecord::Migration[6.0]
+class CreateLanguages < ActiveRecord::Migration[6.0]
   def change
-    create_table :diagnostics, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.string :code,
+    create_table :languages, id: :uuid, default: 'gen_random_uuid()' do |t|
+      t.string :name,
                null: false,
                index: { unique: true }
 
-      t.string :name,
+      t.string :level,
                null: false
 
       t.timestamps

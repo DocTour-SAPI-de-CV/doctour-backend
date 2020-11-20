@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+class Language < ApplicationRecord
+  has_many :languages_people, dependent: :destroy
+  has_many :people, through: :languages_people
+
+  validates :name,
+            uniqueness: { case_sensitive: false },
+            format: { with: /[a-zA-Z]/ },
+            length: { in: 3..72 },
+            presence: true
+
+  validates :level,
+            format: { with: /[a-zA-Z]/ },
+            length: { in: 3..72 },
+            presence: true
+end

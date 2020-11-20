@@ -9,6 +9,9 @@ class People < ApplicationRecord
 
   has_one :doctor, dependent: :destroy
 
+  has_many :languages_people, dependent: :destroy
+  has_many :languague, through: :languages_people
+
   has_many :people_phones, dependent: :destroy
   has_many :phones, through: :people_phones
 
