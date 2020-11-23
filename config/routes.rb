@@ -158,10 +158,17 @@ Rails.application.routes.draw do
   post 'diagnostic', to: 'diagnostic#create'
   delete 'diagnostic/:id', to: 'diagnostic#delete'
 
-   # Language
-   put 'language/:id', to: 'language#update'
-   get 'language', to: 'language#show'
-   get 'language/:id', to: 'language#index'
-   post 'language', to: 'language#create'
-   delete 'language/:id', to: 'language#delete'
+  # language people
+  post 'diagnostics_soap', to: 'diagnostics_soap#create'
+  put 'diagnostics_soap/:id', to: 'diagnostics_soap#update'
+  get 'diagnostics_soap', to: 'diagnostics_soap#show'
+  get 'diagnostics_soap/:id', to: 'diagnostics_soap#index'
+  delete 'diagnostics_soap/:id', to: 'diagnostics_soap#delete'
+
+  # Language
+  put 'language/:id', to: 'language#update'
+  get 'language', to: 'language#show'
+  get 'language/:id', to: 'language#index'
+  post 'language', to: 'language#create'
+  delete 'language/:id', to: 'language#delete'
 end
