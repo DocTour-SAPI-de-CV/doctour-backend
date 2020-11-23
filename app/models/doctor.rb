@@ -3,6 +3,8 @@
 class Doctor < ApplicationRecord
   belongs_to :person, class_name: 'People'
 
+  has_one :screening, dependent: :destroy
+
   has_many :doctors_specializations, dependent: :destroy
   has_many :specializations, through: :doctors_specializations
 
