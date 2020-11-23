@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+diagnostics_soap_one:
+  soap: soap_1
+  diagnostic: febre
+  primary: true
+  observation: precisa urgente de remédio
+
+diagnostics_soap_two:
+  soap: soap_2
+  diagnostic: febre
+  primary: true
+  observation: precisa urgente de remédio

@@ -7,6 +7,9 @@ class Soap < ApplicationRecord
   has_many :subjectives_soaps, dependent: :destroy
   has_many :subjectives, through: :subjectives_soaps
 
+  has_many :diagnostics_soaps, dependent: :destroy
+  has_many :diagnostics, through: :diagnostics_soaps
+
   validates :assessment,
             format: { with: /[a-zA-Z]/ },
             length: { in: 3..300 },
