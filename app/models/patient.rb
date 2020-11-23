@@ -3,6 +3,8 @@
 class Patient < ApplicationRecord
   belongs_to :people
 
+  has_one :screening, dependent: :destroy
+
   validates :people, uniqueness: true
 
   validates :privacy_polity,
