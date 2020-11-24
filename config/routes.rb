@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # root 'landing#index'
+  root 'landing#index'
   post 'password_recovery', to:'password_recovery#index'
   patch 'password_recovery', to:'password_recovery#recovery'
 
