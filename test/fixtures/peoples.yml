@@ -13,3 +13,10 @@ person_doctor_maria:
     birthdate: <%= '1974-09-01'.to_date %>
     gender: male
     account: maria_account
+
+person_felipe_silva:
+    first_name: Felipe
+    last_name: Silva
+    birthdate: <%= DateTime.now %>
+    gender: male
+    account: felipe_silva_account

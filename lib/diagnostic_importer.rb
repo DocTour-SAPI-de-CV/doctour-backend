@@ -2,6 +2,7 @@
 
 require 'creek'
 
+# rubocop:disable Metrics/AbcSize
 class DiagnosticImporter
   def self.file(params)
     @creek = Creek::Book.new(params[:file])
@@ -28,3 +29,4 @@ class DiagnosticImporter
     end
   end
 end
+# rubocop:enable Metrics/AbcSize

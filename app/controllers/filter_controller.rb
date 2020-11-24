@@ -10,6 +10,15 @@ class FilterController < ApplicationController
     render(json: { patient: @patient })
   end
 
+  def patient_name
+    @patient = PatientFinder.new(nil).find_name(params[:name])
+    if @patient.count.zero?
+      render(json: { Erro: 'No patient with that name was found' })
+    else
+      render(json: { patient: @patient })
+    end
+  end
+
   def diagnostic
     @diagnostic = DiagnosticFinder.new(nil).find(params)
     render(json: { diagnostic: @diagnostic })
