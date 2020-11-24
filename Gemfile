@@ -48,6 +48,8 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.5.1', require: false
   # use Rubocop Rails to enforce rails idioms
   gem 'rubocop-rails', '~> 2.5.0', require: false
+  # listens to file modifications and notifies you about the changes
+  gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
 group :development do
