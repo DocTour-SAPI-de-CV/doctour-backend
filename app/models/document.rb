@@ -8,8 +8,8 @@ class Document < ApplicationRecord
     curp: 'CURP'
   }.freeze
 
-  # has_many :documents_patients, dependent: :destroy
-  # has_many :patients, through: :documents_patients
+  has_many :documents_people, dependent: :destroy
+  has_many :people, through: :documents_people
 
   validates :document_type,
             presence: true,
