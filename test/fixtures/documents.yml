@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+felipe_abacate_passport:
+  document_type: PASSPORT
+  number: BR12345
+
+felipe_silva_passport:
+  document_type: PASSPORT
+  number: BR54321
+
+maria_dgp:
+  document_type: DGP
+  number: 5737055
+
+gabriel_curp:
+  document_type: CURP
+  number: HEGG560427MVZRRL05
