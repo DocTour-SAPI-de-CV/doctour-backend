@@ -10,6 +10,8 @@ class Soap < ApplicationRecord
   has_many :diagnostics_soaps, dependent: :destroy
   has_many :diagnostics, through: :diagnostics_soaps
 
+  belongs_to :screening
+
   validates :assessment,
             format: { with: /[a-zA-Z]/ },
             length: { in: 3..300 },

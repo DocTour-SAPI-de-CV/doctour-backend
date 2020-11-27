@@ -15,3 +15,11 @@ maria_dgp:
 gabriel_curp:
   document_type: CURP
   number: HEGG560427MVZRRL05
+
+rfc_hotel:
+  document_type: RFC
+  number: HOC890520XYZ
+
+rfc_pousada:
+  document_type: RFC
+  number: PDL980520ZAB

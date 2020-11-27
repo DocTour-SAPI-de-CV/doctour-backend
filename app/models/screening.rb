@@ -4,6 +4,8 @@ class Screening < ApplicationRecord
   belongs_to :doctor
   belongs_to :patient
 
+  has_one :soap, dependent: :destroy
+
   validates :doctor,
             presence: true
 

@@ -11,6 +11,9 @@ class Document < ApplicationRecord
   has_many :documents_people, dependent: :destroy
   has_many :people, through: :documents_people
 
+  has_many :documents_partners, dependent: :destroy
+  has_many :partners, through: :documents_partners
+
   validates :document_type,
             presence: true,
             inclusion: DOCUMENT_TYPES.values

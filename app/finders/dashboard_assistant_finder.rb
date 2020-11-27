@@ -4,6 +4,7 @@ class DashboardAssistantFinder < ApplicationFinder
   def find
     {
       screenings_count: screenings_count,
+      soaps_count: soaps_count,
       patients_waiting_room_count: patients_waiting_room_count,
       doctors_online_room: doctors_online_room
     }
@@ -12,7 +13,11 @@ class DashboardAssistantFinder < ApplicationFinder
   private
 
   def screenings_count
-    'precisa da tabela de screenings primeiro'
+    Screening.count
+  end
+
+  def soaps_count
+    Soap.count
   end
 
   def patients_waiting_room_count
