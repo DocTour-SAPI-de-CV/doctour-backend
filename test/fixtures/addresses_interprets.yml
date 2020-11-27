@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+address_andre:
+  interpret: andre_tradutor
+  address: address_tradutores
+
+address_ana:
+  interpret: ana_tradutor
+  address: address_tradutores

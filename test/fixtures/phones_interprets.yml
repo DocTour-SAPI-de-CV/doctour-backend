@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+phones_andre:
+  interpret: andre_tradutor
+  phone: phone_tradutor
+
+phones_ana:
+  interpret: ana_tradutor
+  phone: phone_tradutora

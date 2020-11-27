@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+andre_tradutor:
+  first_name: André 
+  last_name: Speak Ingles
+  email: traduzo_tudo_en@fisk.com
+
+ana_tradutora:
+  first_name: Ana
+  last_name: Speak Espanhol
+  email: traduzo_tudo_es@fisk.com

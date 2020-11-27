@@ -7,6 +7,9 @@ class Phone < ApplicationRecord
   has_many :partners_phones, dependent: :destroy
   has_many :partners, through: :partners_phones
 
+  has_many :phones_interprets, dependent: :destroy
+  has_many :interprets, through: :phones_interprets
+
   validates :country_code,
             presence: true,
             numericality: true,

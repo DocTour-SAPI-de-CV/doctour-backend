@@ -24,3 +24,13 @@ phone_pousada:
   country_code: 55
   area_code: 53
   number: 999535758
+
+phone_tradutor:
+  country_code: 55
+  area_code: 53
+  number: 999535758
+
+phone_tradutora:
+  country_code: 55
+  area_code: 53
+  number: 999535758

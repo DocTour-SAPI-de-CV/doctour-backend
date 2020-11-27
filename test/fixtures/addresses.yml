@@ -31,3 +31,11 @@ address_pousada:
   country: Brasil
   city: Pelotas
   state: Rio Grande do Sul
+
+address_tradutores:
+  street: Av. Fisk de Almeida
+  street_number: 985
+  zipcode: 96140560
+  country: Brasil
+  city: Fiskurso
+  state: Fiskolandia
