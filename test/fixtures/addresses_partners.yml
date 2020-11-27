@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hotel_cancun_address:
+  partner: hotel_cancun
+  address: address_hotel
+
+pousada_da_lulu_address:
+  partner: pousada_da_lulu
+  address: address_pousada

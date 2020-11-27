@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+passport_felipe_abacate:
+  document: felipe_abacate_passport
+  person: person_felipe
+
+passport_felipe_silva:
+  document: felipe_silva_passport
+  person: person_felipe_silva
+
+dgp_maria:
+  document: maria_dgp
+  person: person_doctor_maria
+
+curp_gabriel:
+  document: gabriel_curp
+  person: person_gabriel_admin

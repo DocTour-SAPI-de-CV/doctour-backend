@@ -11,3 +11,7 @@ maria_account:
 gabriel_account:
   category: admin
   user: gabriel_souza
+
+felipe_silva_account:
+  category: client
+  user: felipe_silva

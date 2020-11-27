@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
-class CreateDiagnosticsSoaps < ActiveRecord::Migration[6.0]
+class CreatePartnersPhones < ActiveRecord::Migration[6.0]
   def change
-    create_table :diagnostics_soaps, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.references :soap,
+    create_table :partners_phones, id: :uuid, default: 'gen_random_uuid()' do |t|
+      t.references :partner,
                    type: :uuid,
                    null: false,
                    foreign_key: {
                      on_update: :cascade,
                      on_delete: :cascade
                    }
-      t.references :diagnostic,
+
+      t.references :phone,
                    type: :uuid,
                    null: false,
                    foreign_key: {
                      on_update: :cascade,
                      on_delete: :cascade
                    }
-      t.boolean :primary
-      t.text :observation
 
       t.timestamps
     end

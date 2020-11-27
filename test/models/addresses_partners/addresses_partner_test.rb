@@ -2,9 +2,9 @@
 
 require 'test_helper'
 
-class DiagnosticsSoapTest < ActiveSupport::TestCase
+class AddressesPartnerTest < ActiveSupport::TestCase
   test 'fixture is valid' do
-    @objective = diagnostics_soaps(:diagnostics_soap_one)
+    @objective = addresses_partners(:hotel_cancun_address)
     assert @objective.valid?
   end
 end

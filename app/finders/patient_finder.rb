@@ -17,4 +17,16 @@ class PatientFinder < ApplicationFinder
       terms_use: @patient.terms_use
     }
   end
+
+  def find_name(name)
+    name.downcase!
+    name = '%' + name + '%'
+
+    People
+      .joins(:patient)
+      .where(
+        'LOWER(people.first_name) LIKE (?) or
+        LOWER(people.last_name) LIKE (?)', name, name
+      )
+  end
 end

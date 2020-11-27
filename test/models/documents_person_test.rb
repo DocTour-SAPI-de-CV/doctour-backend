@@ -2,9 +2,9 @@
 
 require 'test_helper'
 
-class DiagnosticsSoapTest < ActiveSupport::TestCase
+class DocumentsPersonTest < ActiveSupport::TestCase
   test 'fixture is valid' do
-    @objective = diagnostics_soaps(:diagnostics_soap_one)
+    @objective = documents_people(:dgp_maria)
     assert @objective.valid?
   end
 end
