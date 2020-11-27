@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hotel_cancun:
+  name: Hotel Cancun
+  responsible_name: Carlos Lima
+  observation: 
+
+pousada_da_lulu:
+  name: Pousada da Lulu
+  responsible_name: Joana Limeira
+  observation: esse é um ótimo parceiro
