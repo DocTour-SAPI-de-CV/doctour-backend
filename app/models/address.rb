@@ -4,6 +4,9 @@ class Address < ApplicationRecord
   has_many :addresses_people, dependent: :destroy
   has_many :people, through: :addresses_people
 
+  has_many :addresses_partners, dependent: :destroy
+  has_many :partners, through: :addresses_partners
+
   validates :street,
             length: { in: 4..80 },
             presence: true

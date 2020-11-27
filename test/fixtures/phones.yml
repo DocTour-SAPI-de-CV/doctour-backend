@@ -14,3 +14,13 @@ gabriel_phone:
   country_code: 55
   area_code: 95
   number: 988888888
+
+phone_hotel:
+  country_code: 55
+  area_code: 51
+  number: 999515450
+
+phone_pousada:
+  country_code: 55
+  area_code: 53
+  number: 999535758

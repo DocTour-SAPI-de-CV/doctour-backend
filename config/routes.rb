@@ -180,6 +180,27 @@ Rails.application.routes.draw do
   post 'language', to: 'language#create'
   delete 'language/:id', to: 'language#delete'
 
+  # Partners
+  post 'partner', to: 'partner#create'
+  put 'partner/:id', to: 'partner#update'
+  get 'partner', to: 'partner#show'
+  get 'partner/:id', to: 'partner#index'
+  delete 'partner/:id', to: 'partner#delete'
+
+  # Partners Phone
+  post 'partner_phone', to: 'partners_phone#create'
+  put 'partner_phone/:id', to: 'partners_phone#update'
+  get 'partner_phone', to: 'partners_phone#show'
+  get 'partner_phone/:id', to: 'partners_phone#index'
+  delete 'partner_phone/:id', to: 'partners_phone#delete'
+
+  # Addresses Partner
+  post 'address_partner', to: 'addresses_partner#create'
+  put 'address_partner/:id', to: 'addresses_partner#update'
+  get 'address_partner', to: 'addresses_partner#show'
+  get 'address_partner/:id', to: 'addresses_partner#index'
+  delete 'address_partner/:id', to: 'addresses_partner#delete'
+
   # Documents
   post 'document', to: 'document#create'
   put 'document/:id', to: 'document#update'
