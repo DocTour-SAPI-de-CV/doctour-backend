@@ -179,4 +179,18 @@ Rails.application.routes.draw do
   get 'language/:id', to: 'language#index'
   post 'language', to: 'language#create'
   delete 'language/:id', to: 'language#delete'
+
+  # Documents
+  post 'document', to: 'document#create'
+  put 'document/:id', to: 'document#update'
+  get 'document', to: 'document#show'
+  get 'document/:id', to: 'document#index'
+  delete 'document/:id', to: 'document#delete'
+
+  # Documents people
+  post 'document_person', to: 'documents_person#create'
+  put 'document_person/:id', to: 'documents_person#update'
+  get 'document_person', to: 'documents_person#show'
+  get 'document_person/:id', to: 'documents_person#index'
+  delete 'document_person/:id', to: 'documents_person#delete'
 end
