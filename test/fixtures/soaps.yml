@@ -8,6 +8,7 @@ soap_1:
   medical_description: "medical_description.pdf"
   medical_report: "medical_report.pdf"
   observation: se seguir com falta de ar devera voltar
+  screening: screening_felipe
 
 soap_2:
   subjective: sentiu febre
@@ -17,3 +18,4 @@ soap_2:
   medical_description: 
   medical_report: 
   observation: precisa ficar isolado em casa
+  screening: screening_felipe_return

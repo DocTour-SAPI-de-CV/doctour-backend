@@ -214,4 +214,11 @@ Rails.application.routes.draw do
   get 'document_person', to: 'documents_person#show'
   get 'document_person/:id', to: 'documents_person#index'
   delete 'document_person/:id', to: 'documents_person#delete'
+
+  # Documents partners
+  post 'document_partner', to: 'documents_partner#create'
+  put 'document_partner/:id', to: 'documents_partner#update'
+  get 'document_partner', to: 'documents_partner#show'
+  get 'document_partner/:id', to: 'documents_partner#index'
+  delete 'document_partner/:id', to: 'documents_partner#delete'
 end
