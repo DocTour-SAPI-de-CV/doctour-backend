@@ -26,6 +26,6 @@ class FilterController < ApplicationController
 
   def doctors_status
     @status = DoctorsStatusFinder.new(nil).find
-    render(json: {doctors: @status})
+    render(json: { doctors: @status })
   end
 end
