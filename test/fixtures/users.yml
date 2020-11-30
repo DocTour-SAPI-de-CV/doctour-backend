@@ -23,3 +23,13 @@ felipe_silva:
     email: felipe@silva.com.br
     encrypted_password: <%= User.new(:password => 'relogio123').encrypted_password %>
     jti: a63d6e56-b21a-43e5-bf0b-3a9bdc6db8fc
+
+andre:
+    email: andre@doctor.com.br
+    encrypted_password: <%= User.new(:password => 'andre123123').encrypted_password %>
+    jti: a63d6e56-b21a-43e5-bf0b-3a9bdc6db8fc
+
+ana:
+    email: ana@doctor.com.br
+    encrypted_password: <%= User.new(:password => 'ana123123').encrypted_password %>
+    jti: a63d6e56-b21a-43e5-bf0b-3a9bdc6db8fc

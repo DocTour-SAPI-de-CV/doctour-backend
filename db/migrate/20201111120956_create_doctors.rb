@@ -14,6 +14,7 @@ class CreateDoctors < ActiveRecord::Migration[6.0]
 
       t.binary :photo, null: false, limit: 3.megabyte
       t.text :about, null: false
+      t.integer :status
 
       t.timestamps
     end

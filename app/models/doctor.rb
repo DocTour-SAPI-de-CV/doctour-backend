@@ -19,4 +19,11 @@ class Doctor < ApplicationRecord
             format: { with: /[a-zA-Z]/ },
             length: { in: 3..300 },
             presence: true
+
+  validates :status,
+            inclusion: {
+              in: [0,1,2],
+              message: 'is not valid status'
+            },
+            presence: { message: 'is required or invalid' }
 end

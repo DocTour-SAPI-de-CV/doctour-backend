@@ -27,3 +27,17 @@ person_gabriel_admin:
     birthdate: <%= '1989-11-09'.to_date %>
     gender: male
     account: gabriel_account
+
+person_doctor_andre:
+    first_name: Andre
+    last_name: Felipe
+    birthdate: <%= DateTime.now %>
+    gender: male
+    account: andre_account
+
+person_doctor_ana:
+    first_name: Ana
+    last_name: Maria
+    birthdate: <%= '1989-11-09'.to_date %>
+    gender: male
+    account: ana_account

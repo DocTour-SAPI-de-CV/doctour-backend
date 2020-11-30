@@ -15,3 +15,11 @@ gabriel_account:
 felipe_silva_account:
   category: client
   user: felipe_silva
+
+andre_account:
+  category: doctor
+  user: andre
+  
+ana_account:
+  category: doctor
+  user: ana

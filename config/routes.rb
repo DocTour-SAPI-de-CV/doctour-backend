@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'patient_filter/:id', to: 'filter#patient'
   get 'patient_name_filter/:name', to: 'filter#patient_name'
   get 'diagnostic_filter', to: 'filter#diagnostic'
+  get 'doctors_status', to: 'filter#doctors_status'
 
   # Services
   post 'service', to: 'service#create'
