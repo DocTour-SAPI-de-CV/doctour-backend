@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PasswordRecoveryController < ApplicationController
-  before_action :authenticate_user!, only: [:recovery]
+  before_action :authenticate_user, only: [:recovery]
 
   include ErrorSerializer
 
