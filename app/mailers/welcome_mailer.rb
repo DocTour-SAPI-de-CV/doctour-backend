@@ -7,7 +7,7 @@ class WelcomeMailer < ApplicationMailer
     @email = params[:email]
     @full_name = params[:full_name]
     @recovery_url = RECOVERY_REDIRECT_URL
-    
+
     mail(to: @email, subject: 'Welcome to DocTour')
   end
 end

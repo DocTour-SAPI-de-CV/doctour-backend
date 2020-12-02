@@ -165,6 +165,9 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.5)
+    redis-queue (0.1.0)
+      redis (>= 3.3.5, < 5)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -230,6 +233,8 @@ DEPENDENCIES
   pg (~> 0.18.4)
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
+  redis (~> 4.0)
+  redis-queue
   rubocop (~> 0.80.1)
   rubocop-performance (~> 1.5.1)
   rubocop-rails (~> 2.5.0)
