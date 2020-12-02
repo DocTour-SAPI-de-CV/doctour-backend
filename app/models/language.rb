@@ -12,9 +12,4 @@ class Language < ApplicationRecord
             format: { with: /[a-zA-Z]/ },
             length: { in: 3..72 },
             presence: true
-
-  validates :level,
-            format: { with: /[a-zA-Z]/ },
-            length: { in: 3..72 },
-            presence: true
 end
