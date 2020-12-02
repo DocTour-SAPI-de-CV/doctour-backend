@@ -2,6 +2,7 @@
 
 # rubocop:disable Metrics/AbcSize, Lint/MissingCopEnableDirective
 class RegistrationsController < Devise::RegistrationsController
+  skip_before_action :authenticate_user
   respond_to :json
 
   def create
