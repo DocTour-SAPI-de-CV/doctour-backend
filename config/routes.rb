@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   post 'password_recovery', to:'password_recovery#index'
   patch 'password_recovery', to:'password_recovery#recovery'
 
+  # authenticate
+  get 'user', to: 'application#user'
+
+
   # unification
   post 'user_register', to: 'unification#user_register'
 
