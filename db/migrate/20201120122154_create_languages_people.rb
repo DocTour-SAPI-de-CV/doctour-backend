@@ -17,7 +17,6 @@ class CreateLanguagesPeople < ActiveRecord::Migration[6.0]
                      on_update: :cascade,
                      on_delete: :cascade
                    }
-
       t.timestamps
     end
   end
