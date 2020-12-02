@@ -3,7 +3,6 @@
 class CreateLanguagesInterprets < ActiveRecord::Migration[6.0]
   def change
     create_table :languages_interprets, id: :uuid, default: 'gen_random_uuid()' do |t|
-      
       t.references :language,
                    type: :uuid,
                    null: false,

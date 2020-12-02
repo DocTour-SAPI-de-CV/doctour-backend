@@ -3,7 +3,6 @@
 class CreatePhonesInterprets < ActiveRecord::Migration[6.0]
   def change
     create_table :phones_interprets, id: :uuid, default: 'gen_random_uuid()' do |t|
-      
       t.references :interpret,
                    type: :uuid,
                    null: false,

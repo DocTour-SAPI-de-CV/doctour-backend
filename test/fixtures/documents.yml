@@ -1,25 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 felipe_abacate_passport:
-  document_type: PASSPORT
+  document_type: passport
   number: BR12345
 
 felipe_silva_passport:
-  document_type: PASSPORT
+  document_type: passport
   number: BR54321
 
 maria_dgp:
-  document_type: DGP
+  document_type: dgp
   number: 5737055
 
 gabriel_curp:
-  document_type: CURP
+  document_type: curp
   number: HEGG560427MVZRRL05
 
 rfc_hotel:
-  document_type: RFC
+  document_type: rfc
   number: HOC890520XYZ
 
 rfc_pousada:
-  document_type: RFC
+  document_type: rfc
   number: PDL980520ZAB
