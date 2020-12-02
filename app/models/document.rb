@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 class Document < ApplicationRecord
-  DOCUMENT_TYPES = {
-    dgp: 'DGP',
-    passport: 'PASSPORT',
-    rfc: 'RFC',
-    curp: 'CURP'
-  }.freeze
+  before_validation :downcase_fields
 
   has_many :documents_people, dependent: :destroy
   has_many :people, through: :documents_people
@@ -16,11 +11,23 @@ class Document < ApplicationRecord
 
   validates :document_type,
             presence: true,
-            inclusion: DOCUMENT_TYPES.values
+            inclusion: {
+              in: %w[
+                dgp
+                passport
+                rfc
+                curp
+              ],
+              message: 'is not valid'
+            }
 
   validates :number,
             presence: true,
             uniqueness: {
               scope: %i[number document_type]
             }
+
+  def downcase_fields
+    document_type&.downcase!
+  end
 end

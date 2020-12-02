@@ -7,9 +7,6 @@ class CreateLanguages < ActiveRecord::Migration[6.0]
                null: false,
                index: { unique: true }
 
-      t.string :level,
-               null: false
-
       t.timestamps
     end
   end

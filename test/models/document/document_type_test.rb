@@ -22,16 +22,14 @@ class DocumentDocumentTypeTest < ActiveSupport::TestCase
   end
 
   test 'must be one of the defined document types' do
-    Document::DOCUMENT_TYPES.each_value do |document_type|
+    %w[
+      dgp
+      passport
+      rfc
+      curp
+    ].each do |document_type|
       @document.document_type = document_type
       assert @document.valid?
     end
-  end
-
-  test 'must not be other' do
-    @document.document_type = 'other'
-    assert_not @document.valid?
-    assert_includes @document.errors[:document_type],
-                    'is not included in the list'
   end
 end

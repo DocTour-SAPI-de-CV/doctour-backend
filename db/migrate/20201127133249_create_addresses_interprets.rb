@@ -3,7 +3,6 @@
 class CreateAddressesInterprets < ActiveRecord::Migration[6.0]
   def change
     create_table :addresses_interprets, id: :uuid, default: 'gen_random_uuid()' do |t|
-      
       t.references :address,
                    type: :uuid,
                    null: false,
