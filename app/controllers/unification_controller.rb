@@ -50,8 +50,8 @@ class UnificationController < ApplicationController
     languages_objects = []
     languages.each do |language|
       language_name = language
-      languages_objects << Language.find_by(name: language)
-      if language.nil?
+      object = Language.find_by(name: language)
+      if object.nil?
         user.delete
         account.delete
 
@@ -66,6 +66,8 @@ class UnificationController < ApplicationController
 
         render(json: { language_error: error_message})
         return
+      else
+        languages_objects << object
       end
     end
 
