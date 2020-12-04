@@ -41,20 +41,40 @@ class UnificationController < ApplicationController
       user.delete
       account.delete
 
-      render(json: { account_error: account.errors })
+      render(json: { people_error: people.errors })
       return
     end
 
     # Create Language
-    language = Language.find_by(name: params[:language])
-    if !language.nil?
-      languages_person = LanguagesPerson.create(language_id: language.id, person_id: people.id)
-    else
-      user.delete
-      account.delete
+    languages = params[:languages]
+    languages_objects = []
+    languages.each do |language|
+      language_name = language
+      languages_objects << Language.find_by(name: language)
+      if language.nil?
+        user.delete
+        account.delete
 
-      render(json: { language_erro: 'not found on database' })
-      return
+        if language_name.size == 0
+        error_message = 
+          "Must select a language!"
+        end
+        if language_name.size > 0
+        error_message =
+          "Language not found on database: #{language_name}"
+        end
+
+        render(json: { language_error: error_message})
+        return
+      end
+    end
+
+    languages_person = []
+    languages_objects.each do |language|
+      languages_person << LanguagesPerson.create(
+        language_id: language.id,
+        person_id: people.id,
+      )
     end
 
     # Document
@@ -65,7 +85,7 @@ class UnificationController < ApplicationController
     else
       user.delete
       account.delete
-      languages_person.delete
+      languages_person.each do |l| l.delete end
 
       render(json: { document_error: document.errors })
       return
