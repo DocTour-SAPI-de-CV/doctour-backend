@@ -4,7 +4,25 @@ class ApplicationController < ActionController::API
   before_action :authenticate_user
 
   def user
-    render json:  @current_user
+    people = People.find_by(account_id: Account.find_by(user_id: @current_user.id)) 
+      if people.nil?
+        @user = {
+          id: @current_user.id,
+          email: @current_user.email,
+          jti: @current_user.jti,
+        }
+      else
+        @user = {
+          id: @current_user.id,
+          email: @current_user.email,
+          jti: @current_user.jti,
+          first_name: people.first_name,
+          last_name: people.last_name,
+          initials: people.first_name[0] + people.last_name.split(' ').last[0],
+          gender: people.gender
+        }
+      end
+    render json: @user
   end
 
   protected
@@ -21,26 +39,9 @@ class ApplicationController < ActionController::API
 
     begin
       jwt_payload = JWT.decode(token, Rails.application.credentials.devise_jwt_secret)
-      user = User.find_by(jti: jwt_payload[0]['jti'])
-      people = People.find_by(account_id: Account.find_by(user_id: user.id))
-      if people.nil?
-        @current_user = {
-          id: user.id,
-          email: user.email,
-          jti: user.jti,
-        }
-      else
-        @current_user = {
-          id: user.id,
-          email: user.email,
-          jti: user.jti,
-          first_name: people.first_name,
-          last_name: people.last_name,
-          initials: people.first_name[0] + people.last_name.split(' ').last[0],
-          gender: people.gender
-        }
-      end
-     
+      @current_user = User.find_by(jti: jwt_payload[0]['jti'])
+
+      @current_user
     rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
       unauthorized
     end
