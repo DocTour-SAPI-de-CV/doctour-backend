@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PeopleController < ApplicationController
+  respond_to :json
+
   include ErrorSerializer
 
   rescue_from ActionController::ParameterMissing, with: :missing_params
