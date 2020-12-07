@@ -36,7 +36,7 @@ class ApplicationController < ActionController::API
           jti: user.jti,
           first_name: people.first_name,
           last_name: people.last_name,
-          initials: people.first_name[0] + people.split(' ').last[0],
+          initials: people.first_name[0] + people.last_name.split(' ').last[0],
           gender: people.gender
         }
       end
