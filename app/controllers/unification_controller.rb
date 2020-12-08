@@ -97,7 +97,7 @@ class UnificationController < ApplicationController
       people_id: @people.id,
       privacy_polity: true,
       terms_use: true,
-      client_ip: params[:client_ip]
+      client_ip: request.remote_ip
     )
     begin
       @patient.save!
