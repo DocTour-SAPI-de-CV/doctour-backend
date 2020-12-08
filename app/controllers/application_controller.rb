@@ -48,7 +48,7 @@ class ApplicationController < ActionController::API
   end
 
   def unauthorized
-    render json: { error: 'Não autorizado' }, status: :unauthorized
+    render json: { Gandalf_says: 'You shall not pass!' }, status: :unauthorized
   end
 
   def authenticate_user!(_options = {})
