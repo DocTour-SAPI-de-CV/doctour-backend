@@ -15,6 +15,8 @@ class UnificationController < ApplicationController
   def user_register
     response = base_create(params)
 
+    response = create_patient(params) unless response[:flag].nil? && !response[:flag]
+
     render(json: response[:message], status: response[:status])
   end
 
@@ -88,6 +90,29 @@ class UnificationController < ApplicationController
     WelcomeMailer.with(email: @user.email, full_name: @people.full_name).send_email.deliver_later
 
     { message: 'created',  status: CREATED, flag: true }
+  end
+
+  def create_patient(params)
+    @patient = Patient.new(
+      people_id: @people.id,
+      privacy_polity: true,
+      terms_use: true,
+      client_ip: params[:client_ip]
+    )
+    begin
+      @patient.save!
+
+      { message: 'created', status: CREATED, flag: true }
+    rescue ActiveRecord::RecordInvalid
+      @user.delete
+      @account.delete
+      @people.delete
+      @document.delete
+      @documents_person.delete
+      @languages_person.each(&:delete)
+
+      { message: { patient_error: @patient.errors.full_messages }, status: NOT_CREATED }
+    end
   end
 
   def create_doctor(params)
