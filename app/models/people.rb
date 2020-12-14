@@ -21,6 +21,9 @@ class People < ApplicationRecord
   has_many :addresses_people, dependent: :destroy
   has_many :addresses, through: :addresses_people
 
+  has_many :attachments_people, dependent: :destroy
+  has_many :attachments, through: :attachments_people
+
   validates :account, uniqueness: true
 
   validates :first_name,

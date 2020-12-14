@@ -35,7 +35,7 @@ class SoapController < ApplicationController
 
   def soap_params
     params.require(:soap).permit(:subjective, :objective,
-                                 :assessment, :plan, :medical_description,
-                                 :medical_report, :observation, :screening_id)
+                                 :assessment, :plan,
+                                 :observation, :screening_id)
   end
 end

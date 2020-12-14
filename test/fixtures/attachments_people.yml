@@ -1,0 +1,5 @@
+anexo_relation:
+  attachment: anexo_1
+  person_patient: person_felipe
+  person_doctor: doctor_maria
+  attachment_type: receita_medica

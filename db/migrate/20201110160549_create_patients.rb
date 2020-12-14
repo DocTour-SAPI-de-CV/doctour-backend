@@ -7,7 +7,7 @@ class CreatePatients < ActiveRecord::Migration[6.0]
       t.boolean :terms_use, null: false
       t.cidr :client_ip, null: false
 
-      t.references :people,
+      t.references :person,
                    type: :uuid,
                    null: false,
                    foreign_key: {

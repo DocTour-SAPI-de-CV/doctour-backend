@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_141357) do
+ActiveRecord::Schema.define(version: 2020_12_09_175856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -62,6 +62,24 @@ ActiveRecord::Schema.define(version: 2020_11_27_141357) do
     t.index ["person_id"], name: "index_addresses_people_on_person_id"
   end
 
+  create_table "attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "file", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "attachments_people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "attachment_id", null: false
+    t.uuid "person_patient_id", null: false
+    t.uuid "person_doctor_id", null: false
+    t.string "attachment_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attachment_id"], name: "index_attachments_people_on_attachment_id"
+    t.index ["person_doctor_id"], name: "index_attachments_people_on_person_doctor_id"
+    t.index ["person_patient_id"], name: "index_attachments_people_on_person_patient_id"
+  end
+
   create_table "diagnostics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "code", null: false
     t.string "name", null: false
@@ -83,7 +101,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_141357) do
 
   create_table "doctors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id", null: false
-    t.binary "photo", null: false
+    t.string "photo", null: false
     t.text "about", null: false
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
@@ -199,10 +217,10 @@ ActiveRecord::Schema.define(version: 2020_11_27_141357) do
     t.boolean "privacy_polity", null: false
     t.boolean "terms_use", null: false
     t.cidr "client_ip", null: false
-    t.uuid "people_id", null: false
+    t.uuid "person_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["people_id"], name: "index_patients_on_people_id", unique: true
+    t.index ["person_id"], name: "index_patients_on_person_id", unique: true
   end
 
   create_table "people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -272,8 +290,6 @@ ActiveRecord::Schema.define(version: 2020_11_27_141357) do
     t.text "objective"
     t.text "assessment", null: false
     t.text "plan", null: false
-    t.binary "medical_description"
-    t.binary "medical_report"
     t.text "observation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -325,6 +341,9 @@ ActiveRecord::Schema.define(version: 2020_11_27_141357) do
   add_foreign_key "addresses_partners", "partners", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_people", "addresses", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_people", "people", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "attachments_people", "attachments", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "attachments_people", "people", column: "person_doctor_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "attachments_people", "people", column: "person_patient_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "diagnostics_soaps", "diagnostics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "diagnostics_soaps", "soaps", on_update: :cascade, on_delete: :cascade
   add_foreign_key "doctors", "people", on_update: :cascade, on_delete: :cascade
@@ -342,7 +361,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_141357) do
   add_foreign_key "objectives_soaps", "soaps", on_update: :cascade, on_delete: :cascade
   add_foreign_key "partners_phones", "partners", on_update: :cascade, on_delete: :cascade
   add_foreign_key "partners_phones", "phones", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "patients", "people", column: "people_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "patients", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "people", "accounts", on_update: :cascade, on_delete: :cascade
   add_foreign_key "people_phones", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "people_phones", "phones", on_update: :cascade, on_delete: :cascade
