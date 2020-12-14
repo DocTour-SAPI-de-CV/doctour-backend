@@ -3,7 +3,7 @@
 person_felipe:
     first_name: Felipe
     last_name: Abacate
-    birthdate: <%= DateTime.now %>
+    birthdate: <%= '1984-09-01'.to_date %>
     gender: male
     account: felipe_account
   
@@ -17,7 +17,7 @@ person_doctor_maria:
 person_felipe_silva:
     first_name: Felipe
     last_name: Silva
-    birthdate: <%= DateTime.now %>
+    birthdate: <%= '1985-09-01'.to_date %>
     gender: male
     account: felipe_silva_account
 
@@ -31,7 +31,7 @@ person_gabriel_admin:
 person_doctor_andre:
     first_name: Andre
     last_name: Felipe
-    birthdate: <%= DateTime.now %>
+    birthdate: <%= '1924-09-01'.to_date %>
     gender: male
     account: andre_account
 

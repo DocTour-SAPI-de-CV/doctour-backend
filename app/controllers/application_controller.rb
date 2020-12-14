@@ -4,25 +4,31 @@ class ApplicationController < ActionController::API
   before_action :authenticate_user
 
   def user
-    people = People.find_by(account_id: Account.find_by(user_id: @current_user.id)) 
-      if people.nil?
-        @user = {
-          id: @current_user.id,
-          email: @current_user.email,
-          jti: @current_user.jti,
-        }
-      else
-        @user = {
-          id: @current_user.id,
-          email: @current_user.email,
-          jti: @current_user.jti,
-          first_name: people.first_name,
-          last_name: people.last_name,
-          initials: people.first_name[0] + people.last_name.split(' ').last[0],
-          gender: people.gender
-        }
-      end
+    people = People.find_by(account_id: Account.find_by(user_id: @current_user.id))
+    @user = if people.nil?
+              {
+                id: @current_user.id,
+                email: @current_user.email,
+                jti: @current_user.jti
+              }
+            else
+              {
+                id: @current_user.id,
+                email: @current_user.email,
+                jti: @current_user.jti,
+                first_name: people.first_name,
+                last_name: people.last_name,
+                initials: people.first_name[0] + people.last_name.split(' ').last[0],
+                gender: people.gender
+              }
+            end
     render json: @user
+  end
+
+  def admin_authorzation
+    unless Account.find_by(user_id: current_user.id).category == 'admin'
+      render(json: { Gandalf_says: 'You shall not pass!' }, status: :unauthorized) && return
+    end
   end
 
   protected

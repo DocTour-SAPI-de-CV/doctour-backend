@@ -9,5 +9,11 @@ diagnostics_soap_one:
 diagnostics_soap_two:
   soap: soap_2
   diagnostic: febre
+  primary: false
+  observation: precisa urgente de remédio
+
+diagnostics_soap_three:
+  soap: soap_2
+  diagnostic: diabetes
   primary: true
   observation: precisa urgente de remédio

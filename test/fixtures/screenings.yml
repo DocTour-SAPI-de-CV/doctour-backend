@@ -15,7 +15,7 @@ screening_felipe_return:
   performed_at:  <%= DateTime.new(2020, 05, 31, 14, 31).utc %>
   return: true
   doctor: doctor_maria
-  patient: patient_felipe
+  patient: patient_felipe_silva
   temperature: 36.2
   heart_rate: 93
   blood_pressure: 5/9
