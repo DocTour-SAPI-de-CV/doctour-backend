@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Patient < ApplicationRecord
-  belongs_to :people
+  belongs_to :person, class_name: 'People'
 
   has_one :screening, dependent: :destroy
 
-  validates :people, uniqueness: true
+  validates :person, uniqueness: true
 
   validates :privacy_polity,
             inclusion: { in: [true],

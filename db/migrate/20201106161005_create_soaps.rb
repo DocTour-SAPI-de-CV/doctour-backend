@@ -7,8 +7,6 @@ class CreateSoaps < ActiveRecord::Migration[6.0]
       t.text :objective
       t.text :assessment, null: false
       t.text :plan, null: false
-      t.binary :medical_description, limit: 3.megabyte
-      t.binary :medical_report, limit: 3.megabyte
       t.text :observation
 
       t.timestamps

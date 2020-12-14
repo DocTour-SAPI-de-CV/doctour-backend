@@ -5,8 +5,6 @@ soap_1:
   objective: esta obeso
   assessment: certo que e virose
   plan: manda pra casa, repouso
-  medical_description: "medical_description.pdf"
-  medical_report: "medical_report.pdf"
   observation: se seguir com falta de ar devera voltar
   screening: screening_felipe
 
@@ -15,7 +13,5 @@ soap_2:
   objective: esta obeso e sarampo
   assessment: acredito que seja covid-19
   plan: descansar em casa
-  medical_description: 
-  medical_report: 
   observation: precisa ficar isolado em casa
   screening: screening_felipe_return

@@ -12,7 +12,7 @@ class CreateDoctors < ActiveRecord::Migration[6.0]
                    },
                    index: { unique: true }
 
-      t.binary :photo, null: false, limit: 3.megabyte
+      t.string :photo, null: false
       t.text :about, null: false
       t.integer :status
 

@@ -30,10 +30,4 @@ class Soap < ApplicationRecord
 
   validates :observation,
             length: { in: 3..300 }
-
-  validates :medical_report,
-            length: { in: 3..300 }
-
-  validates :medical_description,
-            length: { in: 3..300 }
 end
