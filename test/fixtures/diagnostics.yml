@@ -3,3 +3,11 @@
 febre:
   code: 001
   name: febre
+
+enxaqueca:
+  code: 002
+  name: enxaqueca
+
+diabetes:
+  code: 003
+  name: diabetes

@@ -40,12 +40,6 @@ class UnificationController < ApplicationController
 
   private
 
-  def admin_authorzation
-    unless Account.find_by(user_id: current_user.id).category == 'admin'
-      render(json: { Gandalf_says: 'You shall not pass!' }, status: :unauthorized) && return
-    end
-  end
-
   def base_create(params)
     response = create_user(params[:email], params[:password])
     unless response[:flag]
@@ -92,7 +86,7 @@ class UnificationController < ApplicationController
     { message: 'created',  status: CREATED, flag: true }
   end
 
-  def create_patient(params)
+  def create_patient(_params)
     @patient = Patient.new(
       people_id: @people.id,
       privacy_polity: true,
