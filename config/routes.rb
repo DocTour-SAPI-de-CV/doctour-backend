@@ -191,6 +191,13 @@ Rails.application.routes.draw do
   post 'language', to: 'language#create'
   delete 'language/:id', to: 'language#delete'
 
+  # Nationality
+  put 'nationality/:id', to: 'nationality#update'
+  get 'nationality', to: 'nationality#show'
+  get 'nationality/:id', to: 'nationality#index'
+  post 'nationality', to: 'nationality#create'
+  delete 'nationality/:id', to: 'nationality#delete'
+
   # Partners
   post 'partner', to: 'partner#create'
   put 'partner/:id', to: 'partner#update'

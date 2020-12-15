@@ -18,6 +18,15 @@ class CreatePeople < ActiveRecord::Migration[6.0]
                    },
                    index: { unique: true }
 
+      t.references :nationality,
+                   type: :uuid,
+                   null: false,
+                   foreign_key: {
+                     on_update: :cascade,
+                     on_delete: :cascade
+                   },
+                   index: { unique: false }
+
       t.timestamps
     end
   end
