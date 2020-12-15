@@ -5,6 +5,8 @@ class People < ApplicationRecord
 
   belongs_to :account
 
+  belongs_to :nationality, dependent: :destroy
+
   has_one :patient, dependent: :destroy
 
   has_one :doctor, dependent: :destroy
@@ -26,16 +28,21 @@ class People < ApplicationRecord
 
   validates :account, uniqueness: true
 
+  validates :nationality, presence: true
+
   validates :first_name,
             format: { with: /[a-zA-Z]/ },
             length: { minimum: 2 },
             presence: { message: 'is required or invalid' }
+
   validates :last_name,
             format: { with: /[a-zA-Z]/ },
             length: { minimum: 2 },
             presence: { message: 'is required or invalid' }
+
   validates :birthdate,
             presence: { message: 'is required or invalid' }
+
   validates :gender,
             inclusion: {
               in: %w[

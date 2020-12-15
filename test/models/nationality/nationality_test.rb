@@ -2,9 +2,9 @@
 
 require 'test_helper'
 
-class PeopleTest < ActiveSupport::TestCase
+class NationalityTest < ActiveSupport::TestCase
   test 'fixture is valid' do
-    @objective = peoples(:person_felipe)
+    @objective = nationalities(:brazilian)
     assert @objective.valid?
   end
 end

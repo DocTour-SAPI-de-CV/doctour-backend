@@ -6,6 +6,7 @@ person_felipe:
     birthdate: <%= '1984-09-01'.to_date %>
     gender: male
     account: felipe_account
+    nationality: brazilian
   
 person_doctor_maria:
     first_name: Maria
@@ -13,6 +14,8 @@ person_doctor_maria:
     birthdate: <%= '1974-09-01'.to_date %>
     gender: male
     account: maria_account
+    nationality: brazilian
+
 
 person_felipe_silva:
     first_name: Felipe
@@ -20,6 +23,8 @@ person_felipe_silva:
     birthdate: <%= '1985-09-01'.to_date %>
     gender: male
     account: felipe_silva_account
+    nationality: brazilian
+
 
 person_gabriel_admin:
     first_name: Gabriel
@@ -27,6 +32,7 @@ person_gabriel_admin:
     birthdate: <%= '1989-11-09'.to_date %>
     gender: male
     account: gabriel_account
+    nationality: american
 
 person_doctor_andre:
     first_name: Andre
@@ -34,6 +40,7 @@ person_doctor_andre:
     birthdate: <%= '1924-09-01'.to_date %>
     gender: male
     account: andre_account
+    nationality: american
 
 person_doctor_ana:
     first_name: Ana
@@ -41,3 +48,4 @@ person_doctor_ana:
     birthdate: <%= '1989-11-09'.to_date %>
     gender: male
     account: ana_account
+    nationality: american

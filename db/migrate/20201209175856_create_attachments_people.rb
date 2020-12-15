@@ -26,7 +26,8 @@ class CreateAttachmentsPeople < ActiveRecord::Migration[6.0]
                      on_update: :cascade,
                      on_delete: :cascade
                    }
-      t.string :attachment_type
+      t.string :attachment_type,
+               null: false
 
       t.timestamps
     end

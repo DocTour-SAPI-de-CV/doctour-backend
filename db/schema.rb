@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_175856) do
     t.uuid "attachment_id", null: false
     t.uuid "person_patient_id", null: false
     t.uuid "person_doctor_id", null: false
-    t.string "attachment_type"
+    t.string "attachment_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attachment_id"], name: "index_attachments_people_on_attachment_id"
@@ -179,6 +179,13 @@ ActiveRecord::Schema.define(version: 2020_12_09_175856) do
     t.index ["person_id"], name: "index_languages_people_on_person_id"
   end
 
+  create_table "nationalities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_nationalities_on_name", unique: true
+  end
+
   create_table "objectives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -229,9 +236,11 @@ ActiveRecord::Schema.define(version: 2020_12_09_175856) do
     t.date "birthdate", null: false
     t.string "gender", null: false
     t.uuid "account_id", null: false
+    t.uuid "nationality_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_people_on_account_id", unique: true
+    t.index ["nationality_id"], name: "index_people_on_nationality_id"
   end
 
   create_table "people_phones", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -363,6 +372,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_175856) do
   add_foreign_key "partners_phones", "phones", on_update: :cascade, on_delete: :cascade
   add_foreign_key "patients", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "people", "accounts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "people", "nationalities", on_update: :cascade, on_delete: :cascade
   add_foreign_key "people_phones", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "people_phones", "phones", on_update: :cascade, on_delete: :cascade
   add_foreign_key "phones_interprets", "interprets", on_update: :cascade, on_delete: :cascade

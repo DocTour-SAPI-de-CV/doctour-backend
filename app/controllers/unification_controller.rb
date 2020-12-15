@@ -55,7 +55,8 @@ class UnificationController < ApplicationController
       params[:first_name],
       params[:last_name],
       params[:birthdate],
-      params[:gender]
+      params[:gender],
+      params[:nationality_id]
     )
     unless response[:flag]
       return { message: { person_error: @people.errors.full_messages }, status: response[:status] }
@@ -63,7 +64,7 @@ class UnificationController < ApplicationController
 
     response = create_language(params[:languages])
     unless response[:flag]
-      return { message: { language_error: "Not found on db: #{@language_name}" }, status: response[:status] }
+      return { message: { language_error: 'Not found' }, status: response[:status] }
     end
 
     response = create_document(params[:document_type], params[:document_number])
@@ -81,6 +82,7 @@ class UnificationController < ApplicationController
     end
 
     # send email
+    # Arrumar
     WelcomeMailer.with(email: @user.email, full_name: @people.full_name).send_email.deliver_later
 
     { message: 'created',  status: CREATED, flag: true }
@@ -88,7 +90,7 @@ class UnificationController < ApplicationController
 
   def create_patient(_params)
     @patient = Patient.new(
-      people_id: @people.id,
+      person_id: @people.id,
       privacy_polity: true,
       terms_use: true,
       client_ip: request.remote_ip
@@ -195,13 +197,14 @@ class UnificationController < ApplicationController
     end
   end
 
-  def create_people(_first_name, _last_name, _birthdate, _gender)
+  def create_people(_first_name, _last_name, _birthdate, _gender, _nationality_id)
     @people = People.new(
       account_id: @account.id,
       first_name: params[:first_name],
       last_name: params[:last_name],
       birthdate: params[:birthdate],
-      gender: params[:gender]
+      gender: params[:gender],
+      nationality_id: params[:nationality_id]
     )
     begin
       @people.save!
@@ -219,8 +222,7 @@ class UnificationController < ApplicationController
     @languages_objects = []
     # Get all languages objects
     languages.each do |language|
-      @language_name = language
-      object = Language.find_by(name: language)
+      object = Language.find_by(id: language)
       if object.nil?
         @user.delete
         @people.delete

@@ -8,16 +8,16 @@ class PeopleController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :missing_params
 
   def show
-    render(json: { peoples: People.all })
+    render(json: { people: People.all })
   end
 
   def index
-    render(json: { people: People.find(params[:id]) })
+    render(json: { person: People.find(params[:id]) })
   end
 
   def create
     people = People.new(people_params)
-    render(json: { people: people }) if people.save
+    render(json: { person: people }) if people.save
 
     render(json: { error: people.errors }) unless people.save
   end
@@ -43,6 +43,7 @@ class PeopleController < ApplicationController
                                    :last_name,
                                    :birthdate,
                                    :gender,
-                                   :account_id)
+                                   :account_id,
+                                   :nationality_id)
   end
 end

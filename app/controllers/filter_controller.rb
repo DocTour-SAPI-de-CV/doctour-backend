@@ -33,6 +33,6 @@ class FilterController < ApplicationController
 
   def doctor_report
     @report = DoctorReportFinder.new(nil).find(params)
-    render(json: {result: @report[:result]}, status: @report[:status])
+    render(json: { result: @report[:result] }, status: @report[:status])
   end
 end

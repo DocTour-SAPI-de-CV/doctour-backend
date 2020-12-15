@@ -11,6 +11,7 @@ class DoctorReportFinder < ApplicationFinder
   def report_result
     @report = Screening.where('created_at between (?) and (?)', @start_date, @end_date)
     return { result: 'nothing found on given date', status: 404 } if @report.empty?
+
     response = []
 
     @report.each do |result|
@@ -22,7 +23,7 @@ class DoctorReportFinder < ApplicationFinder
       }
     end
 
-    return { result: response, status: 200 }
+    { result: response, status: 200 }
   end
 
   def age(dob)
@@ -35,7 +36,7 @@ class DoctorReportFinder < ApplicationFinder
     diagnostics_soap = DiagnosticsSoap.where(soap_id: soap.id)
 
     diagnostics_soap.each do |diagnostic_soap|
-     result = diagnostic_soap.diagnostic.name if diagnostic_soap.primary
+      result = diagnostic_soap.diagnostic.name if diagnostic_soap.primary
     end
     result
   end
