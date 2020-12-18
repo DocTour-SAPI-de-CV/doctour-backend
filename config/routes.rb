@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   post 'user_register', to: 'unification#user_register'
   post 'doctor_register', to: 'unification#doctor_register'
   post 'assistant_register', to: 'unification#assistant_register'
+  post 'admin_register', to: 'unification#admin_register'
+  post 'master_register', to: 'unification#master_register'
 
   # Filter
   get 'patient_filter/:id', to: 'filter#patient'

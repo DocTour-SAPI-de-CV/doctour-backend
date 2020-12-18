@@ -13,9 +13,10 @@ class Account < ApplicationRecord
             inclusion: {
               in: %w[
                 admin
-                client
+                patient
                 doctor
                 assistant
+                master
               ],
               message: 'is not valid'
             },
