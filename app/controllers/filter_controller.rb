@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FilterController < ApplicationController
-  before_action :admin_authorzation, only: %i[doctor_report]
+  before_action :admin_authorization, only: %i[doctor_report]
 
   include ErrorSerializer
 

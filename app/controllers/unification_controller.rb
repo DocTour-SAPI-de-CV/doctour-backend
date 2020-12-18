@@ -10,35 +10,110 @@ CREATED = 201
 
 class UnificationController < ApplicationController
   before_action :authenticate_user, only: %i[doctor_register assistant_register]
-  before_action :admin_authorzation, only: %i[doctor_register assistant_register]
+  before_action :admin_authorization, only: %i[doctor_register assistant_register]
+  before_action :master_authorization, only: %i[admin_register]
 
   def user_register
-    response = base_create(params)
+    response = check_category(params[:category], 1)
+
+    response = base_create(params) unless response[:status] == :unauthorized
 
     response = create_patient(params) unless response[:flag].nil? && !response[:flag]
 
+    send_welcome_email unless response[:flag].nil? && !response[:flag]
     render(json: response[:message], status: response[:status])
   end
 
   def doctor_register
-    response = base_create(params)
+    response = check_category(params[:category], 2)
+
+    response = base_create(params) unless response[:status] == :unauthorized
 
     response = create_address(params) unless response[:flag].nil? && !response[:flag]
 
     response = create_doctor(params) unless response[:flag].nil? && !response[:flag]
 
+    send_welcome_email unless response[:flag].nil? && !response[:flag]
     render(json: response[:message], status: response[:status])
   end
 
   def assistant_register
-    response = base_create(params)
+    response = check_category(params[:category], 3)
+
+    response = base_create(params) unless response[:status] == :unauthorized
 
     response = create_address(params) unless response[:flag].nil? && !response[:flag]
 
+    send_welcome_email unless response[:flag].nil? && !response[:flag]
+    render(json: response[:message], status: response[:status])
+  end
+
+  def admin_register
+    response = check_category(params[:category], 4)
+
+    response = base_create(params) unless response[:status] == :unauthorized
+
+    send_welcome_email unless response[:flag].nil? && !response[:flag]
+    render(json: response[:message], status: response[:status])
+  end
+
+  def master_register
+    response = check_category(params[:category], 5)
+
+    response = base_create(params) unless response[:status] == :unauthorized
+
+    send_welcome_email unless response[:flag].nil? && !response[:flag]
     render(json: response[:message], status: response[:status])
   end
 
   private
+
+  def check_master_auth
+    response = master_password
+
+    { status: true } unless response
+
+    { message: 'Master password is wrong', status: :unauthorized } if response
+  end
+
+  def check_category(category, flag)
+    case flag
+    when 1
+      if  category != 'patient'
+        { message: 'Only use this for patient', status: :unauthorized }
+      else
+        { status: true }
+      end
+    when 2
+      if  category != 'doctor'
+        { message: 'Only use this for doctor', status: :unauthorized }
+      else
+        { status: true }
+      end
+    when 3
+      if  category != 'assistant'
+        { message: 'Only use this for assistant', status: :unauthorized }
+      else
+        { status: true }
+      end
+    when 4
+      if  category != 'admin'
+        { message: 'Only use this for admin', status: :unauthorized }
+      else
+        { status: true }
+      end
+    when 5
+      if  category != 'master'
+        { message: 'Only use this for master', status: :unauthorized }
+      else
+        check_master_auth
+      end
+    end
+  end
+
+  def send_welcome_email
+    WelcomeMailer.with(email: @user.email, full_name: @people.full_name).send_email.deliver_later
+  end
 
   def base_create(params)
     response = create_user(params[:email], params[:password])
@@ -80,10 +155,6 @@ class UnificationController < ApplicationController
     unless response[:flag]
       return { message: { phone_error: @phone.errors.full_messages }, status: response[:status] }
     end
-
-    # send email
-    # Arrumar
-    WelcomeMailer.with(email: @user.email, full_name: @people.full_name).send_email.deliver_later
 
     { message: 'created',  status: CREATED, flag: true }
   end

@@ -25,10 +25,23 @@ class ApplicationController < ActionController::API
     render json: @user
   end
 
-  def admin_authorzation
+  def admin_authorization
     unless Account.find_by(user_id: current_user.id).category == 'admin'
-      render(json: { Gandalf_says: 'You shall not pass!' }, status: :unauthorized) && return
+      return unauthorized("admin")
     end
+  end
+
+  def master_authorization
+    unless Account.find_by(user_id: current_user.id).category == 'master'
+      return unauthorized("master")
+    end
+  end
+
+  def master_password
+    auth = request.headers['Authorization']
+    token = auth.split.last
+
+    token != Rails.application.credentials.master_auth_key
   end
 
   protected
@@ -39,7 +52,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_user
     auth = request.headers['Authorization'] || request.cookies['auth._token.local']
-    return unauthorized if auth.blank?
+    return unauthorized("user") if auth.blank?
 
     token = auth.split.last
 
@@ -49,12 +62,12 @@ class ApplicationController < ActionController::API
 
       @current_user
     rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
-      unauthorized
+      unauthorized("user")
     end
   end
 
-  def unauthorized
-    render json: { Gandalf_says: 'You shall not pass!' }, status: :unauthorized
+  def unauthorized(type)
+    render json: { Gandalf_says: "You shall not pass! (only #{type}s)" }, status: :unauthorized
   end
 
   def authenticate_user!(_options = {})
