@@ -19,7 +19,8 @@ class ApplicationController < ActionController::API
                 first_name: people.first_name,
                 last_name: people.last_name,
                 initials: people.first_name[0] + people.last_name.split(' ').last[0],
-                gender: people.gender
+                gender: people.gender,
+                category: people.account.category
               }
             end
     render json: @user
