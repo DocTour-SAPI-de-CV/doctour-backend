@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_175856) do
   create_table "languages_people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "language_id", null: false
     t.uuid "person_id", null: false
+    t.boolean "native"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["language_id"], name: "index_languages_people_on_language_id"
