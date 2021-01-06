@@ -49,3 +49,19 @@ person_doctor_ana:
     gender: male
     account: ana_account
     nationality: american
+
+person_assistant_chris:
+    first_name: Chris
+    last_name: Abacaxi
+    birthdate: <%= '1984-09-01'.to_date %>
+    gender: male
+    account: account_assistant_chris
+    nationality: brazilian
+  
+person_assistant_bruna:
+    first_name: Bruna
+    last_name: Uva
+    birthdate: <%= '1974-09-01'.to_date %>
+    gender: female
+    account: account_assistant_bruna
+    nationality: brazilian

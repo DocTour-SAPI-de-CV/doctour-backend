@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_175856) do
+ActiveRecord::Schema.define(version: 2021_01_06_134053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 2020_12_09_175856) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["address_id"], name: "index_addresses_people_on_address_id"
     t.index ["person_id"], name: "index_addresses_people_on_person_id"
+  end
+
+  create_table "assistants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "person_id", null: false
+    t.string "status"
+    t.string "photo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_assistants_on_person_id"
   end
 
   create_table "attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -351,6 +360,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_175856) do
   add_foreign_key "addresses_partners", "partners", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_people", "addresses", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_people", "people", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "assistants", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "attachments", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "people", column: "person_doctor_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "people", column: "person_patient_id", on_update: :cascade, on_delete: :cascade

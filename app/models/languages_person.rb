@@ -9,7 +9,7 @@ class LanguagesPerson < ApplicationRecord
 
   validates :language,
             presence: true
-  
+
   validates :native,
             inclusion: { in: [true, false],
                          message: 'Must be true or false!' }
