@@ -3,7 +3,9 @@
 language_person_felipe:
   language: portuguese
   person: person_felipe
+  native: true
 
 language_person_maria:
   language: english
   person: person_doctor_maria
+  native: true

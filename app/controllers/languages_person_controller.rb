@@ -41,7 +41,7 @@ class LanguagesPersonController < ApplicationController
   private
 
   def languages_person_params
-    params.require(:languages_person).permit(:person_id, :language_id)
+    params.require(:languages_person).permit(:person_id, :language_id, :native)
   end
 end
 # rubocop:enable Style/GuardClause
