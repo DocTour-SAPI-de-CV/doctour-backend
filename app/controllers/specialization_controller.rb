@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class SpecializationController < ApplicationController
+  before_action :authenticate_user, except: :show
+
   include ErrorSerializer
 
   def show
-    render(json: { specialization: Specialization.all })
+    render(json: { specializations: Specialization.all })
   end
 
   def index

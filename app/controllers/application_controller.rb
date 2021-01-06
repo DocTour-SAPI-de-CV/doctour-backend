@@ -27,22 +27,14 @@ class ApplicationController < ActionController::API
   end
 
   def admin_authorization
-    unless Account.find_by(user_id: current_user.id).category == 'admin'
-      return unauthorized("admin")
-    end
+    category = Account.find_by(user_id: current_user.id).category
+    unauthorized('admin') if category != 'admin' && category != 'master'
   end
 
   def master_authorization
     unless Account.find_by(user_id: current_user.id).category == 'master'
-      return unauthorized("master")
+      unauthorized('master')
     end
-  end
-
-  def master_password
-    auth = request.headers['Authorization']
-    token = auth.split.last
-
-    token != Rails.application.credentials.master_auth_key
   end
 
   protected
@@ -53,7 +45,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_user
     auth = request.headers['Authorization'] || request.cookies['auth._token.local']
-    return unauthorized("user") if auth.blank?
+    return unauthorized('user') if auth.blank?
 
     token = auth.split.last
 
@@ -63,7 +55,7 @@ class ApplicationController < ActionController::API
 
       @current_user
     rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
-      unauthorized("user")
+      unauthorized('user')
     end
   end
 

@@ -51,8 +51,7 @@ class People < ApplicationRecord
               ],
               message: 'is not valid'
             },
-            length: { minimum: 2 },
-            presence: { message: 'is required or invalid' }
+            presence: true
 
   def downcase_fields
     gender.downcase!
