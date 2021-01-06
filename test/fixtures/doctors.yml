@@ -2,19 +2,19 @@
 
 doctor_maria:
   person: person_doctor_maria
-  photo: "photo.jpg"
+  photo: photo.jpg
   about: experiência na área de cardiologia
   status: 0
 
 doctor_andre:
   person: person_doctor_andre
-  photo: "photo.jpg"
+  photo: photo.jpg
   about: experiênciaa na área de cardiologia
   status: 1
 
 doctor_ana:
   person: person_doctor_ana
-  photo: "photo.jpg"
+  photo: photo.jpg
   about: experiênciaaa na área de cardiologia
   status: 2
     

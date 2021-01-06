@@ -23,3 +23,11 @@ andre_account:
 ana_account:
   category: doctor
   user: ana
+
+account_assistant_chris:
+  category: assistant
+  user: chris
+
+account_assistant_bruna:
+  category: assistant
+  user: bruna

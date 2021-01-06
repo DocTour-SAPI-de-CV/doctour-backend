@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+assistant_chris:
+  person: person_assistant_chris
+  status: 0
+  photo: people.png
+
+assistant_bruna:
+  person: person_assistant_bruna
+  status: 0
+  photo: people.png

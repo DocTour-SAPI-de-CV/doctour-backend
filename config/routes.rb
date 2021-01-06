@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   # authenticate
   get 'user', to: 'application#user'
 
-
   # unification
   post 'user_register', to: 'unification#user_register'
   post 'doctor_register', to: 'unification#doctor_register'
@@ -37,6 +36,13 @@ Rails.application.routes.draw do
   get 'diagnostic_filter', to: 'filter#diagnostic'
   get 'doctors_status', to: 'filter#doctors_status'
   get 'doctor_report/:start_date'+'&'+':end_date', to: 'filter#doctor_report'
+
+  # Assistant
+  post 'assistant', to: 'assistant#create'
+  put 'assistant/:id', to: 'assistant#update'
+  get 'assistant', to: 'assistant#show'
+  get 'assistant/:id', to: 'assistant#index'
+  delete 'assistant/:id', to: 'assistant#delete'
 
   # Services
   post 'service', to: 'service#create'
