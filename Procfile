@@ -1,3 +1,2 @@
-release: bundle exec rails db:migrate
-rails db:fixtures:load
+release: bundle exec rails db:drop db:create db:migrate populate:setup
 web: bin/server
