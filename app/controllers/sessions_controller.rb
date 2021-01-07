@@ -5,11 +5,16 @@ class SessionsController < Devise::SessionsController
   respond_to :json
 
   def create
-    self.resource = warden.authenticate!(auth_options)
-    sign_in(resource_name, resource)
-    token = Warden::JWTAuth::UserEncoder.new.call(resource, :user, nil)
+    user = User.where(email: params[:user]["email"]).first
+    if user.blank?
+      render(json: {User: "Email not found"}, status: :not_found)
+    else
+      self.resource = warden.authenticate!(auth_options)
+      sign_in(resource_name, resource)
+      token = Warden::JWTAuth::UserEncoder.new.call(resource, :user, nil)
 
-    render json: { authorization: token[0] }
+      render json: { authorization: token[0] }
+    end
   end
 
   private
