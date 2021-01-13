@@ -26,8 +26,13 @@ class CreateAttachmentsPeople < ActiveRecord::Migration[6.0]
                      on_update: :cascade,
                      on_delete: :cascade
                    }
-      t.string :attachment_type,
-               null: false
+      t.references :attachment_type,
+                   type: :uuid,
+                   null: false,
+                   foreign_key: {
+                     on_update: :cascade,
+                     on_delete: :cascade
+                   }
 
       t.timestamps
     end

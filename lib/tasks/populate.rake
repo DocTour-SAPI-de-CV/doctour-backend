@@ -67,8 +67,33 @@ namespace :populate do
         created_at: DateTime.now,
         updated_at: DateTime.now
       }
-
-      Specialization.insert_all(insert_specializations)
     end
+
+    Specialization.insert_all(insert_specializations)
+
+    attachments_types = [
+      {name:'Reporte de consulta', create: Array['doctor','assistant'], read: Array['doctor','assistant','patient']},
+      {name:'Receta Medica', create: Array['doctor','assistant'], read: Array['doctor','assistant','patient']},
+      {name:'Pedido de Laboratorio/Examenes', create: Array['doctor','assistant'], read: Array['doctor','assistant','patient']},
+      {name:'Reporte de procedimentos', create: Array['doctor','assistant'], read: Array['doctor','assistant']},
+      {name:'Reporte de efermaria', create: Array['doctor','assistant'], read: Array['doctor','assistant']},
+      {name:'Consentimiento informado', create: Array['doctor','assistant'], read: Array['doctor','assistant','patient']},
+      {name:'Resultados de Laboratorio/Examenes', create: Array['doctor','assistant','patient'], read: Array['doctor','assistant','patient']},
+      {name:'Others', create: Array['doctor','assistant','patient'], read: Array['doctor','assistant','patient']}
+    ]
+
+    insert_attachments_types = []
+
+    attachments_types.each do |attachment_type|
+      insert_attachments_types << {
+        name: attachment_type[:name],
+        create: attachment_type[:create],
+        read: attachment_type[:read],
+        created_at: DateTime.now,
+        updated_at: DateTime.now
+      }
+    end
+
+    AttachmentType.insert_all(insert_attachments_types)
   end
 end

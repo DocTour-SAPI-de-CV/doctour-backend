@@ -220,5 +220,35 @@ module Register
         VERIFY.result({ object: patient, flag: true, status: :unprocessable_entity })
       end
     end
+
+    def self.attachment(file)
+      attachment = Attachment.new(file: file)
+      begin
+        attachment.save!
+
+        VERIFY.result({ object: attachment, flag: false })
+      rescue
+        VERIFY.result({ object: attachment, flag: true, status: :unprocessable_entity })
+      end
+    end
+
+    def self.attachment_person(attachment, params)
+      attachment_person = AttachmentsPerson.new(
+        attachment_id: attachment.id,
+        person_doctor_id: params[:person_doctor_id],
+        person_patient_id: params[:person_patient_id],
+        attachment_type_id: params[:attachment_type_id]
+      )
+
+      puts attachment_person.errors.as_json
+
+      begin
+        attachment_person.save!
+
+        VERIFY.result({ object: attachment_person, flag: false })
+      rescue
+        VERIFY.result({ object: attachment_person, flag: true, status: :unprocessable_entity })
+      end
+    end
   end
 end

@@ -71,6 +71,14 @@ ActiveRecord::Schema.define(version: 2021_01_06_134053) do
     t.index ["person_id"], name: "index_assistants_on_person_id"
   end
 
+  create_table "attachment_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "create", default: [], array: true
+    t.string "read", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "file", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -81,10 +89,11 @@ ActiveRecord::Schema.define(version: 2021_01_06_134053) do
     t.uuid "attachment_id", null: false
     t.uuid "person_patient_id", null: false
     t.uuid "person_doctor_id", null: false
-    t.string "attachment_type", null: false
+    t.uuid "attachment_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attachment_id"], name: "index_attachments_people_on_attachment_id"
+    t.index ["attachment_type_id"], name: "index_attachments_people_on_attachment_type_id"
     t.index ["person_doctor_id"], name: "index_attachments_people_on_person_doctor_id"
     t.index ["person_patient_id"], name: "index_attachments_people_on_person_patient_id"
   end
@@ -361,6 +370,7 @@ ActiveRecord::Schema.define(version: 2021_01_06_134053) do
   add_foreign_key "addresses_people", "addresses", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_people", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "assistants", "people", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "attachments_people", "attachment_types", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "attachments", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "people", column: "person_doctor_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "people", column: "person_patient_id", on_update: :cascade, on_delete: :cascade

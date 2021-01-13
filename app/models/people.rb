@@ -7,6 +7,8 @@ class People < ApplicationRecord
 
   belongs_to :nationality, dependent: :destroy
 
+  has_one :assistant, dependent: :destroy
+
   has_one :patient, dependent: :destroy
 
   has_one :doctor, dependent: :destroy
