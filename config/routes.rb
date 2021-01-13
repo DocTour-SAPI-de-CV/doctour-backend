@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'assistant_register', to:'register/assistant#create'
   post 'admin_register', to:'register/admin#create'
   post 'master_register', to:'register/master#create'
+  post 'attachment_register', to:'register/attachment#create'
 
   # authenticate
   get 'user', to: 'application#user'
@@ -35,6 +36,9 @@ Rails.application.routes.draw do
   # post 'assistant_register', to: 'unification#assistant_register'
   # post 'admin_register', to: 'unification#admin_register'
   # post 'master_register', to: 'unification#master_register'
+
+  # Attachment Type
+  get 'attachment_types', to: 'attachment_type#show'
 
   # Filter
   get 'patient_filter/:id', to: 'filter#patient'

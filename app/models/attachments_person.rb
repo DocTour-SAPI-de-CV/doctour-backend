@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
 class AttachmentsPerson < ApplicationRecord
-  belongs_to :attachment, inverse_of: :attachments_people
-
-  belongs_to :person, class_name: 'People'
+  belongs_to :attachment
 
   belongs_to :person_patient,
              class_name: 'People',
-             foreign_key: 'person_patient_id',
-             inverse_of: :attachments_people
+             foreign_key: 'person_patient_id'
 
   belongs_to :person_doctor,
              class_name: 'People',
-             foreign_key: 'person_doctor_id',
-             inverse_of: :attachments_people
+             foreign_key: 'person_doctor_id'
+
+  belongs_to :attachment_type, dependent: :destroy
 
   validates :attachment,
             presence: true
