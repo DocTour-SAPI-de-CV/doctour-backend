@@ -26,11 +26,11 @@ test:
   database: doctourdb
 
 production:
-  database: d3fnm2lhctosr9
+  database: d8052m390lsdmb
   timeout: 5000
-  uri: postgres://rnpeaptrrqdnvj:1dc6b87195ce249a2266e09955b16160d53341095069d56544c1d48064e131db@ec2-34-235-62-201.compute-1.amazonaws.com:5432/d3fnm2lhctosr9
-  username: rnpeaptrrqdnvj
-  password: 1dc6b87195ce249a2266e09955b16160d53341095069d56544c1d48064e131db
+  uri: postgres://xpgkmgcuvejnui:2fe42fc7977571bf5f72644839a0b4714031578aa438204966bb490977045c34@ec2-54-144-196-35.compute-1.amazonaws.com:5432/d8052m390lsdmb
+  username: xpgkmgcuvejnui
+  password: 2fe42fc7977571bf5f72644839a0b4714031578aa438204966bb490977045c34
   port: 5432
-  host: ec2-34-235-62-201.compute-1.amazonaws.com
+  host: ec2-54-144-196-35.compute-1.amazonaws.com
 
