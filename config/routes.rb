@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   post 'master_register', to:'register/master#create'
   post 'attachment_register', to:'register/attachment#create'
 
+  get 'show_account/:id', to:'register/show#account'
+
+
   # authenticate
   get 'user', to: 'application#user'
 

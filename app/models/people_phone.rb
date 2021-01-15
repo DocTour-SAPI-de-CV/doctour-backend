@@ -9,4 +9,13 @@ class PeoplePhone < ApplicationRecord
 
   validates :phone,
             presence: true
+
+  def as_json
+    {
+      id: phone.id,
+      country_code: phone.country_code,
+      area_code: phone.area_code,
+      number: phone.number
+    }
+  end
 end

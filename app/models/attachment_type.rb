@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AttachmentType < ApplicationRecord
   has_one :attachments_person
 

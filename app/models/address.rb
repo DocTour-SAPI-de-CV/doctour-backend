@@ -21,7 +21,7 @@ class Address < ApplicationRecord
             presence: true
 
   validates :zipcode,
-            length: { in: 4..8 },
+            length: { in: 4..12 },
             presence: true
 
   validates :country,
@@ -33,6 +33,6 @@ class Address < ApplicationRecord
             presence: true
 
   validates :state,
-            length: { in: 3..40 },
+            length: { in: 2..40 },
             presence: true
 end

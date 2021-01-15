@@ -9,4 +9,16 @@ class AddressesPerson < ApplicationRecord
 
   validates :address,
             presence: true
+
+  def as_json
+    {
+      id: address.id,
+      street: address.street,
+      street_number: address.street_number,
+      zipcode: address.zipcode,
+      country: address.country,
+      city: address.city,
+      state: address.state 
+    }
+  end
 end

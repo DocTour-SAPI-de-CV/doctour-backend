@@ -14,4 +14,11 @@ class Nationality < ApplicationRecord
   def downcase_fields
     name&.downcase!
   end
+
+  def as_json
+    {
+      id: id,
+      name: name
+    }
+  end
 end

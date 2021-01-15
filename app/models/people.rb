@@ -62,4 +62,19 @@ class People < ApplicationRecord
   def full_name
     first_name + ' ' + last_name
   end
+
+  def as_json
+    {
+      id: self.id,
+      full_name: full_name,
+      first_name: first_name,
+      last_name: last_name,
+      birthdate: birthdate,
+      gender: gender,
+      nationality: nationality.as_json,
+      document: DocumentsPerson.where(person_id: id).as_json,
+      phones: PeoplePhone.where(person_id: id).as_json,
+      languages: LanguagesPerson.where(person_id: id).as_json
+    }
+  end
 end
