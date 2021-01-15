@@ -9,4 +9,11 @@ class DoctorsSpecialization < ApplicationRecord
 
   validates :specialization,
             presence: true
+  
+  def as_json
+    {
+      id: id,
+      name: specialization.name
+    }
+  end
 end

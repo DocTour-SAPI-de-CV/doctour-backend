@@ -18,4 +18,12 @@ class Assistant < ApplicationRecord
             presence: { message: 'is required or invalid' }
 
   delegate :full_name, to: :person
+
+  def as_json
+    {
+      id: id,
+      photo: photo,
+      status: status
+    }
+  end
 end

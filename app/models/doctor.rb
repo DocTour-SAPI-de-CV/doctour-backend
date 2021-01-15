@@ -28,4 +28,14 @@ class Doctor < ApplicationRecord
             presence: { message: 'is required or invalid' }
 
   delegate :full_name, to: :person
+
+  def as_json
+    {
+      id: id,
+      photo: photo,
+      about: about,
+      status: status,
+      specializations: DoctorsSpecialization.where(doctor_id: id).as_json
+    }
+  end
 end

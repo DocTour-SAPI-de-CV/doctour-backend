@@ -28,4 +28,13 @@ class Patient < ApplicationRecord
   def email
     people.account.user.email
   end
+
+  def as_json
+    {
+      id: id,
+      privacy_polity: privacy_polity,
+      terms_use: terms_use,
+      client_ip: client_ip.to_s
+    }
+  end
 end

@@ -9,4 +9,12 @@ class DocumentsPerson < ApplicationRecord
 
   validates :document,
             presence: true
+
+  def as_json
+    {
+      id: document.id,
+      document_number: document.number,
+      document_type: document.document_type
+    }
+  end
 end
