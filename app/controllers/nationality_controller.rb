@@ -8,7 +8,7 @@ class NationalityController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :missing_params
 
   def show
-    render(json: { nationalities: Nationality.all })
+    render(json: { nationalities: Nationality.all.as_json })
   end
 
   def index
