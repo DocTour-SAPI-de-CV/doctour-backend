@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   post 'password_recovery', to:'password_recovery#index'
   patch 'password_recovery', to:'password_recovery#recovery'
 
-  post 'patient_register', to:'register/patient#create'
   post 'doctor_register', to:'register/doctor#create'
   post 'assistant_register', to:'register/assistant#create'
   post 'admin_register', to:'register/admin#create'
@@ -28,6 +27,9 @@ Rails.application.routes.draw do
   post 'attachment_register', to:'register/attachment#create'
 
   get 'show_account/:id', to:'register/show#account'
+
+  post 'patient_register', to:'register/patient#create'
+  get 'patient_register', to:'register/patient#show'
 
 
   # authenticate
