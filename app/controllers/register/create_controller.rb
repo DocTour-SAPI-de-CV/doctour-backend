@@ -4,9 +4,15 @@ VERIFY = Register::VerificationController
 module Register
   class CreateController < ApplicationController
     def self.user(params)
+      password = if params[:password].nil?
+                   Devise.friendly_token.first(32)
+                 else
+                   params[:password]
+                 end
+
       user = User.new(
         email: params[:email],
-        password: params[:password]
+        password: password
       )
       begin
         user.save!
@@ -227,7 +233,7 @@ module Register
         attachment.save!
 
         VERIFY.result({ object: attachment, flag: false })
-      rescue
+      rescue ActiveRecord::RecordInvalid
         VERIFY.result({ object: attachment, flag: true, status: :unprocessable_entity })
       end
     end
@@ -246,7 +252,7 @@ module Register
         attachment_person.save!
 
         VERIFY.result({ object: attachment_person, flag: false })
-      rescue
+      rescue ActiveRecord::RecordInvalid
         VERIFY.result({ object: attachment_person, flag: true, status: :unprocessable_entity })
       end
     end

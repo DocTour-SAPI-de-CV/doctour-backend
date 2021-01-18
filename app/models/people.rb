@@ -42,21 +42,18 @@ class People < ApplicationRecord
             length: { minimum: 2 },
             presence: { message: 'is required or invalid' }
 
-  validates :birthdate,
-            presence: { message: 'is required or invalid' }
-
   validates :gender,
             inclusion: {
-              in: %w[
-                female
-                male
+              in: [
+                'female',
+                'male',
+                nil
               ],
               message: 'is not valid'
-            },
-            presence: true
+            }
 
   def downcase_fields
-    gender.downcase!
+    gender&.downcase!
   end
 
   def full_name
@@ -65,7 +62,7 @@ class People < ApplicationRecord
 
   def as_json
     {
-      id: self.id,
+      id: id,
       full_name: full_name,
       first_name: first_name,
       last_name: last_name,

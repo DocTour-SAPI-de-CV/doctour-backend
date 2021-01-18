@@ -7,9 +7,6 @@ class Assistant < ApplicationRecord
             uniqueness: true,
             presence: true
 
-  validates :photo,
-            presence: true
-
   validates :status,
             inclusion: {
               in: [0, 1, 2],

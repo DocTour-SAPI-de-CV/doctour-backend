@@ -6,7 +6,7 @@ DELETE = Register::DeleteController
 
 module Register
   class AssistantController < ApplicationController
-    before_action :admin_authorization
+    before_action :admin_authorization, except: :update
 
     def initialize
       @objects = {}
@@ -40,8 +40,8 @@ module Register
       params[:languages].each do |language|
         result(CREATE.language(@objects[:People], language)) unless @stop
       end
-      result(CREATE.address(params)) unless @stop
-      result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
+      # result(CREATE.address(params)) unless @stop
+      # result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
       result(CREATE.assistant(@objects[:People])) unless @stop
 
       unless @stop
@@ -49,5 +49,7 @@ module Register
       end
       render(json: @message, status: @status)
     end
+
+    def update; end
   end
 end

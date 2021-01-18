@@ -6,7 +6,6 @@ DELETE = Register::DeleteController
 
 module Register
   class AttachmentController < ApplicationController
-
     def initialize
       @objects = {}
       @stop = false
@@ -28,7 +27,7 @@ module Register
 
     def create
       result(CREATE.attachment(params[:file]))
-      result(CREATE.attachment_person(@objects[:Attachment],params)) unless @stop
+      result(CREATE.attachment_person(@objects[:Attachment], params)) unless @stop
 
       render(json: @message, status: @status)
     end
