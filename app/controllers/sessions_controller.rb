@@ -5,9 +5,9 @@ class SessionsController < Devise::SessionsController
   respond_to :json
 
   def create
-    user = User.where(email: params[:user]["email"]).first
+    user = User.where(email: params[:user]['email']).first
     if user.blank?
-      render(json: {User: "Email not found"}, status: :not_found)
+      render(json: { User: 'Email not found' }, status: :not_found)
     else
       self.resource = warden.authenticate!(auth_options)
       sign_in(resource_name, resource)

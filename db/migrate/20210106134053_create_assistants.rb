@@ -12,7 +12,7 @@ class CreateAssistants < ActiveRecord::Migration[6.0]
                      on_delete: :cascade
                    }
       t.integer :status, null: false
-      t.string :photo, null: false
+      t.string :photo
 
       t.timestamps
     end

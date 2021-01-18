@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_01_06_134053) do
   create_table "assistants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id", null: false
     t.integer "status", null: false
-    t.string "photo", null: false
+    t.string "photo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["person_id"], name: "index_assistants_on_person_id"
@@ -252,8 +252,8 @@ ActiveRecord::Schema.define(version: 2021_01_06_134053) do
   create_table "people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.date "birthdate", null: false
-    t.string "gender", null: false
+    t.date "birthdate"
+    t.string "gender"
     t.uuid "account_id", null: false
     t.uuid "nationality_id", null: false
     t.datetime "created_at", precision: 6, null: false

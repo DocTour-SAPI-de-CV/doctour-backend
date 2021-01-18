@@ -18,7 +18,7 @@ class AddressesPerson < ApplicationRecord
       zipcode: address.zipcode,
       country: address.country,
       city: address.city,
-      state: address.state 
+      state: address.state
     }
   end
 end

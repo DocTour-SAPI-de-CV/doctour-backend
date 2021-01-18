@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAttachmentTypes < ActiveRecord::Migration[6.0]
   def change
     create_table :attachment_types, id: :uuid, default: 'gen_random_uuid()' do |t|
