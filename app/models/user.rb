@@ -26,41 +26,38 @@ class User < ApplicationRecord
     return patient if account.category == 'patient'
   end
 
-  def assitant
+  def basic_info
     {
+      id: id,
       email: email,
       category: account.category,
-      people: account.people.as_json,
+      people: account.people.as_json
+    }
+  end
+
+  def assitant
+    basic_info.merge!({
       address: AddressesPerson.find_by(person_id: account.people.id).as_json,
       assistant: Assistant.find_by(person_id: account.people.id).as_json
-    }
+    })
   end
 
   def admin
-    {
-      email: email,
-      category: account.category,
-      people: account.people.as_json,
+    basic_info.merge!({
       address: AddressesPerson.find_by(person_id: account.people.id).as_json
-    }
+    })
   end
 
   def doctor
-    {
-      email: email,
-      category: account.category,
-      people: account.people.as_json,
+    basic_info.merge!({
       address: AddressesPerson.find_by(person_id: account.people.id).as_json,
       doctor: Doctor.find_by(person_id: account.people.id).as_json
-    }
+    })
   end
 
   def patient
-    {
-      email: email,
-      category: account.category,
-      people: account.people.as_json,
+    basic_info.merge!({
       patient: Patient.find_by(person_id: account.people.id).as_json
-    }
+    })
   end
 end
