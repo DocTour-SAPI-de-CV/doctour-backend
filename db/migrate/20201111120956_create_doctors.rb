@@ -12,8 +12,8 @@ class CreateDoctors < ActiveRecord::Migration[6.0]
                    },
                    index: { unique: true }
 
-      t.string :photo, null: false
-      t.text :about, null: false
+      t.string :photo
+      t.text :about
       t.integer :status
 
       t.timestamps

@@ -12,13 +12,11 @@ class Doctor < ApplicationRecord
             uniqueness: true,
             presence: true
 
-  validates :photo,
-            presence: true
-
-  validates :about,
-            format: { with: /[a-zA-Z]/ },
-            length: { in: 3..300 },
-            presence: true
+  if :about.present?
+    validates :about,
+              format: { with: /[a-zA-Z]/ },
+              length: { in: 3..300 }
+  end
 
   validates :status,
             inclusion: {

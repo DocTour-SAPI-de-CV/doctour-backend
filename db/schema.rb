@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 2021_01_06_134053) do
 
   create_table "doctors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id", null: false
-    t.string "photo", null: false
-    t.text "about", null: false
+    t.string "photo"
+    t.text "about"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
