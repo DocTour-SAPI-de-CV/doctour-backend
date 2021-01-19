@@ -50,6 +50,13 @@ module Register
       render(json: @message, status: @status)
     end
 
-    def update; end
+    def show
+      accounts = Account.where(category: 'assistant').all
+      assistants = accounts.map do |account|
+        account.user.as_json
+      end
+
+      render json: assistants, status: 200
+    end
   end
 end

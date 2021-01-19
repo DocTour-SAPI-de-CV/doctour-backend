@@ -40,8 +40,8 @@ module Register
       params[:languages].each do |language|
         result(CREATE.language(@objects[:People], language)) unless @stop
       end
-      result(CREATE.address(params)) unless @stop
-      result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
+      # result(CREATE.address(params)) unless @stop
+      # result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
       result(CREATE.doctor(@objects[:People], params)) unless @stop
       params[:specializations].each do |specialization|
         result(CREATE.specialization(specialization, @objects[:Doctor])) unless @stop
@@ -51,6 +51,15 @@ module Register
         WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
       end
       render(json: @message, status: @status)
+    end
+
+    def show
+      accounts = Account.where(category: 'doctor').all
+      doctors = accounts.map do |account|
+        account.user.as_json
+      end
+
+      render json: doctors, status: 200
     end
   end
 end
