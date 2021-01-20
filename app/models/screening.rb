@@ -55,4 +55,8 @@ class Screening < ApplicationRecord
   def bmi
     height / (weight * weight)
   end
+
+  def performed_date
+    performed_at.strftime('%m/%d/%Y')
+  end
 end

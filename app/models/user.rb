@@ -19,6 +19,16 @@ class User < ApplicationRecord
          :jwt_authenticatable,
          jwt_revocation_strategy: self
 
+  def patient_summary
+    {
+      user_id: id,
+      full_name: account.people.full_name,
+      last_medical_history: Screening.where(
+        patient: Patient.find_by(
+          person: account.people)).last.performed_date
+    }
+  end
+
   def as_json
     return assitant if account.category == 'assistant'
     return admin if account.category == 'admin'

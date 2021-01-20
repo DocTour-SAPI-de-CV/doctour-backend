@@ -4,15 +4,25 @@ namespace :accounts do
   desc 'Populate default accounts'
   task setup: :environment do
     accounts = [
+      { email: 'doutor@doctour.com', password: 'doutor123',
+        first_name: 'José', last_name: 'Ricardo',
+        gender: 'male', category: 'doctor',
+        document_number: 'ROAA220101HBCDNN012' },
+
       { email: 'paciente@doctour.com', password: 'paciente123',
         first_name: 'Antonio', last_name: 'Rodrigo',
         gender: 'male', category: 'patient',
         document_number: 'ROAA220101HBCDNN011' },
 
-      { email: 'doutor@doctour.com', password: 'doutor123',
-        first_name: 'José', last_name: 'Ricardo',
-        gender: 'male', category: 'doctor',
-        document_number: 'ROAA220101HBCDNN012' },
+      { email: 'paciente2@doctour.com', password: 'paciente123',
+        first_name: 'Thaise', last_name: 'Gabriela',
+        gender: 'male', category: 'patient',
+        document_number: 'ROAA220101HBCDNN046' },
+
+      { email: 'paciente3@doctour.com', password: 'paciente123',
+        first_name: 'Diego', last_name: 'Eduardo',
+        gender: 'male', category: 'patient',
+        document_number: 'ROAA220101HBCDNN044' }, 
 
       { email: 'assistente@doctour.com', password: 'assistente123',
         first_name: 'Amanda', last_name: 'Santos',
@@ -118,6 +128,18 @@ namespace :accounts do
         privacy_polity: true,
         terms_use: true,
         client_ip: '192.168.1.1'
+      )
+
+      Screening.create(
+        performed_at: DateTime.new(2020, 05, 31, 14, 31).utc,
+        return: true,
+        doctor: @doctor,
+        patient: @patient,
+        temperature: '36',
+        heart_rate: '93',
+        blood_pressure: '5/9',
+        weight: '88.4',
+        height: '176'
       )
     end
   end
