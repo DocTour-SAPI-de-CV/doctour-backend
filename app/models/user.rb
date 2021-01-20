@@ -29,6 +29,11 @@ class User < ApplicationRecord
     {
       user_id: id,
       full_name: account.people.full_name,
+      email: email,
+      gender: account.people.gender,
+      document: DocumentsPerson.where(person: account.people).as_json,
+      phones: PeoplePhone.where(person: account.people).as_json,
+      languages: LanguagesPerson.where(person: account.people).as_json,
       last_medical_history: last_medical_history
     }
   end
