@@ -57,6 +57,6 @@ class Screening < ApplicationRecord
   end
 
   def performed_date
-    performed_at.strftime('%m/%d/%Y')
+    performed_at&.strftime('%m/%d/%Y')
   end
 end
