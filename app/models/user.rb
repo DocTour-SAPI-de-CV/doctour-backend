@@ -20,13 +20,21 @@ class User < ApplicationRecord
          jwt_revocation_strategy: self
 
   def patient_summary
+    patient = Patient.find_by(person: account.people)
+    medical_history = patient.medical_history
+    puts medical_history
+    unless medical_history.blank?
+      last_medical_history = medical_history.last[:performed_date]
+    end
     {
       user_id: id,
       full_name: account.people.full_name,
-      last_medical_history: Screening.where(
-        patient: Patient.find_by(
-          person: account.people)).last.performed_date
+      last_medical_history: last_medical_history
     }
+  end
+
+  def medical_history
+    Patient.find_by(person: account.people).medical_history
   end
 
   def as_json

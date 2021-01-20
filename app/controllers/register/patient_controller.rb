@@ -65,5 +65,11 @@ module Register
 
       render json: patients, status: 200
     end
+
+    def medical_history
+      user = User.find(params[:id])
+
+      render json: user.medical_history, status: 200
+    end
   end
 end
