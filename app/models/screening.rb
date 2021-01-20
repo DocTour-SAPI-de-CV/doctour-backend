@@ -59,4 +59,18 @@ class Screening < ApplicationRecord
   def performed_date
     performed_at&.strftime('%m/%d/%Y')
   end
+
+  def as_json
+    {
+      id: id,
+      temperature: temperature,
+      heart_rate: heart_rate,
+      blood_pressure: blood_pressure,
+      weight: weight,
+      height: height,
+      performed_date: performed_date,
+      return: self.return,
+      doctor_name: doctor.full_name
+    }
+  end
 end

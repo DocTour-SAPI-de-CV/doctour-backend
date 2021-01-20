@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'show_account/:id', to:'register/show#account'
 
   post 'patient_register', to:'register/patient#create'
+  get 'medical_history/:id', to:'register/patient#medical_history'
   get 'patient_register', to:'register/patient#show'
   get 'patients_summary', to:'register/patient#summary'
 

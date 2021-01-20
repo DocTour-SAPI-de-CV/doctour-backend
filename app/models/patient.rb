@@ -19,6 +19,10 @@ class Patient < ApplicationRecord
                          message: 'You need to accept the terms of use!' },
             presence: true
 
+  def medical_history
+    Screening.where(patient_id: id).as_json
+  end
+
   def created_at_mask
     created_at.strftime('%m/%d/%Y at %I:%M%p')
   end
