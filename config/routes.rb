@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   post 'patient_register', to:'register/patient#create'
   get 'patient_register', to:'register/patient#show'
+  get 'patients_summary', to:'register/patient#summary'
 
   post 'doctor_register', to:'register/doctor#create'
   get 'doctor_register', to:'register/doctor#show'

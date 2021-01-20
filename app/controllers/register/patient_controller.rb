@@ -56,5 +56,14 @@ module Register
 
       render json: patients, status: 200
     end
+
+    def summary
+      accounts = Account.where(category: 'patient').all
+      patients = accounts.map do |account|
+        account.user.patient_summary
+      end
+
+      render json: patients, status: 200
+    end
   end
 end
