@@ -60,6 +60,10 @@ class Screening < ApplicationRecord
     performed_at&.strftime('%m/%d/%Y')
   end
 
+  def performed_hour
+    performed_at&.strftime("%H:%M")
+  end
+
   def as_json
     {
       id: id,
@@ -69,6 +73,7 @@ class Screening < ApplicationRecord
       weight: weight,
       height: height,
       performed_date: performed_date,
+      performed_hour: performed_hour,
       return: self.return,
       doctor_name: doctor.full_name
     }
