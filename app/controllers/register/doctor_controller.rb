@@ -23,7 +23,7 @@ module Register
       @message = content[:message]
       @status = content[:status]
 
-      if content[:flag] 
+      if content[:flag]
         DELETE.objects(@objects) unless content[:update]
       end
 

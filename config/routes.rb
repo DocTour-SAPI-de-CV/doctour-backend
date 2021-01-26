@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   post 'assistant', to:'register/assistant#create'
   get 'assistant', to:'register/assistant#show'
+  patch 'assistant', to:'register/assistant#update'
 
   # authenticate
   get 'user', to: 'application#user'

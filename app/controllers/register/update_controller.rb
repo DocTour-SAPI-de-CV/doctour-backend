@@ -21,17 +21,38 @@ module Register
         VERIFY.result({ object: address, update: true, flag: true, status: :unprocessable_entity })
       end
     end
+
+    def self.assistant(params, user)
+      assistant = Assistant.find_by(person: user.account.people)
+      if params[:photo]
+        upload_url = AwsS3.upload(
+          params[:photo],
+          "assistants_photos/#{user.id}_photo.png"
+        )
+      end
+      begin
+        assistant.update!(
+          photo: upload_url
+        )
+
+        VERIFY.result({ object: assistant, update: true, flag: false })
+      rescue ActiveRecord::RecordInvalid
+        VERIFY.result({ object: assistant, update: true, flag: true, status: :unprocessable_entity })
+      end
+    end
+
     def self.doctor(params, user)
       doctor = Doctor.find_by(person: user.account.people)
-        if params[:photo]
-          upload_url = AwsUpload.upload_photo(
-                                              params[:photo],
-                                              "doctors_photos/#{user.id}_photo.png")
-        end
+      if params[:photo]
+        upload_url = AwsS3.upload(
+          params[:photo],
+          "doctors_photos/#{user.id}_photo.png"
+        )
+      end
       begin
         doctor.update!(
           photo: upload_url,
-          about: params[:about],
+          about: params[:about]
         )
 
         VERIFY.result({ object: doctor, update: true, flag: false })
