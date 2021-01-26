@@ -22,10 +22,7 @@ class User < ApplicationRecord
   def patient_summary
     patient = Patient.find_by(person: account.people)
     medical_history = patient.medical_history
-    puts medical_history
-    unless medical_history.blank?
-      last_medical_history = medical_history.last[:performed_date]
-    end
+    last_medical_history = medical_history.last[:performed_date] if medical_history.present?
     {
       user_id: id,
       full_name: account.people.full_name,
@@ -40,6 +37,10 @@ class User < ApplicationRecord
 
   def medical_history
     Patient.find_by(person: account.people).medical_history
+  end
+
+  def have_address?
+    AddressesPerson.find_by(person: account.people).nil?
   end
 
   def as_json
@@ -60,27 +61,27 @@ class User < ApplicationRecord
 
   def assitant
     basic_info.merge!({
-      address: AddressesPerson.find_by(person_id: account.people.id).as_json,
-      assistant: Assistant.find_by(person_id: account.people.id).as_json
-    })
+                        address: AddressesPerson.find_by(person: account.people).as_json,
+                        assistant: Assistant.find_by(person: account.people).as_json
+                      })
   end
 
   def admin
     basic_info.merge!({
-      address: AddressesPerson.find_by(person_id: account.people.id).as_json
-    })
+                        address: AddressesPerson.find_by(person: account.people).as_json
+                      })
   end
 
   def doctor
     basic_info.merge!({
-      address: AddressesPerson.find_by(person_id: account.people.id).as_json,
-      doctor: Doctor.find_by(person_id: account.people.id).as_json
-    })
+                        address: AddressesPerson.find_by(person: account.people).as_json,
+                        doctor: Doctor.find_by(person: account.people).as_json
+                      })
   end
 
   def patient
     basic_info.merge!({
-      patient: Patient.find_by(person_id: account.people.id).as_json
-    })
+                        patient: Patient.find_by(person: account.people).as_json
+                      })
   end
 end

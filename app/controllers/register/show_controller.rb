@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 VERIFY = Register::VerificationController
+
 module Register
   class ShowController < ApplicationController
     def account

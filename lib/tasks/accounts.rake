@@ -22,7 +22,7 @@ namespace :accounts do
       { email: 'paciente3@doctour.com', password: 'paciente123',
         first_name: 'Diego', last_name: 'Eduardo',
         gender: 'male', category: 'patient',
-        document_number: 'ROAA220101HBCDNN044' }, 
+        document_number: 'ROAA220101HBCDNN044' },
 
       { email: 'assistente@doctour.com', password: 'assistente123',
         first_name: 'Amanda', last_name: 'Santos',
@@ -131,7 +131,7 @@ namespace :accounts do
       )
 
       Screening.create(
-        performed_at: DateTime.new(2020, 05, 31, 14, 31).utc,
+        performed_at: DateTime.new(2020, 0o5, 31, 14, 31).utc,
         return: true,
         doctor: @doctor,
         patient: @patient,

@@ -54,7 +54,7 @@ module Register
         account.user.as_json
       end
 
-      render json: patients, status: 200
+      render json: patients, status: :ok
     end
 
     def summary
@@ -63,13 +63,13 @@ module Register
         account.user.patient_summary
       end
 
-      render json: patients, status: 200
+      render json: patients, status: :ok
     end
 
     def medical_history
       user = User.find(params[:id])
 
-      render json: user.medical_history, status: 200
+      render json: user.medical_history, status: :ok
     end
   end
 end

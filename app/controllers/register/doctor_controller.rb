@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 CREATE = Register::CreateController
+UPDATE = Register::UpdateController
 VERIFY = Register::VerificationController
 DELETE = Register::DeleteController
 
 module Register
   class DoctorController < ApplicationController
-    before_action :admin_authorization
+    before_action :admin_authorization, except: :update
 
     def initialize
       @objects = {}
@@ -22,7 +23,9 @@ module Register
       @message = content[:message]
       @status = content[:status]
 
-      DELETE.objects(@objects) if content[:flag]
+      if content[:flag] 
+        DELETE.objects(@objects) unless content[:update]
+      end
 
       @stop = true if content[:flag]
     end
@@ -53,13 +56,28 @@ module Register
       render(json: @message, status: @status)
     end
 
+    def update
+      user = User.find(params[:id])
+      result(VERIFY.check_category(user.account.category, 'doctor'))
+
+      if user.have_address?
+        result(CREATE.address(params)) unless @stop
+        result(CREATE.address_person(@objects[:Address], user.account.people)) unless @stop
+      else
+        result(UPDATE.address(params, user)) unless @stop
+        result(UPDATE.doctor(params, user)) unless @stop
+      end
+
+      render(json: @message, status: @status)
+    end
+
     def show
       accounts = Account.where(category: 'doctor').all
       doctors = accounts.map do |account|
         account.user.as_json
       end
 
-      render json: doctors, status: 200
+      render json: doctors, status: :ok
     end
   end
 end

@@ -3,6 +3,8 @@
 module Register
   class VerificationController < ApplicationController
     def self.result(content)
+      action = 'created'
+      action = 'updated' if content[:update]
       if content[:flag]
         { message: {
           "#{content[:object].class.name}":
@@ -10,10 +12,11 @@ module Register
         },
           status: content[:status],
           object: content[:object],
+          update: content[:update],
           flag: true }
       else
         { message: {
-          success: 'All have been created :D'
+          success: "All have been #{action} :D"
         },
           status: content[:status],
           object: content[:object],

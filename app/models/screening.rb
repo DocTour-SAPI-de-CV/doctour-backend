@@ -61,7 +61,7 @@ class Screening < ApplicationRecord
   end
 
   def performed_hour
-    performed_at&.strftime("%H:%M")
+    performed_at&.strftime('%H:%M')
   end
 
   def as_json
