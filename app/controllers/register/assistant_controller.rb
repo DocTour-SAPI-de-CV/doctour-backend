@@ -56,7 +56,7 @@ module Register
         account.user.as_json
       end
 
-      render json: assistants, status: 200
+      render json: assistants, status: :ok
     end
   end
 end
