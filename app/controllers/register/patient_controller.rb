@@ -6,7 +6,7 @@ DELETE = Register::DeleteController
 
 module Register
   class PatientController < ApplicationController
-    before_action :authenticate_user, only: :show
+    before_action :authenticate_user, except: :create
 
     def initialize
       @objects = {}

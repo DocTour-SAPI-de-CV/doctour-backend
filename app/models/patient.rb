@@ -30,7 +30,7 @@ class Patient < ApplicationRecord
   delegate :full_name, to: :person
 
   def email
-    people.account.user.email
+    person.account.user.email
   end
 
   def as_json
