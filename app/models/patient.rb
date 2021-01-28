@@ -27,7 +27,7 @@ class Patient < ApplicationRecord
     created_at.strftime('%m/%d/%Y at %I:%M%p')
   end
 
-  delegate :full_name, to: :people
+  delegate :full_name, to: :person
 
   def email
     people.account.user.email

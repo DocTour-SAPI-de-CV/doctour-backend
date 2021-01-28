@@ -66,6 +66,15 @@ module Register
       render json: patients, status: :ok
     end
 
+    def medical_histories
+      accounts = Account.where(category: 'patient').all
+      medical_histories = accounts.map do |account|
+        account.user.medical_history
+      end
+
+      render json: medical_histories, status: :ok
+    end
+
     def medical_history
       user = User.find(params[:id])
 

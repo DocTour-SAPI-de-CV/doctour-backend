@@ -67,13 +67,9 @@ class Screening < ApplicationRecord
   def as_json
     {
       id: id,
-      temperature: temperature,
-      heart_rate: heart_rate,
-      blood_pressure: blood_pressure,
-      weight: weight,
-      height: height,
       performed_date: performed_date,
       performed_hour: performed_hour,
+      patient_name: patient.full_name,
       return: self.return,
       doctor_name: doctor.full_name
     }
