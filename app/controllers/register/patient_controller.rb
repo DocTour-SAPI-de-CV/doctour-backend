@@ -69,7 +69,7 @@ module Register
     def medical_histories
       accounts = Account.where(category: 'patient').all
       medical_histories = accounts.map do |account|
-        account.user.medical_history
+        account.user.medical_history[0]
       end
 
       render json: medical_histories, status: :ok

@@ -36,7 +36,7 @@ class User < ApplicationRecord
   end
 
   def medical_history
-    Patient.find_by(person: account.people).medical_history[0]
+    Patient.find_by(person: account.people).medical_history
   end
 
   def have_address?
