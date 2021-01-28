@@ -14,7 +14,7 @@ class AwsS3
 
     obj = s3.bucket('doctour').object(file_name)
     obj.upload_file(upload_file, { acl: 'public-read' })
-
+    puts obj
     obj.public_url
   end
 end
