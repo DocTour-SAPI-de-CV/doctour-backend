@@ -42,8 +42,10 @@ Rails.application.routes.draw do
   # authenticate
   get 'user', to: 'application#user'
 
-  # attachment create
+  # attachment
   post 'attachment', to:'register/attachment#create'
+  delete 'attachment/:id', to:'register/attachment#delete'
+
 
   # unification
   # post 'user_register', to: 'unification#user_register'
