@@ -18,7 +18,7 @@ class Nationality < ApplicationRecord
   def as_json
     {
       id: id,
-      name: name
+      name: name.titleize
     }
   end
 end
