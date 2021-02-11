@@ -30,4 +30,11 @@ class Document < ApplicationRecord
   def downcase_fields
     document_type&.downcase!
   end
+
+  def as_json
+    {
+      type: document_type,
+      number: number
+    }
+  end
 end
