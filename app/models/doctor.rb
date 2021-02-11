@@ -27,6 +27,10 @@ class Doctor < ApplicationRecord
 
   delegate :full_name, to: :person
 
+  def doctor_document
+    DocumentsPerson.find_by(person: person).document.as_json
+  end
+
   def as_json
     {
       id: id,

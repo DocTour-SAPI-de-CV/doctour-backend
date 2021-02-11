@@ -71,7 +71,8 @@ class Screening < ApplicationRecord
       performed_hour: performed_hour,
       patient_name: patient.full_name,
       return: self.return,
-      doctor_name: doctor.full_name
+      doctor_name: doctor.full_name,
+      doctor_document: doctor.doctor_document
     }
   end
 end
