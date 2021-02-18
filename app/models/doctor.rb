@@ -21,7 +21,7 @@ class Doctor < ApplicationRecord
   validates :status,
             inclusion: {
               in: [0, 1, 2],
-              message: 'is not valid status'
+              message: 'is not valid [0, 1, 2]'
             },
             presence: { message: 'is required or invalid' }
 
