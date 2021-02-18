@@ -73,6 +73,7 @@ namespace :populate do
 
     attachments_types = [
       { name: 'Reporte de consulta', create: Array['doctor', 'assistant'], read: Array['doctor', 'assistant', 'patient'] },
+      { name: 'Fatura de Reembolso', create: Array['doctor', 'assistant'], read: Array['doctor', 'assistant', 'patient'] },
       { name: 'Receta Medica', create: Array['doctor', 'assistant'], read: Array['doctor', 'assistant', 'patient'] },
       { name: 'Pedido de Laboratorio/Examenes', create: Array['doctor', 'assistant'], read: Array['doctor', 'assistant', 'patient'] },
       { name: 'Reporte de procedimentos', create: Array['doctor', 'assistant'], read: Array['doctor', 'assistant'] },

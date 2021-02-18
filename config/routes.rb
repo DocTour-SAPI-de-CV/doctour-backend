@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   post 'attachment', to:'register/attachment#create'
   delete 'attachment/:id', to:'register/attachment#delete'
 
+  # change status
+  post 'change_status', to:'change_status#update'
+
 
   # unification
   # post 'user_register', to: 'unification#user_register'
