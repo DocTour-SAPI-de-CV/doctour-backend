@@ -11,12 +11,12 @@ class CreatePathologicalsHistorics < ActiveRecord::Migration[6.0]
                      on_delete: :cascade
                    }
 
-      t.boolean :hypertension, null: false
-      t.boolean :diabetes, null: false
-      t.boolean :respiratory_disease, null: false
-      t.boolean :allergy, null: false
-      t.boolean :surgical_historic, null: false
-      t.boolean :medicine, null: false
+      t.boolean :hypertension
+      t.boolean :diabetes
+      t.boolean :respiratory_disease
+      t.boolean :allergy
+      t.boolean :surgical_historic
+      t.boolean :medicine
 
       t.timestamps
     end

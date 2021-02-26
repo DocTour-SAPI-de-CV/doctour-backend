@@ -16,11 +16,4 @@ class PathologicalsHistoric < ApplicationRecord
   belongs_to :patient
 
   validates :patient, uniqueness: true
-
-  validates :hypertension, presence: true
-  validates :diabetes, presence: true
-  validates :respiratory_disease, presence: true
-  validates :allergy, presence: true
-  validates :surgical_historic, presence: true
-  validates :medicine, presence: true
 end
