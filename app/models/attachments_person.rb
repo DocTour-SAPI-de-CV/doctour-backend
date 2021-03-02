@@ -5,11 +5,13 @@ class AttachmentsPerson < ApplicationRecord
 
   belongs_to :person_patient,
              class_name: 'People',
-             foreign_key: 'person_patient_id'
+             foreign_key: 'person_patient_id',
+             optional: true
 
   belongs_to :person_doctor,
              class_name: 'People',
-             foreign_key: 'person_doctor_id'
+             foreign_key: 'person_doctor_id',
+             optional: true
 
   belongs_to :attachment_type, dependent: :destroy
 
