@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
 
   create_table "attachments_people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "attachment_id", null: false
-    t.uuid "person_patient_id", null: false
-    t.uuid "person_doctor_id", null: false
+    t.uuid "person_patient_id", null: true
+    t.uuid "person_doctor_id", null: true
     t.uuid "attachment_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
