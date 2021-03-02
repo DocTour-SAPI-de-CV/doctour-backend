@@ -17,10 +17,10 @@ class AttachmentsPerson < ApplicationRecord
             presence: true
 
   validates :person_doctor,
-            presence: true
+            presence: false
 
   validates :person_patient,
-            presence: true
+            presence: false
 
   validates :attachment_type,
             presence: true
