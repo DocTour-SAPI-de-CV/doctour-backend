@@ -12,7 +12,7 @@ class CreateAttachmentsPeople < ActiveRecord::Migration[6.0]
                    }
       t.references :person_patient,
                    type: :uuid,
-                   null: false,
+                   null: true,
                    foreign_key: {
                      to_table: :people,
                      on_update: :cascade,
@@ -20,7 +20,7 @@ class CreateAttachmentsPeople < ActiveRecord::Migration[6.0]
                    }
       t.references :person_doctor,
                    type: :uuid,
-                   null: false,
+                   null: true,
                    foreign_key: {
                      to_table: :people,
                      on_update: :cascade,
