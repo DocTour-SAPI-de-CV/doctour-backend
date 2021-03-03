@@ -25,7 +25,7 @@ test:
   <<: *default
   database: doctourdb
 
-production:d8052m390lsdmb
+production:
   database: d8052m390lsdmb
   timeout: 5000
   uri: postgres://xpgkmgcuvejnui:2fe42fc7977571bf5f72644839a0b4714031578aa438204966bb490977045c34@ec2-54-144-196-35.compute-1.amazonaws.com:5432/d8052m390lsdmb
