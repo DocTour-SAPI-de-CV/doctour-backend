@@ -8,6 +8,6 @@ class AttachmentController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :missing_params
 
   def show
-    render(json: { attachments: AttachmentsPerson.all })
+    render(json: { attachments: Attachment.all })
   end
 end
