@@ -4,12 +4,12 @@ class AttachmentsPerson < ApplicationRecord
   belongs_to :attachment
 
   belongs_to :person_patient,
-             class_name: 'Patient',
+             class_name: 'People',
              foreign_key: 'person_patient_id',
              optional: true
 
   belongs_to :person_doctor,
-             class_name: 'Doctor',
+             class_name: 'People',
              foreign_key: 'person_doctor_id',
              optional: true
 
