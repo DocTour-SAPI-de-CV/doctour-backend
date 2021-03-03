@@ -7,7 +7,9 @@ class AttachmentController < ApplicationController
 
   rescue_from ActionController::ParameterMissing, with: :missing_params
 
-  def show
-    render(json: { attachments: Attachment.find(params[:person_patient_id]) })
+  def index
+    attachment_people = AttachmentPeople.where(params[:person_patient_id])
+    attachments = Attachment.joins(:attachment_people)
+    render(json: { attachments: attachments })
   end
 end

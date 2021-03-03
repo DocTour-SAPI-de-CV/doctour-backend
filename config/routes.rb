@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get 'user', to: 'application#user'
 
   # attachment
-  get 'attachment', to: 'attachment#show'
+  get 'attachment', to: 'attachment#index'
   post 'attachment', to:'register/attachment#create'
   delete 'attachment/:id', to:'register/attachment#delete'
 
