@@ -30,7 +30,7 @@ module Register
         params[:file],
         "attachments/#{params[:person_patient_id]}_#{SecureRandom.hex(10)}"
       )
-      result(CREATE.attachment(upload_url))
+      result(CREATE.attachment(upload_url, params[:file_name]))
       result(CREATE.attachment_person(@objects[:Attachment], params)) unless @stop
 
       render(json: @message, status: @status)
