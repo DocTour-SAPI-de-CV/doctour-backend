@@ -13,6 +13,11 @@ class AttachmentsPerson < ApplicationRecord
              foreign_key: 'person_doctor_id',
              optional: true
 
+  belongs_to :person_doctor,
+              class_name: 'People',
+              foreign_key: 'person_assistant_id',
+              optional: true
+
   belongs_to :attachment_type, dependent: :destroy
 
   validates :attachment,

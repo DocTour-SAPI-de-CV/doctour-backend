@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
 
   create_table "attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "file", null: false
+    t.string "file_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -104,12 +105,14 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
     t.uuid "attachment_id", null: false
     t.uuid "person_patient_id", null: true
     t.uuid "person_doctor_id", null: true
+    t.uuid "person_assistant_id", null: true
     t.uuid "attachment_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attachment_id"], name: "index_attachments_people_on_attachment_id"
     t.index ["attachment_type_id"], name: "index_attachments_people_on_attachment_type_id"
     t.index ["person_doctor_id"], name: "index_attachments_people_on_person_doctor_id"
+    t.index ["person_assistant_id"], name: "index_attachments_people_on_person_assistant_id"
     t.index ["person_patient_id"], name: "index_attachments_people_on_person_patient_id"
   end
 

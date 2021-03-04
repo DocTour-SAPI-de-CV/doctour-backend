@@ -26,6 +26,14 @@ class CreateAttachmentsPeople < ActiveRecord::Migration[6.0]
                      on_update: :cascade,
                      on_delete: :cascade
                    }
+      t.references :person_assistant,
+      type: :uuid,
+      null: true,
+      foreign_key: {
+        to_table: :people,
+        on_update: :cascade,
+        on_delete: :cascade
+      }
       t.references :attachment_type,
                    type: :uuid,
                    null: false,
