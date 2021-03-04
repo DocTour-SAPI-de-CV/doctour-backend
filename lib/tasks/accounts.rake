@@ -12,7 +12,7 @@ namespace :accounts do
       { email: 'doutor2@doctour.com', password: 'doutor123',
         first_name: 'Carla', last_name: 'Mendes',
         gender: 'female', category: 'doctor',
-        document_number: 'ROAA220101HBCDNN012' },
+        document_number: 'ROAA220101HBCDNN013' },
 
       { email: 'paciente@doctour.com', password: 'paciente123',
         first_name: 'Antonio', last_name: 'Rodrigo',
@@ -35,19 +35,19 @@ namespace :accounts do
         document_number: 'ROAA220101HBCDNN013' },
 
       { email: 'assistente2@doctour.com', password: 'assistente123',
-          first_name: 'Fátima', last_name: 'Silva',
-          gender: 'female', category: 'assistant',
-          document_number: 'ROAA220101HBCDNN013' },
+        first_name: 'Fátima', last_name: 'Silva',
+        gender: 'female', category: 'assistant',
+        document_number: 'ROAA220101HBCDNN014' },
 
       { email: 'assistente3@doctour.com', password: 'assistente123',
         first_name: 'Junior', last_name: 'Carvalho',
         gender: 'male', category: 'assistant',
-        document_number: 'ROAA220101HBCDNN013' },
+        document_number: 'ROAA220101HBCDNN015' },
 
       { email: 'admin@doctour.com', password: 'admin123',
         first_name: 'Andressa', last_name: 'Souza',
         gender: 'female', category: 'admin',
-        document_number: 'ROAA220101HBCDNN014' }
+        document_number: 'ROAA220101HBCDNN016' }
     ]
 
     accounts.each do |account|
