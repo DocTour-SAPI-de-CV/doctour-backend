@@ -32,7 +32,7 @@ namespace :accounts do
       { email: 'assistente@doctour.com', password: 'assistente123',
         first_name: 'Amanda', last_name: 'Santos',
         gender: 'female', category: 'assistant',
-        document_number: 'ROAA220101HBCDNN013' },
+        document_number: 'ROAA220101HBCDNN020' },
 
       { email: 'assistente2@doctour.com', password: 'assistente123',
         first_name: 'Fátima', last_name: 'Silva',
