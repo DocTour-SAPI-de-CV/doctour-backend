@@ -227,7 +227,7 @@ module Register
       end
     end
 
-    def self.attachment(file)
+    def self.attachment(file, file_name)
       attachment = Attachment.new(file: file, file_name: file_name)
       begin
         attachment.save!
