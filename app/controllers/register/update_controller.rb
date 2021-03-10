@@ -52,7 +52,7 @@ module Register
       begin
         doctor.update!(
           photo: upload_url,
-          about: params[:about]
+          about: params[:about],
           status: params[:status]
         )
 
