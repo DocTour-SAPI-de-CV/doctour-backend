@@ -53,6 +53,7 @@ module Register
         doctor.update!(
           photo: upload_url,
           about: params[:about]
+          status: params[:status]
         )
 
         VERIFY.result({ object: doctor, update: true, flag: false })
