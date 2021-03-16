@@ -214,6 +214,7 @@ module Register
     def self.patient(person, request)
       patient = Patient.new(
         person_id: person.id,
+        photo: 'foto.png',
         privacy_polity: true,
         terms_use: true,
         client_ip: request.remote_ip

@@ -61,5 +61,24 @@ module Register
         VERIFY.result({ object: doctor, update: true, flag: true, status: :unprocessable_entity })
       end
     end
+
+    def self.patient(params, user)
+      patient = Patient.find_by(person: user.account.people)
+      if params[:photo]
+        upload_url = AwsS3.upload(
+          params[:photo],
+          "patients_photos/#{user.id}_photo.png"
+        )
+      end
+      begin
+        doctor.update!(
+          photo: upload_url
+        )
+
+        VERIFY.result({ object: patient, update: true, flag: false })
+      rescue ActiveRecord::RecordInvalid
+        VERIFY.result({ object: patient, update: true, flag: true, status: :unprocessable_entity })
+      end
+    end
   end
 end

@@ -1,12 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 patient_felipe:
+  photo: people.png
   person: person_felipe
   privacy_polity: true
   terms_use: true
   client_ip: 186.168.174.153
 
 patient_felipe_silva:
+  photo: people.png
   person: person_felipe_silva
   privacy_polity: true
   terms_use: true
