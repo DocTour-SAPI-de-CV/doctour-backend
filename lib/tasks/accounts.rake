@@ -4,47 +4,47 @@ namespace :accounts do
   desc 'Populate default accounts'
   task setup: :environment do
     accounts = [
-      { email: 'doutor@doctour.com', password: 'doutor123',
+      { email: 'doutor@doctour.com', password: 'doctourdr1231@',
         first_name: 'José', last_name: 'Ricardo',
         gender: 'male', category: 'doctor',
         document_number: 'ROAA220101HBCDNN012' },
 
-      { email: 'doutor2@doctour.com', password: 'doutor123',
+      { email: 'doutor2@doctour.com', password: 'doctourdr1232@',
         first_name: 'Carla', last_name: 'Mendes',
         gender: 'female', category: 'doctor',
         document_number: 'ROAA220101HBCDNN013' },
 
-      { email: 'paciente@doctour.com', password: 'paciente123',
+      { email: 'paciente@doctour.com', password: 'doctourpaciente1231@',
         first_name: 'Antonio', last_name: 'Rodrigo',
         gender: 'male', category: 'patient',
         document_number: 'ROAA220101HBCDNN011' },
 
-      { email: 'paciente2@doctour.com', password: 'paciente123',
+      { email: 'paciente2@doctour.com', password: 'doctourpaciente1232@',
         first_name: 'Thaise', last_name: 'Gabriela',
         gender: 'male', category: 'patient',
         document_number: 'ROAA220101HBCDNN046' },
 
-      { email: 'paciente3@doctour.com', password: 'paciente123',
+      { email: 'paciente3@doctour.com', password: 'doctourpaciente1233@',
         first_name: 'Diego', last_name: 'Eduardo',
         gender: 'male', category: 'patient',
         document_number: 'ROAA220101HBCDNN044' },
 
-      { email: 'assistente@doctour.com', password: 'assistente123',
+      { email: 'assistente@doctour.com', password: 'doctourassistente1231@',
         first_name: 'Amanda', last_name: 'Santos',
         gender: 'female', category: 'assistant',
         document_number: 'ROAA220101HBCDNN020' },
 
-      { email: 'assistente2@doctour.com', password: 'assistente123',
+      { email: 'assistente2@doctour.com', password: 'doctourassistente1232@',
         first_name: 'Fátima', last_name: 'Silva',
         gender: 'female', category: 'assistant',
         document_number: 'ROAA220101HBCDNN014' },
 
-      { email: 'assistente3@doctour.com', password: 'assistente123',
+      { email: 'assistente3@doctour.com', password: 'doctourassistente1233@',
         first_name: 'Junior', last_name: 'Carvalho',
         gender: 'male', category: 'assistant',
         document_number: 'ROAA220101HBCDNN015' },
 
-      { email: 'admin@doctour.com', password: 'admin123',
+      { email: 'admin@doctour.com', password: 'doctouradmin123@',
         first_name: 'Andressa', last_name: 'Souza',
         gender: 'female', category: 'admin',
         document_number: 'ROAA220101HBCDNN016' }
