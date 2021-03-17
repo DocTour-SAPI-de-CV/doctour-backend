@@ -24,7 +24,7 @@ class PatientController < ApplicationController
     @patient = Patient.find(params[:id])
     @patient.destroy!
 
-    render(json: { "patient_id deleted": params[:id] })
+    render(json: { "patient_id  deleted": params[:id] })
   end
 
   def update
