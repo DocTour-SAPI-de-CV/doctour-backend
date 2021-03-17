@@ -309,4 +309,5 @@ Rails.application.routes.draw do
 
   # Validations
   get 'email_available', to: 'validation#email_available'
+  get 'document_valid', to: 'validation#document_valid'
 end
