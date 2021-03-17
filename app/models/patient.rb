@@ -38,6 +38,7 @@ class Patient < ApplicationRecord
   def as_json
     {
       id: id,
+      photo: photo,
       privacy_polity: privacy_polity,
       terms_use: terms_use,
       client_ip: client_ip.to_s

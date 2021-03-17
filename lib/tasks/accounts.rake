@@ -140,6 +140,7 @@ namespace :accounts do
 
       @patient = Patient.create(
         person_id: @person.id,
+        photo: 'foto.png',
         privacy_polity: true,
         terms_use: true,
         client_ip: '192.168.1.1'
