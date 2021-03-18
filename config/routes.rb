@@ -104,10 +104,9 @@ Rails.application.routes.draw do
   # get 'soap/:id', to: 'soap#index'
   # delete 'soap/:id', to: 'soap#delete'
 
+  # Dashboards
   get 'dashboard', to: 'dashboard#show'
-
   get 'dashboard_doctor/:id', to: 'dashboard_doctor#show'
-
   get 'dashboard_assistant', to: 'dashboard_assistant#show'
 
   # Subjectives
