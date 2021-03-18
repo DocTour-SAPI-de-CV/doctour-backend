@@ -51,8 +51,7 @@ module Register
     def update
       user = User.find(params[:id])
       result(VERIFY.check_category(user.account.category, 'patient'))
-      result(UPDATE.address(params, user)) unless @stop
-      result(UPDATE.doctor(params, user)) unless @stop
+      result(UPDATE.patient(params, user)) unless @stop
 
       render(json: @message, status: @status)
     end
