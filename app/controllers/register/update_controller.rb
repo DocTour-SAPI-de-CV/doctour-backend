@@ -71,7 +71,7 @@ module Register
         )
       end
       begin
-        doctor.update!(
+        patient.update!(
           photo: upload_url
         )
 
