@@ -307,4 +307,8 @@ Rails.application.routes.draw do
   # get 'addressess_interpret', to: 'addressess_interpret#show'
   # get 'addressess_interpret/:id', to: 'addressess_interpret#index'
   # delete 'addressess_interpret/:id', to: 'addressess_interpret#delete'
+
+  # Validations
+  get 'email_available', to: 'validation#email_available'
+  get 'document_valid', to: 'validation#document_valid'
 end
