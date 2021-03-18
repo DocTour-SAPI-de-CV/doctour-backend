@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 CREATE = Register::CreateController
+UPDATE = Register::UpdateController
 VERIFY = Register::VerificationController
 DELETE = Register::DeleteController
 
