@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   post 'patient', to:'register/patient#create'
   get 'patient', to:'register/patient#show'
+  patch 'patient', to:'register/patient#update'
   get 'medical_history/:id', to:'register/patient#medical_history'
   get 'patients_summary', to:'register/patient#summary'
   get 'medical_histories', to:'register/patient#medical_histories'
@@ -103,10 +104,9 @@ Rails.application.routes.draw do
   # get 'soap/:id', to: 'soap#index'
   # delete 'soap/:id', to: 'soap#delete'
 
+  # Dashboards
   get 'dashboard', to: 'dashboard#show'
-
   get 'dashboard_doctor/:id', to: 'dashboard_doctor#show'
-
   get 'dashboard_assistant', to: 'dashboard_assistant#show'
 
   # Subjectives

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 CREATE = Register::CreateController
+UPDATE = Register::UpdateController
 VERIFY = Register::VerificationController
 DELETE = Register::DeleteController
 
@@ -45,6 +46,14 @@ module Register
       unless @stop
         WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
       end
+      render(json: @message, status: @status)
+    end
+
+    def update
+      user = User.find(params[:id])
+      result(VERIFY.check_category(user.account.category, 'patient'))
+      result(UPDATE.patient(params, user)) unless @stop
+
       render(json: @message, status: @status)
     end
 
