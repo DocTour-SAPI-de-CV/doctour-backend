@@ -2,5 +2,5 @@
 
 class ApplicationMailer < ActionMailer::Base
   default from: 'doctour@doctour.com'
-  layout 'mailer'
+  layout 'bootstrap-mailer'
 end
