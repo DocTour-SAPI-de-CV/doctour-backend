@@ -310,4 +310,11 @@ Rails.application.routes.draw do
   # Validations
   get 'email_available', to: 'validation#email_available'
   get 'document_valid', to: 'validation#document_valid'
+  TesteController ||= Class.new ActionController::API do
+      def teste
+        render json: WelcomeMailerV2.with(user: @user).greet.deliver_later
+      end
+  end 
+  get 'teste', to: "teste#teste"
 end
+
