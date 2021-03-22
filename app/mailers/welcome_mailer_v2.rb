@@ -2,10 +2,13 @@
 
 class WelcomeMailerV2 < ApplicationMailer
   def greet
-     make_bootstrap_mail(
-      to: 'to@example.com',
-      from: 'from@example.com',
-      subject: 'Hi From Bootstrap Email',
+    @user = params[:user]
+    @full_name = @user.account.people.full_name
+    @email = @user.email
+    make_bootstrap_mail(
+      to: @email,
+      from: 'no-reply@doctour.com',
+      subject: 'Bem-vindo ao Doctour',
       ) do |format|
         format.html 
        # format.text 
