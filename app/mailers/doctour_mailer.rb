@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WelcomeMailerV2 < ApplicationMailer
+class DoctourMailer < ApplicationMailer
   def greet
     @user = params[:user]
     @full_name = @user.account.people.full_name
