@@ -8,6 +8,9 @@ class AttachmentTypeController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :missing_params
 
   def show
-    render(json: { attachment_types: AttachmentType.all })
+    attachment_types = AttachmentType.all
+    puts(params[:user_type])
+    attachment_types = attachment_types.filter { |att| att.create.include? params[:user_type] } if params[:user_type]
+    render(json: { attachment_types: attachment_types })
   end
 end
