@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_135929) do
+ActiveRecord::Schema.define(version: 2021_03_29_180855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -103,16 +103,16 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
 
   create_table "attachments_people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "attachment_id", null: false
-    t.uuid "person_patient_id", null: true
-    t.uuid "person_doctor_id", null: true
-    t.uuid "person_assistant_id", null: true
+    t.uuid "person_patient_id"
+    t.uuid "person_doctor_id"
+    t.uuid "person_assistant_id"
     t.uuid "attachment_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attachment_id"], name: "index_attachments_people_on_attachment_id"
     t.index ["attachment_type_id"], name: "index_attachments_people_on_attachment_type_id"
-    t.index ["person_doctor_id"], name: "index_attachments_people_on_person_doctor_id"
     t.index ["person_assistant_id"], name: "index_attachments_people_on_person_assistant_id"
+    t.index ["person_doctor_id"], name: "index_attachments_people_on_person_doctor_id"
     t.index ["person_patient_id"], name: "index_attachments_people_on_person_patient_id"
   end
 
@@ -182,6 +182,33 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
     t.index ["person_id"], name: "index_documents_people_on_person_id"
   end
 
+  create_table "drugs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "drugs_historics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "non_pathologicals_historics_id", null: false
+    t.uuid "drug_id", null: false
+    t.string "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["drug_id"], name: "index_drugs_historics_on_drug_id"
+    t.index ["non_pathologicals_historics_id"], name: "index_drugs_historics_on_non_pathologicals_historics_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "title"
+    t.integer "message_type"
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "interprets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -238,6 +265,17 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
     t.index ["name"], name: "index_nationalities_on_name", unique: true
   end
 
+  create_table "non_pathologicals_historics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "patient_id", null: false
+    t.boolean "drugs"
+    t.boolean "vaccines"
+    t.string "alcoholic_beverages"
+    t.integer "tobacco_wallets"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_non_pathologicals_historics_on_patient_id"
+  end
+
   create_table "objectives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -274,12 +312,12 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
 
   create_table "pathologicals_historics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "patient_id", null: false
-    t.boolean "hypertension", null: false
-    t.boolean "diabetes", null: false
-    t.boolean "respiratory_disease", null: false
-    t.boolean "allergy", null: false
-    t.boolean "surgical_historic", null: false
-    t.boolean "medicine", null: false
+    t.boolean "hypertension"
+    t.boolean "diabetes"
+    t.boolean "respiratory_disease"
+    t.boolean "allergy"
+    t.boolean "surgical_historic"
+    t.boolean "medicine"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["patient_id"], name: "index_pathologicals_historics_on_patient_id"
@@ -439,6 +477,19 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vaccines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "vaccines_historics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "vaccine_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["vaccine_id"], name: "index_vaccines_historics_on_vaccine_id"
+  end
+
   add_foreign_key "accounts", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_interprets", "addresses", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_interprets", "interprets", on_update: :cascade, on_delete: :cascade
@@ -451,6 +502,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
   add_foreign_key "assistants", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "attachment_types", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "attachments", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "attachments_people", "people", column: "person_assistant_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "people", column: "person_doctor_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "people", column: "person_patient_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "diagnostics_soaps", "diagnostics", on_update: :cascade, on_delete: :cascade
@@ -462,12 +514,15 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
   add_foreign_key "documents_partners", "partners", on_update: :cascade, on_delete: :cascade
   add_foreign_key "documents_people", "documents", on_update: :cascade, on_delete: :cascade
   add_foreign_key "documents_people", "people", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "drugs_historics", "drugs", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "drugs_historics", "non_pathologicals_historics", column: "non_pathologicals_historics_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_interprets", "interprets", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_interprets", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_people", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_people", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "medicines_historics", "medicines", on_update: :cascade, on_delete: :cascade
   add_foreign_key "medicines_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "non_pathologicals_historics", "patients", on_update: :cascade, on_delete: :cascade
   add_foreign_key "objectives_soaps", "objectives", on_update: :cascade, on_delete: :cascade
   add_foreign_key "objectives_soaps", "soaps", on_update: :cascade, on_delete: :cascade
   add_foreign_key "partners_phones", "partners", on_update: :cascade, on_delete: :cascade
@@ -489,4 +544,5 @@ ActiveRecord::Schema.define(version: 2021_02_08_135929) do
   add_foreign_key "subjectives_soaps", "subjectives", on_update: :cascade, on_delete: :cascade
   add_foreign_key "surgeries_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "surgeries_historics", "surgeries", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "vaccines_historics", "vaccines", on_update: :cascade, on_delete: :cascade
 end

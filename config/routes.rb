@@ -3,54 +3,53 @@
 Rails.application.routes.draw do
   #Routes for divese
   devise_for :users,
-    path: '',
+    path: "",
     path_names: {
-    sign_in: 'login',
-    sign_out: 'logout',
-    registration: 'signup'
+      sign_in: "login",
+      sign_out: "logout",
+      registration: "signup",
     },
     controllers: {
-    sessions: 'sessions',
-    registrations: 'registrations'
+      sessions: "sessions",
+      registrations: "registrations",
     }
-    
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root 'landing#index'
-  post 'password_recovery', to:'password_recovery#index'
-  patch 'password_recovery', to:'password_recovery#recovery'
+  root "landing#index"
+  post "password_recovery", to: "password_recovery#index"
+  patch "password_recovery", to: "password_recovery#recovery"
 
-  post 'admin', to:'register/admin#create'
-  post 'master', to:'register/master#create'
+  post "admin", to: "register/admin#create"
+  post "master", to: "register/master#create"
 
-  get 'show_account/:id', to:'register/show#account'
+  get "show_account/:id", to: "register/show#account"
 
-  post 'patient', to:'register/patient#create'
-  get 'patient', to:'register/patient#show'
-  patch 'patient', to:'register/patient#update'
-  get 'medical_history/:id', to:'register/patient#medical_history'
-  get 'patients_summary', to:'register/patient#summary'
-  get 'medical_histories', to:'register/patient#medical_histories'
+  post "patient", to: "register/patient#create"
+  get "patient", to: "register/patient#show"
+  patch "patient", to: "register/patient#update"
+  get "medical_history/:id", to: "register/patient#medical_history"
+  get "patients_summary", to: "register/patient#summary"
+  get "medical_histories", to: "register/patient#medical_histories"
 
-  post 'doctor', to:'register/doctor#create'
-  get 'doctor', to:'register/doctor#show'
-  patch 'doctor', to:'register/doctor#update'
+  post "doctor", to: "register/doctor#create"
+  get "doctor", to: "register/doctor#show"
+  patch "doctor", to: "register/doctor#update"
 
-  post 'assistant', to:'register/assistant#create'
-  get 'assistant', to:'register/assistant#show'
-  patch 'assistant', to:'register/assistant#update'
+  post "assistant", to: "register/assistant#create"
+  get "assistant", to: "register/assistant#show"
+  patch "assistant", to: "register/assistant#update"
 
   # authenticate
-  get 'user', to: 'application#user'
+  get "user", to: "application#user"
 
   # attachment
-  get 'attachment/:id', to: 'attachment#show'
-  post 'attachment', to:'register/attachment#create'
-  delete 'attachment/:id', to:'register/attachment#delete'
+  get "attachment/:id", to: "attachment#show"
+  post "attachment", to: "register/attachment#create"
+  delete "attachment/:id", to: "register/attachment#delete"
 
   # change status
-  post 'change_status', to:'change_status#update'
-
+  post "change_status", to: "change_status#update"
 
   # unification
   # post 'user_register', to: 'unification#user_register'
@@ -60,14 +59,14 @@ Rails.application.routes.draw do
   # post 'master_register', to: 'unification#master_register'
 
   # Attachment Type
-  get 'attachment_types', to: 'attachment_type#show'
+  get "attachment_types", to: "attachment_type#show"
 
   # Filter
-  get 'patient_filter/:id', to: 'filter#patient'
-  get 'patient_name_filter/:name', to: 'filter#patient_name'
-  get 'diagnostic_filter', to: 'filter#diagnostic'
-  get 'doctors_status', to: 'filter#doctors_status'
-  get 'doctor_report/:start_date'+'&'+':end_date', to: 'filter#doctor_report'
+  get "patient_filter/:id", to: "filter#patient"
+  get "patient_name_filter/:name", to: "filter#patient_name"
+  get "diagnostic_filter", to: "filter#diagnostic"
+  get "doctors_status", to: "filter#doctors_status"
+  get "doctor_report/:start_date" + "&" + ":end_date", to: "filter#doctor_report"
 
   # Assistant
   # post 'assistant', to: 'assistant#create'
@@ -96,7 +95,7 @@ Rails.application.routes.draw do
   # get 'people', to: 'people#show'
   # get 'people/:id', to: 'people#index'
   # delete 'people/:id', to: 'people#delete'
-  
+
   # Soaps
   # post 'soap', to: 'soap#create'
   # put 'soap/:id', to: 'soap#update'
@@ -105,9 +104,9 @@ Rails.application.routes.draw do
   # delete 'soap/:id', to: 'soap#delete'
 
   # Dashboards
-  get 'dashboard', to: 'dashboard#show'
-  get 'dashboard_doctor/:id', to: 'dashboard_doctor#show'
-  get 'dashboard_assistant', to: 'dashboard_assistant#show'
+  get "dashboard", to: "dashboard#show"
+  get "dashboard_doctor/:id", to: "dashboard_doctor#show"
+  get "dashboard_assistant", to: "dashboard_assistant#show"
 
   # Subjectives
   # post 'subjective', to: 'subjective#create'
@@ -201,8 +200,8 @@ Rails.application.routes.draw do
   # delete 'address_person/:id', to: 'addresses_person#delete'
 
   # Diagnostic
-  post 'diagnostic_import', to: 'diagnostic_import#index'
-  
+  post "diagnostic_import", to: "diagnostic_import#index"
+
   # put 'diagnostic/:id', to: 'diagnostic#update'
   # get 'diagnostic', to: 'diagnostic#show'
   # get 'diagnostic/:id', to: 'diagnostic#index'
@@ -225,14 +224,14 @@ Rails.application.routes.draw do
 
   # Language
   # put 'language/:id', to: 'language#update'
-    get 'language', to: 'language#show'
+  get "language", to: "language#show"
   # get 'language/:id', to: 'language#index'
   # post 'language', to: 'language#create'
   # delete 'language/:id', to: 'language#delete'
 
   # Nationality
   # put 'nationality/:id', to: 'nationality#update'
-    get 'nationality', to: 'nationality#show'
+  get "nationality", to: "nationality#show"
   # get 'nationality/:id', to: 'nationality#index'
   # post 'nationality', to: 'nationality#create'
   # delete 'nationality/:id', to: 'nationality#delete'
@@ -306,15 +305,14 @@ Rails.application.routes.draw do
   # get 'addressess_interpret', to: 'addressess_interpret#show'
   # get 'addressess_interpret/:id', to: 'addressess_interpret#index'
   # delete 'addressess_interpret/:id', to: 'addressess_interpret#delete'
-
+  jsonapi_resources :feedbacks
   # Validations
-  get 'email_available', to: 'validation#email_available'
-  get 'document_valid', to: 'validation#document_valid'
+  get "email_available", to: "validation#email_available"
+  get "document_valid", to: "validation#document_valid"
   TesteController ||= Class.new ActionController::API do
-      def teste
-        render json: DoctourMailer.with(user: User.first).greet.deliver_later
-      end
-  end 
-  get 'teste-mail', to: "teste#teste"
+    def teste
+      render json: DoctourMailer.with(user: User.first).greet.deliver_later
+    end
+  end
+  get "teste-mail", to: "teste#teste"
 end
-
