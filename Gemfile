@@ -1,28 +1,28 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 2.7.0'
+ruby "~> 2.7.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem "rails", "~> 6.0.2", ">= 6.0.2.1"
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem "pg"
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem "puma", "~> 4.1"
 # User Auth
-gem 'devise'
+gem "devise"
 # User auth jwt
-gem 'devise-jwt'
+gem "devise-jwt"
 # Isolate design variables
-gem 'dotenv-rails', groups: %i[development test]
+gem "dotenv-rails", groups: %i[development test]
 # Email validator
-gem 'email_validator'
+gem "email_validator"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+gem "jbuilder", "~> 2.7"
 # XLSX Reader
-gem 'creek'
+gem "creek"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -32,41 +32,43 @@ gem 'creek'
 # gem 'image_processing', '~> 1.2'
 
 # AWS SDK
-gem 'aws-sdk-s3', '~> 1.0.0.rc2'
+gem "aws-sdk-s3", "~> 1.0.0.rc2"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem "bootsnap", ">= 1.4.2", require: false
 
 # Use Rack CORS for handling Cross-Origin Resource
 # Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
+gem "rack-cors"
 
-gem 'rake'
+gem "rake"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to
   # stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem "byebug", platforms: %i[mri mingw x64_mingw]
   # use Rubocop to enforce styles
-  gem 'rubocop', '~> 0.80.1', require: false
+  gem "rubocop", "~> 0.80.1", require: false
   # use Rubocop Performance to enforce common performance idioms
-  gem 'rubocop-performance', '~> 1.5.1', require: false
+  gem "rubocop-performance", "~> 1.5.1", require: false
   # use Rubocop Rails to enforce rails idioms
-  gem 'rubocop-rails', '~> 2.5.0', require: false
+  gem "rubocop-rails", "~> 2.5.0", require: false
   # listens to file modifications and notifies you about the changes
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem "listen", ">= 3.0.5", "< 3.2"
 end
 
 group :development do
   # Spring speeds up development by keeping your application
   # running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem "spring"
   # Makes spring watch files using the listen gem.
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "spring-watcher-listen", "~> 2.0.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'bootstrap-email'
-gem 'sassc-rails'
+gem "bootstrap-email"
+gem "sassc-rails"
+gem "jsonapi-resources"
+gem "faker", :git => "https://github.com/faker-ruby/faker.git", :branch => "master"
