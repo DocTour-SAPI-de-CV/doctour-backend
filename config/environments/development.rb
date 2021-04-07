@@ -18,10 +18,10 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -39,12 +39,12 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => '3bdaca96318cf9',
-    :password => '158233a057325c',
-    :address => 'smtp.mailtrap.io',
-    :domain => 'smtp.mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5
+    :user_name => "3bdaca96318cf9",
+    :password => "158233a057325c",
+    :address => "smtp.mailtrap.io",
+    :domain => "smtp.mailtrap.io",
+    :port => "2525",
+    :authentication => :cram_md5,
   }
 
   # Print deprecation notices to the Rails logger.
@@ -63,3 +63,4 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+Rails.application.config.action_cable.allowed_request_origins = [%r{http[s]?://\S+}]
