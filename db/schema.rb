@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_180855) do
+ActiveRecord::Schema.define(version: 2021_04_08_191249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -114,6 +114,16 @@ ActiveRecord::Schema.define(version: 2021_03_29_180855) do
     t.index ["person_assistant_id"], name: "index_attachments_people_on_person_assistant_id"
     t.index ["person_doctor_id"], name: "index_attachments_people_on_person_doctor_id"
     t.index ["person_patient_id"], name: "index_attachments_people_on_person_patient_id"
+  end
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.text "message"
+    t.uuid "to_id", null: false
+    t.uuid "from_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["from_id"], name: "index_chat_messages_on_from_id"
+    t.index ["to_id"], name: "index_chat_messages_on_to_id"
   end
 
   create_table "diagnostics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -505,6 +515,8 @@ ActiveRecord::Schema.define(version: 2021_03_29_180855) do
   add_foreign_key "attachments_people", "people", column: "person_assistant_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "people", column: "person_doctor_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "people", column: "person_patient_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "chat_messages", "users", column: "from_id"
+  add_foreign_key "chat_messages", "users", column: "to_id"
   add_foreign_key "diagnostics_soaps", "diagnostics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "diagnostics_soaps", "soaps", on_update: :cascade, on_delete: :cascade
   add_foreign_key "doctors", "people", on_update: :cascade, on_delete: :cascade
