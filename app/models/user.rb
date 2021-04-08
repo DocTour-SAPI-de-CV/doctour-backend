@@ -4,7 +4,8 @@ class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
   has_one :account, dependent: :destroy
-
+  has_many :sended_messages, class_name: "ChatMessage", foreign_key: "from_id"
+  has_many :received_messages, class_name: "ChatMessage", foreign_key: "to_id"
   validates :email,
             presence: true,
             uniqueness: { case_sensitive: false },
@@ -31,7 +32,7 @@ class User < ApplicationRecord
       document: DocumentsPerson.where(person: account.people).as_json,
       phones: PeoplePhone.where(person: account.people).as_json,
       languages: LanguagesPerson.where(person: account.people).as_json,
-      last_medical_history: last_medical_history
+      last_medical_history: last_medical_history,
     }
   end
 
@@ -44,10 +45,10 @@ class User < ApplicationRecord
   end
 
   def as_json
-    return assitant if account.category == 'assistant'
-    return admin if account.category == 'admin'
-    return doctor if account.category == 'doctor'
-    return patient if account.category == 'patient'
+    return assitant if account.category == "assistant"
+    return admin if account.category == "admin"
+    return doctor if account.category == "doctor"
+    return patient if account.category == "patient"
   end
 
   def basic_info
@@ -55,33 +56,33 @@ class User < ApplicationRecord
       id: id,
       email: email,
       category: account.category,
-      people: account.people.as_json
+      people: account.people.as_json,
     }
   end
 
   def assitant
     basic_info.merge!({
                         address: AddressesPerson.find_by(person: account.people).as_json,
-                        assistant: Assistant.find_by(person: account.people).as_json
+                        assistant: Assistant.find_by(person: account.people).as_json,
                       })
   end
 
   def admin
     basic_info.merge!({
-                        address: AddressesPerson.find_by(person: account.people).as_json
+                        address: AddressesPerson.find_by(person: account.people).as_json,
                       })
   end
 
   def doctor
     basic_info.merge!({
                         address: AddressesPerson.find_by(person: account.people).as_json,
-                        doctor: Doctor.find_by(person: account.people).as_json
+                        doctor: Doctor.find_by(person: account.people).as_json,
                       })
   end
 
   def patient
     basic_info.merge!({
-                        patient: Patient.find_by(person: account.people).as_json
+                        patient: Patient.find_by(person: account.people).as_json,
                       })
   end
 end

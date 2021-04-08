@@ -5,4 +5,10 @@ class ChatChannel < ApplicationCable::Channel
     stream_for current_user
     puts "Usuario conectado: #{current_user}"
   end
+
+  def send_message(data)
+    from = current_user.id
+    to =data["to"]
+    message = data["message"]
+  end
 end
