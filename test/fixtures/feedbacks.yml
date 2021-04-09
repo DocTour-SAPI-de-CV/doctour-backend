@@ -4,12 +4,10 @@ one:
   name: MyString
   email: MyString
   phone: MyString
-  type: 1
   message: MyText
 
 two:
   name: MyString
   email: MyString
   phone: MyString
-  type: 1
   message: MyText
