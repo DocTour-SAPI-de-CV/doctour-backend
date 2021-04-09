@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 module ApplicationCable
   class ConnectionTest < ActionCable::Connection::TestCase
-    # test "connects with cookies" do
-    #   cookies.signed[:user_id] = 42
-    #
-    #   connect
-    #
-    #   assert_equal connection.user_id, "42"
-    # end
+    test "connects with token" do
+      user = User.first
+
+      token, _ = Warden::JWTAuth::UserEncoder.new.call user, nil, nil
+
+      connect params: { token: token }
+      assert_equal(user, connection.current_user, "Usuario logou no ActionCable com sucesso")
+      assert_not_equal(User.second, connection.current_user, "Usuario diferente")
+    end
   end
 end
