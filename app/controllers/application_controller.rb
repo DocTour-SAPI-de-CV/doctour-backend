@@ -3,37 +3,39 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_user
 
+
+
   def user
     people = People.find_by(account_id: Account.find_by(user_id: @current_user.id))
     @user = if people.nil?
-              {
+        {
                 id: @current_user.id,
                 email: @current_user.email,
-                jti: @current_user.jti
+                jti: @current_user.jti,
               }
-            else
-              {
+      else
+        {
                 id: @current_user.id,
                 email: @current_user.email,
                 jti: @current_user.jti,
                 first_name: people.first_name,
                 last_name: people.last_name,
-                initials: people.first_name[0] + people.last_name.split(' ').last[0],
+                initials: people.first_name[0] + people.last_name.split(" ").last[0],
                 gender: people.gender,
-                category: people.account.category
+                category: people.account.category,
               }
-            end
+      end
     render json: @user
   end
 
   def admin_authorization
     category = Account.find_by(user_id: current_user.id).category
-    unauthorized('admin') if category != 'admin' && category != 'master'
+    unauthorized("admin") if category != "admin" && category != "master"
   end
 
   def master_authorization
-    unless Account.find_by(user_id: current_user.id).category == 'master'
-      unauthorized('master')
+    unless Account.find_by(user_id: current_user.id).category == "master"
+      unauthorized("master")
     end
   end
 
@@ -44,18 +46,18 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_user
-    auth = request.headers['Authorization'] || request.cookies['auth._token.local']
-    return unauthorized('user') if auth.blank?
+    auth = request.headers["Authorization"] || request.cookies["auth._token.local"]
+    return unauthorized("user") if auth.blank?
 
     token = auth.split.last
 
     begin
       jwt_payload = JWT.decode(token, Rails.application.credentials.devise_jwt_secret)
-      @current_user = User.find_by(jti: jwt_payload[0]['jti'])
+      @current_user = User.find_by(jti: jwt_payload[0]["jti"])
 
       @current_user
     rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
-      unauthorized('user')
+      unauthorized("user")
     end
   end
 

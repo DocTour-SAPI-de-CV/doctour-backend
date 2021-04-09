@@ -24,7 +24,7 @@ Faker::Config.locale = "pt-BR"
     name: Faker::Name.name,
     email: Faker::Internet.safe_email,
     phone: Faker::PhoneNumber.cell_phone,
-    message_type: Faker::Number.between(from: 0, to: 2),
+    message_type: Faker::Number.between(from: 0, to: 1),
     message: Faker::Lorem.paragraph,
     title: Faker::Lorem.sentence,
   })

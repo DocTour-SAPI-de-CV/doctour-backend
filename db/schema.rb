@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_191249) do
     t.text "message"
     t.uuid "to_id", null: false
     t.uuid "from_id", null: false
+    t.boolean "readed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["from_id"], name: "index_chat_messages_on_from_id"

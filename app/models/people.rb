@@ -9,7 +9,7 @@ class People < ApplicationRecord
 
   has_one :assistant, dependent: :destroy
 
-  has_one :patient, dependent: :destroy
+  has_one :patient, dependent: :destroy, foreign_key: "person_id"
 
   has_one :doctor, dependent: :destroy
 
@@ -35,21 +35,21 @@ class People < ApplicationRecord
   validates :first_name,
             format: { with: /[a-zA-Z]/ },
             length: { minimum: 2 },
-            presence: { message: 'is required or invalid' }
+            presence: { message: "is required or invalid" }
 
   validates :last_name,
             format: { with: /[a-zA-Z]/ },
             length: { minimum: 2 },
-            presence: { message: 'is required or invalid' }
+            presence: { message: "is required or invalid" }
 
   validates :gender,
             inclusion: {
               in: [
-                'female',
-                'male',
-                nil
+                "female",
+                "male",
+                nil,
               ],
-              message: 'is not valid'
+              message: "is not valid",
             }
 
   def downcase_fields
@@ -57,7 +57,7 @@ class People < ApplicationRecord
   end
 
   def full_name
-    first_name + ' ' + last_name
+    first_name + " " + last_name
   end
 
   def as_json
@@ -71,7 +71,7 @@ class People < ApplicationRecord
       nationality: nationality.as_json,
       document: DocumentsPerson.where(person_id: id).as_json,
       phones: PeoplePhone.where(person_id: id).as_json,
-      languages: LanguagesPerson.where(person_id: id).as_json
+      languages: LanguagesPerson.where(person_id: id).as_json,
     }
   end
 end
