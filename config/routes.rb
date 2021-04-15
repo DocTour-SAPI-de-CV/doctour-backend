@@ -306,8 +306,8 @@ Rails.application.routes.draw do
   # get 'addressess_interpret/:id', to: 'addressess_interpret#index'
   # delete 'addressess_interpret/:id', to: 'addressess_interpret#delete'
   jsonapi_resources :feedbacks
-  jsonapi_resources :chat_messages
-  jsonapi_resources :chat_contacts
+  jsonapi_resources :chat_messages, only: [:index, :show, :update]
+  jsonapi_resources :chat_contacts, only: [:index, :show]
   # Validations
   get "email_available", to: "validation#email_available"
   get "document_valid", to: "validation#document_valid"
