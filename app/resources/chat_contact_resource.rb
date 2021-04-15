@@ -1,6 +1,14 @@
 class ChatContactResource < JSONAPI::Resource
   model_name "User"
-  attributes :email, :created_at, :updated_at
+  attributes :email, :name, :category
+
+  def name
+    "#{@model.account.people.first_name} #{@model.account.people.last_name}"
+  end
+
+  def category
+    @model.account.category
+  end
 
   def self.records(options = {})
     current_user = options[:context][:current_user]
