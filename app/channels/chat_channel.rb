@@ -22,10 +22,10 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   ##
-  # read
+  # read_messages
   # define as mensagens nao lidas de um determinado usuário como lidas
   # [from] usuario de qual a mensagem foi enviada
-  def read(data)
+  def read_messages(data)
     from = User.find(data["from"])
     current_user.received_messages.where(from_id: from.id).where(readed: false).update_all(readed: true)
   end
