@@ -2,7 +2,7 @@
   "_type": "export",
   "__export_format": 4,
   "__export_date": "2020-01-01T00:00:00.000Z",
-  "__export_source": "insomnia.desktop.app:v2021.2.1",
+  "__export_source": "insomnia.desktop.app:v2021.2.2",
   "resources": [
     {
       "_id": "wrk_0d7302ca0bce4b8e8d90272ded4ee20c",
@@ -291,6 +291,18 @@
       "_type": "request_group"
     },
     {
+      "_id": "fld_9c72eb70e39d43958dc8390e443fbc09",
+      "parentId": "fld_5c65f88c422e4e5bbe75efbfe5d4ab53",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "name": "chat-messages",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1617023272929.5,
+      "_type": "request_group"
+    },
+    {
       "_id": "fld_a59a5c5c613b4df5a021c2ae26f4288d",
       "parentId": "fld_5c65f88c422e4e5bbe75efbfe5d4ab53",
       "modified": 1600000000000,
@@ -312,6 +324,18 @@
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -1617023272532,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_bacb2fb6405d4f30a340ab2959570493",
+      "parentId": "fld_5c65f88c422e4e5bbe75efbfe5d4ab53",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "name": "chat-contacts",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1617023272926.75,
       "_type": "request_group"
     },
     {
@@ -983,6 +1007,40 @@
       "_type": "request"
     },
     {
+      "_id": "req_2af907ada8bb4c049c844f53dd5f0172",
+      "parentId": "fld_bacb2fb6405d4f30a340ab2959570493",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}",
+      "name": "index",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_d09f6c80ac214283b5c8f47ed2177775"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272943,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_300dfe621e894c43a7ac5c613602a38f",
       "parentId": "fld_681b0f19e6624a40b44aef620c9a90b4",
       "modified": 1600000000000,
@@ -1225,6 +1283,42 @@
       "_type": "request"
     },
     {
+      "_id": "req_39fa87059ab9484b8365e1945929cfde",
+      "parentId": "fld_bacb2fb6405d4f30a340ab2959570493",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/1",
+      "name": "update",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n    \"category\": \"client\"\n} "
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272928,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_3b82397bedc54099aafa8751d65d5a58",
       "parentId": "fld_f9e8a262469a4716898e2cf2e5b21b6a",
       "modified": 1600000000000,
@@ -1271,6 +1365,42 @@
       "_type": "request"
     },
     {
+      "_id": "req_3e332101e81f4a10ada3dcc6d88b6aa3",
+      "parentId": "fld_bacb2fb6405d4f30a340ab2959570493",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "",
+        "text": "{\n    \"category\": \"admin\",\n    \"user_id\": \"{{user_id}}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272938,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_4224d94c7d3b420ca1e17130caab7366",
       "parentId": "fld_86eab6a50da34684b28f7a2a58ad9f92",
       "modified": 1600000000000,
@@ -1284,6 +1414,70 @@
       "headers": [],
       "authentication": {},
       "metaSortKey": -1617023272723,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_449d1adafcd64fe2bc26c98e38236517",
+      "parentId": "fld_9c72eb70e39d43958dc8390e443fbc09",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "",
+        "text": "{\n    \"category\": \"admin\",\n    \"user_id\": \"{{user_id}}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272938,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_457d76d9997c41a6a403600e6c567244",
+      "parentId": "fld_9c72eb70e39d43958dc8390e443fbc09",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/1",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1617023272931,
       "isPrivate": false,
       "settingStoreCookies": true,
       "settingSendCookies": true,
@@ -1425,6 +1619,34 @@
         "prefix": ""
       },
       "metaSortKey": -1617023272639,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4aa4228321674660bb0c048b56e03b16",
+      "parentId": "fld_bacb2fb6405d4f30a340ab2959570493",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/1",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1617023272931,
       "isPrivate": false,
       "settingStoreCookies": true,
       "settingSendCookies": true,
@@ -1933,6 +2155,38 @@
       "_type": "request"
     },
     {
+      "_id": "req_77365f9551404c3bb13a2f441312f36c",
+      "parentId": "fld_9c72eb70e39d43958dc8390e443fbc09",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/980190964",
+      "name": "show",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_7c67e38db86e4d0c8b8380cefab453fc"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{auth_token}}"
+      },
+      "metaSortKey": -1617023272936,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_789ff7c3cfee423db7553cb4dac21488",
       "parentId": "fld_dad23d1446fa4475b2fba0ff95e29058",
       "modified": 1600000000000,
@@ -2038,6 +2292,43 @@
       "headers": [],
       "authentication": {},
       "metaSortKey": -1617023272810,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_7f8b3ea96b3140029f2467169fe21560",
+      "parentId": "fld_9c72eb70e39d43958dc8390e443fbc09",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/980190964",
+      "name": "update",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"data\": {\n    \"type\": \"{% request 'folder', '', 0 %}\",\n\t\t\"id\": \t980190964,\n    \"attributes\": {\n      \"readed\": true\n    }\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_5aaa9d7ab5634fa2894964e11807d9c3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272928,
       "isPrivate": false,
       "settingStoreCookies": true,
       "settingSendCookies": true,
@@ -2228,6 +2519,40 @@
       ],
       "authentication": {},
       "metaSortKey": -1617023272544,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_895877cae9da4a7c84f7e9196a6dbc77",
+      "parentId": "fld_9c72eb70e39d43958dc8390e443fbc09",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}?include=to,from&filter[new]=true",
+      "name": "index",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_d09f6c80ac214283b5c8f47ed2177775"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272943,
       "isPrivate": false,
       "settingStoreCookies": true,
       "settingSendCookies": true,
@@ -2834,7 +3159,7 @@
       "parentId": "fld_86fd88831622450dbb00f1f0ff60bb57",
       "modified": 1600000000000,
       "created": 1600000000000,
-      "url": "{{host}}/{% request 'folder', '', 0 %}",
+      "url": "{{host}}/{% request 'folder', '', 0 %}/1",
       "name": "show",
       "description": "",
       "method": "GET",
@@ -2843,7 +3168,8 @@
       "headers": [
         {
           "name": "Content-Type",
-          "value": "application/vnd.api+json"
+          "value": "application/vnd.api+json",
+          "id": "pair_83a75d4d4e6440eda02663ed0b2bd164"
         }
       ],
       "authentication": {
@@ -3151,6 +3477,38 @@
       "_type": "request"
     },
     {
+      "_id": "req_b30b2ae8e5f7453dbfe05d7fcced96cc",
+      "parentId": "fld_bacb2fb6405d4f30a340ab2959570493",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/1",
+      "name": "show",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_7c67e38db86e4d0c8b8380cefab453fc"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{auth_token}}"
+      },
+      "metaSortKey": -1617023272936,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_b335004f0d654cd5b10a61553a46af27",
       "parentId": "fld_41f4e537b7db44c5bd2791d559793541",
       "modified": 1600000000000,
@@ -3217,7 +3575,7 @@
       "parentId": "fld_86fd88831622450dbb00f1f0ff60bb57",
       "modified": 1600000000000,
       "created": 1600000000000,
-      "url": "{{host}}/{% request 'folder', '', 0 %}/1",
+      "url": "{{host}}/{% request 'folder', '', 0 %}",
       "name": "index",
       "description": "",
       "method": "GET",
@@ -3226,7 +3584,8 @@
       "headers": [
         {
           "name": "Content-Type",
-          "value": "application/vnd.api+json"
+          "value": "application/vnd.api+json",
+          "id": "pair_92404290c7c3423c9ce6238238242d9f"
         }
       ],
       "authentication": {
