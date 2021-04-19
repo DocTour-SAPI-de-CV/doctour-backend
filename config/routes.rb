@@ -309,6 +309,7 @@ Rails.application.routes.draw do
   jsonapi_resources :chat_messages, only: [:index, :show, :update]
   jsonapi_resources :chat_contacts, only: [:index, :show]
   jsonapi_resources :pathologicals_historics
+  jsonapi_resources :non_pathologicals_historics
   # Validations
   get "email_available", to: "validation#email_available"
   get "document_valid", to: "validation#document_valid"
