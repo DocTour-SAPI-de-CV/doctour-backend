@@ -44,7 +44,7 @@ class User < ApplicationRecord
     AddressesPerson.find_by(person: account.people).nil?
   end
 
-  def as_json
+  def as_json(options = nil)
     return assitant if account.category == "assistant"
     return admin if account.category == "admin"
     return doctor if account.category == "doctor"

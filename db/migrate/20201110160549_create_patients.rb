@@ -4,7 +4,7 @@ class CreatePatients < ActiveRecord::Migration[6.0]
   def change
     create_table :patients, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :photo
-      t.boolean :privacy_polity, null: false
+      t.boolean :privacy_policy, null: false
       t.boolean :terms_use, null: false
       t.cidr :client_ip, null: false
 

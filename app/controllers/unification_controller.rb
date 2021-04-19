@@ -162,7 +162,7 @@ class UnificationController < ApplicationController
   def create_patient(_params)
     @patient = Patient.new(
       person_id: @people.id,
-      privacy_polity: true,
+      privacy_policy: true,
       terms_use: true,
       client_ip: request.remote_ip
     )

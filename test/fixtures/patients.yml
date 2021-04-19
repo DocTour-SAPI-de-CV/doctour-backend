@@ -3,13 +3,13 @@
 patient_felipe:
   photo: people.png
   person: person_felipe
-  privacy_polity: true
+  privacy_policy: true
   terms_use: true
   client_ip: 186.168.174.153
 
 patient_felipe_silva:
   photo: people.png
   person: person_felipe_silva
-  privacy_polity: true
+  privacy_policy: true
   terms_use: true
   client_ip: 192.168.174.153

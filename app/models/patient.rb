@@ -9,9 +9,9 @@ class Patient < ApplicationRecord
 
   validates :person, uniqueness: true
 
-  validates :privacy_polity,
+  validates :privacy_policy,
             inclusion: { in: [true],
-                         message: 'You need to accept the Privacy Polity terms!' },
+                         message: 'You need to accept the Privacy Policy terms!' },
             presence: true
 
   validates :client_ip, presence: { message: 'is invalid!' }
@@ -39,7 +39,7 @@ class Patient < ApplicationRecord
     {
       id: id,
       photo: photo,
-      privacy_polity: privacy_polity,
+      privacy_policy: privacy_policy,
       terms_use: terms_use,
       client_ip: client_ip.to_s
     }

@@ -215,7 +215,7 @@ module Register
       patient = Patient.new(
         person_id: person.id,
         photo: 'foto.png',
-        privacy_polity: true,
+        privacy_policy: true,
         terms_use: true,
         client_ip: request.remote_ip
       )

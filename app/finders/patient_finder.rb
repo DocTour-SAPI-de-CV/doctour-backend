@@ -13,7 +13,7 @@ class PatientFinder < ApplicationFinder
       email: @patient.email,
       ip: @patient.client_ip.to_s,
       created_at: @patient.created_at_mask,
-      privaci_polity: @patient.privacy_polity,
+      privaci_policy: @patient.privacy_policy,
       terms_use: @patient.terms_use
     }
   end
