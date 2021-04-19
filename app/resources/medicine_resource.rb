@@ -1,4 +1,4 @@
 class MedicineResource < JSONAPI::Resource
-  attribute :name
+  attributes :name, :created_at
   has_one :medicines_historic
 end

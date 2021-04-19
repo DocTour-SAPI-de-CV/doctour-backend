@@ -1,4 +1,4 @@
 class RespiratoryDiseaseResource < JSONAPI::Resource
-  attribute :name
+  attributes :name, :created_at
   has_one :respiratories_historics
 end
