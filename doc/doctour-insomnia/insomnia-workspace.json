@@ -303,6 +303,18 @@
       "_type": "request_group"
     },
     {
+      "_id": "fld_a49403569940427ca82f1acbc3708a0c",
+      "parentId": "fld_5c65f88c422e4e5bbe75efbfe5d4ab53",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "name": "pathologicals-historics",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1617023272928.125,
+      "_type": "request_group"
+    },
+    {
       "_id": "fld_a59a5c5c613b4df5a021c2ae26f4288d",
       "parentId": "fld_5c65f88c422e4e5bbe75efbfe5d4ab53",
       "modified": 1600000000000,
@@ -421,6 +433,43 @@
       "environmentPropertyOrder": null,
       "metaSortKey": -1617023272598,
       "_type": "request_group"
+    },
+    {
+      "_id": "req_05a64db49acc47ff834b02e84729afbf",
+      "parentId": "fld_a49403569940427ca82f1acbc3708a0c",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/allergies",
+      "name": "create allergie",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "",
+        "text": "{\n\t\"data\": \n\t\t{\n\t\t\t\"type\": \"allergies\",\n\t\t\t\"attributes\":{\n\t\t\t\t\"name\": \"Acido Acetilsalicílico\"\n\t\t\t}\n\t\t}\n\t\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_395e18cf86e746459f6586ee0f5638ec"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272936.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
     },
     {
       "_id": "req_065fc07f96d04e94b79d7cb767474968",
@@ -925,6 +974,43 @@
       "_type": "request"
     },
     {
+      "_id": "req_23e8462b5619458fae1ee8a0da44b2bd",
+      "parentId": "fld_a49403569940427ca82f1acbc3708a0c",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "",
+        "text": "{\n\t\"data\": {\n\t\t\"type\": \"pathologicals-historics\",\n\t\t\"attributes\": {\n\t\t\t\"allergy\": true,\n\t\t\t\"diabetes\": true,\n\t\t\t\"hypertension\": false,\n\t\t\t\"medicine\": false,\n\t\t\t\"respiratory-disease\": true,\n\t\t\t\"surgical-historic\": false\n\t\t},\n\t\t\"relationships\": {\n\t\t\t\"patient\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"patients\",\n\t\t\t\t\t\"id\": \"1a8057d8-71de-4e9c-a760-12a99a4f9079\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_395e18cf86e746459f6586ee0f5638ec"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272938,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_287982cf83a64a63a9cebacbb843ddb8",
       "parentId": "fld_0ba5c5f6eacb4253916f5364a047831a",
       "modified": 1600000000000,
@@ -1098,6 +1184,43 @@
         "prefix": ""
       },
       "metaSortKey": -1617023272595,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_313820b0af0c45a183a7da68ae2cec91",
+      "parentId": "fld_a49403569940427ca82f1acbc3708a0c",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/980190964",
+      "name": "update",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"data\": {\n    \"type\": \"{% request 'folder', '', 0 %}\",\n\t\t\"id\": \t980190964,\n    \"attributes\": {\n      \"readed\": true\n    }\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_5aaa9d7ab5634fa2894964e11807d9c3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272928,
       "isPrivate": false,
       "settingStoreCookies": true,
       "settingSendCookies": true,
@@ -1657,6 +1780,38 @@
       "_type": "request"
     },
     {
+      "_id": "req_4f04f50df37347ef95360304aec5c808",
+      "parentId": "fld_a49403569940427ca82f1acbc3708a0c",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/5cbd40ee-6967-4d23-92dc-6a6fc2cd7115",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_b931c8aa9a094950916fd2af8410bf13"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{auth_token}}"
+      },
+      "metaSortKey": -1617023272931,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_5296725bbdc943c194440f05ae15011e",
       "parentId": "fld_eb6580ae61c04ced8c0c5802e959dc3e",
       "modified": 1600000000000,
@@ -2127,6 +2282,38 @@
       "_type": "request"
     },
     {
+      "_id": "req_74f0a56c5eac4ab4b6c977a9d01dbea9",
+      "parentId": "fld_a49403569940427ca82f1acbc3708a0c",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}/0b381f4e-6c96-4eb0-b494-f7e775d2a394",
+      "name": "show",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_7c67e38db86e4d0c8b8380cefab453fc"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{auth_token}}"
+      },
+      "metaSortKey": -1617023272936,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "req_75298fda3aff4a18a7323943c6daa6f7",
       "parentId": "fld_90f268ed395f46af941e343b85a44d5d",
       "modified": 1600000000000,
@@ -2200,6 +2387,90 @@
       "headers": [],
       "authentication": {},
       "metaSortKey": -1617023272846,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_79877c41d9304c388e2877809b25c75b",
+      "parentId": "fld_a49403569940427ca82f1acbc3708a0c",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/allergies-historics",
+      "name": "create allergies-historics",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "",
+        "text": "{\n\t\"data\": {\n\t\t\"type\": \"allergies-historics\",\n\t\t\"relationships\": {\n\t\t\t\"allergy\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"allergies\",\n\t\t\t\t\t\"id\": \"cdd8a059-6510-4cd4-a826-fcaf7b7e31c1\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"pathologicals-historic\": {\n\t\t\t\t\"data\": {\n\t\t\t\t\t\"type\": \"pathologicals-historics\",\n\t\t\t\t\t\"id\": \"d250127a-8070-4aa1-98ae-11a8bbebd9fc\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_395e18cf86e746459f6586ee0f5638ec"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272937,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_79a79e47a7164cd694a846a7df38f18f",
+      "parentId": "fld_a49403569940427ca82f1acbc3708a0c",
+      "modified": 1600000000000,
+      "created": 1600000000000,
+      "url": "{{host}}/{% request 'folder', '', 0 %}",
+      "name": "index",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "include",
+          "value": "allergies-historics",
+          "id": "pair_d913262ee0c44725a849f335c8fc1af1",
+          "disabled": false
+        },
+        {
+          "name": "filter[new]",
+          "value": "true",
+          "id": "pair_e23a380332e24ddaa533e61a5eb7d711",
+          "disabled": true
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "id": "pair_d09f6c80ac214283b5c8f47ed2177775"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "disabled": false,
+        "token": "{{auth_token}}",
+        "prefix": ""
+      },
+      "metaSortKey": -1617023272943,
       "isPrivate": false,
       "settingStoreCookies": true,
       "settingSendCookies": true,
@@ -2533,12 +2804,24 @@
       "parentId": "fld_9c72eb70e39d43958dc8390e443fbc09",
       "modified": 1600000000000,
       "created": 1600000000000,
-      "url": "{{host}}/{% request 'folder', '', 0 %}?include=to,from&filter[new]=true",
+      "url": "{{host}}/{% request 'folder', '', 0 %}",
       "name": "index",
       "description": "",
       "method": "GET",
       "body": {},
-      "parameters": [],
+      "parameters": [
+        {
+          "name": "include",
+          "value": "to,from",
+          "id": "pair_d913262ee0c44725a849f335c8fc1af1"
+        },
+        {
+          "name": "filter[new]",
+          "value": "true",
+          "id": "pair_e23a380332e24ddaa533e61a5eb7d711",
+          "disabled": true
+        }
+      ],
       "headers": [
         {
           "name": "Content-Type",
@@ -4809,9 +5092,15 @@
       "parentId": "env_d974bfc8999c55344faac3f7bcaa34f2b3457f1d",
       "modified": 1600000000000,
       "created": 1600000000000,
-      "name": "Netlify Staging",
-      "data": {},
-      "dataPropertyOrder": null,
+      "name": "Heroku",
+      "data": {
+        "host": "https://doctour-api.herokuapp.com"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "host"
+        ]
+      },
       "color": null,
       "isPrivate": false,
       "metaSortKey": 1617023331774,
