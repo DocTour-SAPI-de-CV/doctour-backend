@@ -1,0 +1,2 @@
+class MedicinesHistoricsController < ApplicationControllerJsonApi
+end

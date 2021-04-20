@@ -1,0 +1,2 @@
+class RespiratoryDiseasesController < ApplicationControllerJsonApi
+end

@@ -1,0 +1,2 @@
+class AllergiesController < ApplicationControllerJsonApi
+end

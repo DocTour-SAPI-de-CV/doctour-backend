@@ -1,0 +1,2 @@
+class VaccinesController < ApplicationControllerJsonApi
+end

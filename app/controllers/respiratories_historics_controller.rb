@@ -1,0 +1,2 @@
+class RespiratoriesHistoricsController < ApplicationControllerJsonApi
+end
