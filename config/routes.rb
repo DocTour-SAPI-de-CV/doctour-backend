@@ -317,7 +317,7 @@ Rails.application.routes.draw do
   jsonapi_resources :surgeries_historics
   jsonapi_resources :surgeries
   jsonapi_resources :respiratories_historics
-  jsonapi_resources :respiratory_deseases
+  jsonapi_resources :respiratory_diseases
 
   jsonapi_resources :non_pathologicals_historics
   jsonapi_resources :vaccines_historics
