@@ -14,6 +14,10 @@ class PatientController < ApplicationController
   end
 
   def create
+    if current_user.account.category == "patient"
+      unauthorized("admin")
+      return
+    end
     patient = Patient.new(patient_params)
     render(json: { patient: patient }) if patient.save
 
@@ -28,10 +32,18 @@ class PatientController < ApplicationController
   end
 
   def update
+    if current_user.account.category == "patient"
+      unless params[:id] == current_user.account.people.patient.id
+        unauthorized("admin")
+        return
+      end
+    end
     patient = Patient.find(params[:id])
-    render(json: { patient: patient }) if patient.update(patient_params)
-
-    render(json: { error: patient.errors }) unless patient.update(patient_params)
+    if patient.update(patient_params)
+      render(json: { patient: patient })
+    else
+      render(json: { error: patient.errors })
+    end
   end
 
   private
