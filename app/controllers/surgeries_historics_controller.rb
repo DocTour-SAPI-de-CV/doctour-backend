@@ -1,2 +1,2 @@
-class AllergiesHistoricsController < ApplicationControllerJsonApi
+class SurgeriesHistoricsController < ApplicationControllerJsonApi
 end
