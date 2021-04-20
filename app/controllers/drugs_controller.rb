@@ -1,0 +1,2 @@
+class DrugsController < ApplicationControllerJsonApi
+end

@@ -316,12 +316,14 @@ Rails.application.routes.draw do
   jsonapi_resources :medicines
   jsonapi_resources :surgeries_historics
   jsonapi_resources :surgeries
-  jsonapi_resources :vaccines_historics
-  jsonapi_resources :vaccines
   jsonapi_resources :respiratories_historics
   jsonapi_resources :respiratory_deseases
 
   jsonapi_resources :non_pathologicals_historics
+  jsonapi_resources :vaccines_historics
+  jsonapi_resources :vaccines
+  jsonapi_resources :drugs_historics
+  jsonapi_resources :drugs
   # Validations
   get "email_available", to: "validation#email_available"
   get "document_valid", to: "validation#document_valid"
