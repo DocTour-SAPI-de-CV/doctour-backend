@@ -7,6 +7,10 @@ class ChatMessageResource < JSONAPI::Resource
                  current_user.received_messages
                    .where(readed: false)
                }
+  filter :user_id, apply: ->(records, value, _options) {
+                     records.where(to_id: value[0]).or(records.where(from_id: value[0]))
+                   }
+
   has_one :to, class_name: "ChatContact"
   has_one :from, class_name: "ChatContact"
   before_update do
