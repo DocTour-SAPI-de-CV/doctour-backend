@@ -18,6 +18,7 @@ Permite a listagem das mensagens e a atualização para marcação de leitura.
 ### Filtros:
 
 - new - para trazer apenas novas mensagens recebidas (não lidas)
+- user_id - para trazer a conversa de um usuário especifico.
 
 ### Atributos:
 
@@ -51,6 +52,7 @@ Permite a listagem dos contatos
 - email (text)
 - name (text)
 - category (text) - doctor, patient, assistant, etc...
+- last_message (object {message, created_at, type, readed})
 
 # ActionCable
 
