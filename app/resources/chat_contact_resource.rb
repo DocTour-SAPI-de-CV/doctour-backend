@@ -9,7 +9,7 @@ class ChatContactResource < JSONAPI::Resource
   def last_message
     current_user = context[:current_user]
     msg = @model.sended_messages.where(to_id: current_user.id).or(@model.received_messages.where(from_id: current_user.id)).last
-    { message: msg.message, created_at: msg.created_at, type: msg.from_id == current_user.id ? "sended" : "received" } if msg
+    { message: msg.message, created_at: msg.created_at, type: msg.from_id == current_user.id ? "sended" : "received", readed: msg.readed } if msg
   end
 
   def category
