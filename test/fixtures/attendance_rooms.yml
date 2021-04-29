@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  doctor_id: 
+  patient_id: 
+  interpret_id: 
+  interpret_access_key: MyString
+  finished_at: 2021-04-29 16:38:00
+
+two:
+  doctor_id: 
+  patient_id: 
+  interpret_id: 
+  interpret_access_key: MyString
+  finished_at: 2021-04-29 16:38:00
