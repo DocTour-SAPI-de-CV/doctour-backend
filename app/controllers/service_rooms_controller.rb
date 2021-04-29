@@ -1,0 +1,2 @@
+class ServiceRoomsController < ApplicationController
+end
