@@ -3,21 +3,20 @@ class WaitingRoomChannel < ApplicationCable::Channel
 
   def subscribed
     if current_user.account.category == "patient"
-      @@waiting_room_queue << current_user 
-      stream_for current_user
-    else
-      if ["doctor", "assistant"].include? current_user.account.category
-        stream_for "assistant_and_doctors"
+      if not @@waiting_room_queue.include? current_user
+        @@waiting_room_queue << current_user
       end
+      stream_for current_user
+    elsif ["doctor", "assistant"].include? current_user.account.category
+      stream_for "assistant_and_doctors"
     end
-    puts @@waiting_room_queue
+
     broadcast_user_list
-    
   end
 
   def unsubscribed
     @@waiting_room_queue.delete(current_user)
-    puts @@waiting_room_queue
+
     broadcast_user_list
   end
 
@@ -28,6 +27,6 @@ class WaitingRoomChannel < ApplicationCable::Channel
   end
 
   def broadcast_user_list
-  broadcast_to("assistant_and_doctors", {users_list: @@waiting_room_queue })
+    broadcast_to("assistant_and_doctors", { users_count: @@waiting_room_queue.count, users_list: @@waiting_room_queue })
   end
 end
