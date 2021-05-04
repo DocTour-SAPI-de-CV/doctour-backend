@@ -76,3 +76,5 @@ group :development do
   gem "rails-erd"
   gem "railroady"
 end
+
+gem "concurrent-ruby", "~> 1.1"
