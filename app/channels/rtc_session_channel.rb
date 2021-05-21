@@ -1,5 +1,9 @@
 class RtcSessionChannel < ApplicationCable::Channel
   def subscribed
+    # pegar o "room_id" (service room id)
+    # ver se current user está atrelado nesta sessao
+    # stream for session channel _ id
+
     stream_for "session_channel"
   end
 

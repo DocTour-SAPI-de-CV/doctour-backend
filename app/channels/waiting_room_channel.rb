@@ -4,26 +4,39 @@ class WaitingRoomChannel < ApplicationCable::Channel
   def subscribed
     if current_user.account.category == "patient"
       if not @@waiting_room_queue.include? current_user
-        @@waiting_room_queue << current_user
+        @@waiting_room_queue << { user: current_user, interpret: nil }
       end
       stream_for current_user
     elsif ["doctor", "assistant"].include? current_user.account.category
       stream_for "assistant_and_doctors"
+      stream_for current_user
     end
 
     broadcast_user_list
   end
 
   def unsubscribed
-    @@waiting_room_queue.delete(current_user)
+    #find e delete
+    @@waiting_room_queue.delete_if { |current_item| current_item.user == current_user }
 
     broadcast_user_list
   end
 
-  def pick
+  def take
     return unless current_user.account.category == "doctor"
-    next_patient = @@waiting_room_queue.shift()
+    next_patient = @@waiting_room_queue.shift().user
+    #instanciar service room
+    #enviar para doutor, e paciente (com esse id gerado eles vao conseguir acessar)
     broadcast_to(next_patient, { "service_room_id": "asdfghjkljhgfdsdfghj" })
+    broadcast_to(current_user, { "service_room_id": "asdfghjkljhgfdsdfghj" })
+    #enviar email para interpret com chave
+  end
+
+  def set_interpret(data)
+    # find user (data.patient_id)
+    # find interpret (data.interpret_id)
+    # setar interpret na fila na estrutura
+
   end
 
   def broadcast_user_list

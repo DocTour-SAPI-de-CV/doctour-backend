@@ -13,6 +13,7 @@ class ChatMessageResource < JSONAPI::Resource
 
   has_one :to, class_name: "ChatContact"
   has_one :from, class_name: "ChatContact"
+  
   before_update do
     if ChatMessage.find(@model.id).readed
       throw :abort

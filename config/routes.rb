@@ -328,6 +328,7 @@ Rails.application.routes.draw do
   # Validations
   get "email_available", to: "validation#email_available"
   get "document_valid", to: "validation#document_valid"
+  
   TesteController ||= Class.new ActionController::API do
     def teste
       # render json: DoctourMailer.with(user: User.first).greet.deliver_later
