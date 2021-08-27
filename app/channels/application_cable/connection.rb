@@ -15,6 +15,7 @@ module ApplicationCable
         reject_unauthorized_connection
       end
 
+      Rails.logger.info "alouu"
       token = request.params[:token] || request.headers["Authorization"].split(" ")[1]
       jwt = JWT.decode(token, Rails.application.credentials.devise_jwt_secret, true, algorithm: "HS256", verify_jti: true)[0]
       if (user = User.find(jwt["sub"]))

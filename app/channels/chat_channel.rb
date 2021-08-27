@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    stream_for current_user
+    stream_for params[:room_id]
     Rails.logger.info "Usuario conectado: #{current_user.email}"
   end
 
@@ -14,11 +12,10 @@ class ChatChannel < ApplicationCable::Channel
   # [message] a mensagem a ser enviada
   def send_message(data)
     from = current_user
-    to = User.find(data["to"])
     message = data["message"]
-    cm = ChatMessage.create!(message: message, from: from, to: to)
-    broadcast_to(to, { message: message, from_id: from.id })
-    Rails.logger.info "Mensage enviada de: #{from.email}, para: #{to.email}, mensagem: #{message}"
+    cm = ChatMessage.create!(message: message, from: from, to: from, chat_room_id: data["room_id"])
+    broadcast_to(params[:room_id], [{ message: message, from_id: from.id , user: cm.username, key: cm.id }])
+    Rails.logger.info "Mensagem enviada de: #{from.email}, para: #{to.email}, mensagem: #{message}"
   end
 
   ##
@@ -29,4 +26,5 @@ class ChatChannel < ApplicationCable::Channel
     from = User.find(data["from"])
     current_user.received_messages.where(from_id: from.id).where(readed: false).update_all(readed: true)
   end
+
 end

@@ -3,8 +3,6 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_user
 
-
-
   def user
     people = People.find_by(account_id: Account.find_by(user_id: @current_user.id))
     @user = if people.nil?
@@ -47,6 +45,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_user
     auth = request.headers["Authorization"] || request.cookies["auth._token.local"]
+    
     return unauthorized("user") if auth.blank?
 
     token = auth.split.last

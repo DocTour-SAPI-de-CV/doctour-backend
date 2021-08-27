@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :chat_rooms
   resources :service_rooms
   #Routes for divese
   devise_for :users,
@@ -307,7 +308,12 @@ Rails.application.routes.draw do
   # get 'addressess_interpret/:id', to: 'addressess_interpret#index'
   # delete 'addressess_interpret/:id', to: 'addressess_interpret#delete'
   jsonapi_resources :feedbacks
-  jsonapi_resources :chat_messages, only: [:index, :show, :update]
+  jsonapi_resources :chat_messages, only: [:index, :show, :update] do
+    collection do
+      get :messages_from
+    end
+  end
+
   jsonapi_resources :chat_contacts, only: [:index, :show]
 
   jsonapi_resources :pathologicals_historics
