@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_one :account, dependent: :destroy
   has_many :sended_messages, class_name: "ChatMessage", foreign_key: "from_id"
   has_many :received_messages, class_name: "ChatMessage", foreign_key: "to_id"
+  has_many :user_chat_rooms
+  has_many :chat_rooms, through: :user_chat_rooms
   validates :email,
             presence: true,
             uniqueness: { case_sensitive: false },
@@ -45,7 +47,7 @@ class User < ApplicationRecord
   end
 
   def as_json(options = nil)
-    return assitant if account.category == "assistant"
+    return assistant if account.category == "assistant"
     return admin if account.category == "admin"
     return doctor if account.category == "doctor"
     return patient if account.category == "patient"
@@ -60,7 +62,7 @@ class User < ApplicationRecord
     }
   end
 
-  def assitant
+  def assistant
     basic_info.merge!({
                         address: AddressesPerson.find_by(person: account.people).as_json,
                         assistant: Assistant.find_by(person: account.people).as_json,
@@ -84,5 +86,13 @@ class User < ApplicationRecord
     basic_info.merge!({
                         patient: Patient.find_by(person: account.people).as_json,
                       })
+  end
+
+  def chat_messages
+    ChatMessage.where('from_id = ? OR to_id = ?', id, id)
+  end
+
+  def name
+    account.people.full_name
   end
 end

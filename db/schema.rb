@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_193800) do
+ActiveRecord::Schema.define(version: 2021_08_26_204233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -123,8 +123,23 @@ ActiveRecord::Schema.define(version: 2021_04_29_193800) do
     t.boolean "readed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "chat_room_id", null: false
     t.index ["from_id"], name: "index_chat_messages_on_from_id"
+    t.index ["readed"], name: "index_chat_messages_on_readed"
     t.index ["to_id"], name: "index_chat_messages_on_to_id"
+  end
+
+  create_table "chat_rooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "kind", null: false
+    t.uuid "service_room_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "chat_rooms_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chat_room_id", null: false
   end
 
   create_table "diagnostics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -200,13 +215,13 @@ ActiveRecord::Schema.define(version: 2021_04_29_193800) do
   end
 
   create_table "drugs_historics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "non_pathologicals_historics_id", null: false
+    t.uuid "non_pathologicals_historic_id", null: false
     t.uuid "drug_id", null: false
     t.string "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["drug_id"], name: "index_drugs_historics_on_drug_id"
-    t.index ["non_pathologicals_historics_id"], name: "index_drugs_historics_on_non_pathologicals_historics_id"
+    t.index ["non_pathologicals_historic_id"], name: "index_drugs_historics_on_non_pathologicals_historic_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -485,6 +500,11 @@ ActiveRecord::Schema.define(version: 2021_04_29_193800) do
     t.index ["surgery_id"], name: "index_surgeries_historics_on_surgery_id"
   end
 
+  create_table "user_chat_rooms", force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "chat_room_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -538,7 +558,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_193800) do
   add_foreign_key "documents_people", "documents", on_update: :cascade, on_delete: :cascade
   add_foreign_key "documents_people", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "drugs_historics", "drugs", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "drugs_historics", "non_pathologicals_historics", column: "non_pathologicals_historics_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "drugs_historics", "non_pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_interprets", "interprets", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_interprets", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_people", "languages", on_update: :cascade, on_delete: :cascade
