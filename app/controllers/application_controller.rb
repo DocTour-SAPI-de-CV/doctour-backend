@@ -45,11 +45,8 @@ class ApplicationController < ActionController::API
 
   def authenticate_user
     auth = request.headers["Authorization"] || request.cookies["auth._token.local"]
-    
     return unauthorized("user") if auth.blank?
-
     token = auth.split.last
-
     begin
       jwt_payload = JWT.decode(token, Rails.application.credentials.devise_jwt_secret)
       @current_user = User.find_by(jti: jwt_payload[0]["jti"])

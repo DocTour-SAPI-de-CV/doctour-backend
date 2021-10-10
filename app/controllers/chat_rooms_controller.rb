@@ -16,12 +16,18 @@ class ChatRoomsController < ApplicationController
     render json: decorated_chat_room
   end
 
+  def patient_room
+    @chat_room = ChatRoom.find_by_external_bridge_id(params[:external_bridge_id])
+    render json: decorated_chat_room
+  end
+
   # POST /chat_rooms
   # POST /chat_rooms.json
   def create
-    @chat_room = ChatRoom.new(chat_room_params[:chat_room])
+    @chat_room = ChatRoom.new(chat_room_params)
 
     if @chat_room.save
+      UserChatRoom.create(chat_room: @chat_room, user: @current_user)
       render json: chat_room_params
     else
       render json: @chat_room.errors, status: :unprocessable_entity
@@ -47,17 +53,16 @@ class ChatRoomsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_chat_room
-
     @chat_room = chat_rooms.find(params[:id])
   end
 
   def chat_rooms
-    @chat_rooms = ChatRoom.joins(:user_chat_rooms).where(user_chat_rooms: {user: @current_user})
+    @chat_rooms ||= ChatRoom.joins(:user_chat_rooms).where(user_chat_rooms: {user: @current_user})
   end
 
   # Only allow a list of trusted parameters through.
   def chat_room_params
-    params.require(:chat_room).permit(:id, :name, :kind)
+    params.require(:chat_room).permit(:id, :name, :kind, :external_bridge_id)
   end
 
   def chat_messages
@@ -86,7 +91,8 @@ class ChatRoomsController < ApplicationController
       chatMessages: chatmessages,
       name: @chat_room.name,
       kind: @chat_room.kind,
-      id: @chat_room.id
+      id: @chat_room.id,
+      user_name: @current_user.name
     }
   end
 end

@@ -2,6 +2,8 @@
 
 Rails.application.routes.draw do
   resources :chat_rooms
+  post "patient_room", to: "chat_rooms#patient_room"
+
   resources :service_rooms
   #Routes for divese
   devise_for :users,
