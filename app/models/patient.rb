@@ -21,6 +21,10 @@ class Patient < ApplicationRecord
                          message: 'You need to accept the terms of use!' },
             presence: true
 
+  def last_medical_history
+    medical_history.last[:performed_date] if medical_history.present?
+  end
+
   def medical_history
     Screening.where(patient_id: id).as_json
   end
@@ -41,7 +45,8 @@ class Patient < ApplicationRecord
       photo: photo,
       privacy_policy: privacy_policy,
       terms_use: terms_use,
-      client_ip: client_ip.to_s
+      client_ip: client_ip.to_s,
+      last_medical_history: last_medical_history
     }
   end
 end
