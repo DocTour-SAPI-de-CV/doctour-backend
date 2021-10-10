@@ -92,7 +92,9 @@ class ChatRoomsController < ApplicationController
       name: @chat_room.name,
       kind: @chat_room.kind,
       id: @chat_room.id,
-      user_name: @current_user.name
+      user_name: @current_user.name,
+      user_id: @current_user.id,
+      user_email: @current_user.email
     }
   end
 end
