@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_204233) do
+ActiveRecord::Schema.define(version: 2021_10_10_132140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_204233) do
     t.uuid "service_room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "external_bridge_id"
   end
 
   create_table "chat_rooms_users", id: false, force: :cascade do |t|
