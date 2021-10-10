@@ -19,7 +19,7 @@ class ChatRoomsController < ApplicationController
   # POST /chat_rooms
   # POST /chat_rooms.json
   def create
-    @chat_room = ChatRoom.new(chat_room_params)
+    @chat_room = ChatRoom.new(chat_room_params[:chat_room])
 
     if @chat_room.save
       render json: chat_room_params
