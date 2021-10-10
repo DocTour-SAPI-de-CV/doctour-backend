@@ -24,8 +24,6 @@ class User < ApplicationRecord
 
   def patient_summary
     patient = Patient.find_by(person: account.people)
-    medical_history = patient.medical_history
-    last_medical_history = medical_history.last[:performed_date] if medical_history.present?
     {
       user_id: id,
       full_name: account.people.full_name,
@@ -34,7 +32,7 @@ class User < ApplicationRecord
       document: DocumentsPerson.where(person: account.people).as_json,
       phones: PeoplePhone.where(person: account.people).as_json,
       languages: LanguagesPerson.where(person: account.people).as_json,
-      last_medical_history: last_medical_history,
+      last_medical_history: patient.last_medical_history,
     }
   end
 
