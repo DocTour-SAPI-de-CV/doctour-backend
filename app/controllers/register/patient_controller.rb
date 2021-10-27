@@ -48,9 +48,9 @@ module Register
       unless @stop
         WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
       end
-      chat_room = ChatRoom.create(name: "Bem vindo novo usuário", kind: "assistant")
-      chat_room.users += [user, Account.where(category: "assistant").first.user]
-      chat_room.save
+      # chat_room = ChatRoom.create(name: "Bem vindo novo usuário", kind: "assistant")
+      # chat_room.users += [user, Account.where(category: "assistant").first.user]
+      # chat_room.save
       render(json: @message, status: @status)
     end
 
