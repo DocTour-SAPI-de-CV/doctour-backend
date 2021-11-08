@@ -1,5 +1,6 @@
 class ChatRoomsController < ApplicationController
   before_action :set_chat_room, only: %i[ show update destroy ]
+  before_action :set_chat_room_by_external_bridge, only: %i[add_doctor_to_chat patient_room]
 
   # GET /chat_rooms
   # GET /chat_rooms.json
@@ -17,7 +18,7 @@ class ChatRoomsController < ApplicationController
   end
 
   def patient_room
-    @chat_room = ChatRoom.find_by_external_bridge_id(params[:external_bridge_id])
+    add_doctor_to_chat
     render json: decorated_chat_room
   end
 
@@ -32,6 +33,10 @@ class ChatRoomsController < ApplicationController
     else
       render json: @chat_room.errors, status: :unprocessable_entity
     end
+  end
+
+  def add_doctor_to_chat
+    UserChatRoom.create(chat_room: @chat_room, user: @current_user)
   end
 
   # PATCH/PUT /chat_rooms/1
@@ -51,9 +56,13 @@ class ChatRoomsController < ApplicationController
   end
 
   private
+  def set_chat_room_by_external_bridge
+    @chat_room ||= ChatRoom.find_by_external_bridge_id(params[:external_bridge_id])
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_chat_room
-    @chat_room = chat_rooms.find(params[:id])
+    @chat_room = chat_rooms.find(id: params[:id])
   end
 
   def chat_rooms
@@ -71,6 +80,7 @@ class ChatRoomsController < ApplicationController
 
   def decorated_chat_rooms
     chat_rooms.map do |room|
+    room.
       room.attributes.except("created_at", "service_room_id")
     end
   end
