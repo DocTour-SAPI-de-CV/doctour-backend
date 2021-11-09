@@ -62,7 +62,7 @@ class ChatRoomsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_chat_room
-    @chat_room = chat_rooms.find(id: params[:id])
+    @chat_room = chat_rooms.find(params[:id])
   end
 
   def chat_rooms
