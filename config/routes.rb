@@ -316,6 +316,8 @@ Rails.application.routes.draw do
   jsonapi_resources :chat_messages, only: [:index, :show, :update] do
     collection do
       get :messages_from
+      get :messages_from_others
+      get :unreaded_messages_from_user
     end
   end
 

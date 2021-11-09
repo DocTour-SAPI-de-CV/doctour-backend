@@ -14,6 +14,7 @@ class ChatRoomsController < ApplicationController
   # GET /chat_rooms/1
   # GET /chat_rooms/1.json
   def show
+    clean_message_from_others
     render json: decorated_chat_room
   end
 
@@ -37,7 +38,6 @@ class ChatRoomsController < ApplicationController
 
   def find_or_create_chat_with_assistant
     assistant = Assistant.first.person.account.user
-    puts assistant.name
     chat_room_with_assistant = @current_user.chat_rooms.joins(:users).where(users: {id: assistant}).first
 
     if !chat_room_with_assistant
@@ -116,7 +116,7 @@ class ChatRoomsController < ApplicationController
   def decorated_chat_rooms
     chat_rooms.uniq.map do |room|
       {
-        chatMessages: [],
+        messagesNumber: room.chat_messages.where(readed: false).where.not(from: @current_user.id).count,
         name:  get_name_of_chat(room),
         kind: room.kind,
         id: room.id
@@ -195,5 +195,9 @@ class ChatRoomsController < ApplicationController
     patient_name = chat.users.joins(:account).where(accounts: {category: "patient"}).first.try(:name)
 
     patient_name || name
+  end
+
+  def clean_message_from_others
+    @chat_room.chat_messages.where.not(from: @current_user.id).where(readed: false).update_all(readed: true)
   end
 end
