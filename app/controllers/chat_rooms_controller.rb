@@ -79,7 +79,7 @@ class ChatRoomsController < ApplicationController
   end
 
   def decorated_chat_rooms
-    chat_rooms.map do |room|
+    chat_rooms.uniq.map do |room|
       room.attributes.except("created_at", "service_room_id")
     end
   end
