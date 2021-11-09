@@ -80,7 +80,6 @@ class ChatRoomsController < ApplicationController
 
   def decorated_chat_rooms
     chat_rooms.map do |room|
-    room.
       room.attributes.except("created_at", "service_room_id")
     end
   end
