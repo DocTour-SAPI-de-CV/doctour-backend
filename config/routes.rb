@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   resources :chat_rooms
+
   post "patient_room", to: "chat_rooms#patient_room"
+  post "find_or_create_chat_with_patient", to: "chat_rooms#find_or_create_chat_with_patient"
+  get "find_or_create_chat_with_assistant", to: "chat_rooms#find_or_create_chat_with_assistant"
 
   resources :service_rooms
   #Routes for divese
