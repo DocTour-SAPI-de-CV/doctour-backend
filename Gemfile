@@ -78,3 +78,5 @@ group :development do
 end
 
 gem "concurrent-ruby", "~> 1.1"
+
+gem 'prometheus_exporter'
