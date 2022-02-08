@@ -47,7 +47,12 @@ namespace :accounts do
       { email: 'admin@doctour.com', password: 'doctouradmin123@',
         first_name: 'Andressa', last_name: 'Souza',
         gender: 'female', category: 'admin',
-        document_number: 'ROAA220101HBCDNN016' }
+        document_number: 'ROAA220101HBCDNN016' },
+
+      { email: 'gloyo@doctour.com.mx', password: 'DrDocTour1@',
+        first_name: 'Guillermo' , last_name: 'Loyo',
+        gender: 'male', category: 'doctor',
+        document_number: 'ROAA220101HBCDNN017' }
     ]
 
     accounts.each do |account|
