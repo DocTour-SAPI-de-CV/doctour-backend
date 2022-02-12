@@ -33,6 +33,7 @@ class User < ApplicationRecord
       phones: PeoplePhone.where(person: account.people).as_json,
       languages: LanguagesPerson.where(person: account.people).as_json,
       last_medical_history: patient.last_medical_history,
+      created_at_mask: patient.created_at_mask
     }
   end
 
