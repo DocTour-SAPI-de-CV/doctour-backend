@@ -58,6 +58,11 @@ Rails.application.routes.draw do
   # change status
   post "change_status", to: "change_status#update"
 
+
+  # massive_upload 
+  #resources :massive_upload
+  post "massive_upload", to: "massive_upload#upload_file"
+
   # unification
   # post 'user_register', to: 'unification#user_register'
   # post 'doctor_register', to: 'unification#doctor_register'
