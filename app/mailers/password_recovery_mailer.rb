@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class PasswordRecoveryMailer < ApplicationMailer
-  RECOVERY_REDIRECT_URL = Rails.application.credentials.mailer[:redirect_url]
+  # RECOVERY_REDIRECT_URL = Rails.application.credentials.mailer[:redirect_url]
+  RECOVERY_REDIRECT_URL = 'https://doctour-staging.netlify.com/recovery_password'
+  # RECOVERY_REDIRECT_URL = 'http://192.168.8.94:8080/recovery_password'
 
   def password_recovery
     @email = params[:email]
