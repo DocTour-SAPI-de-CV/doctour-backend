@@ -10,3 +10,6 @@ Backend of the DocTour project
 `docker-compose run --rm server bash`
 `bundle exec rake db:drop db:create db:migrate`
 `bundle exec rails db:migrate populate:setup accounts:setup`
+
+## Emails
+Acessar: `http://localhost:3000/rails/mailers`
