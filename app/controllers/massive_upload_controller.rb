@@ -1,7 +1,17 @@
 require 'uri'
 require 'date'
 
+
+
+CREATE = Register::CreateController
+DELETE = Register::DeleteController
+
 class MassiveUploadController < ApplicationController
+    
+    def initialize
+        @objects = {}
+        @stop = false
+    end
 
     def upload_file
         
@@ -14,7 +24,6 @@ class MassiveUploadController < ApplicationController
         sheet.simple_rows.drop(1).each do |row|
             
             
-
 
             if (row['Póliza'] == nil || row['Póliza'] == "" || row['Póliza'] == " ") && row.length > 0
                 arr_xlsx_unvalidated.append(row)
@@ -39,6 +48,7 @@ class MassiveUploadController < ApplicationController
                 arr_xlsx_unvalidated.append(row)
 
             elsif (row['Sexo'] == nil || row['Sexo'] == "" || row['Sexo'] == " " || row['Sexo'].match(/[M?F?m?f]/)==nil ) && row.length > 0
+
                 arr_xlsx_unvalidated.append(row)
                 
             elsif (row['Nombre Plan'] == nil || row['Nombre Plan'] == "" || row['Nombre Plan'] == " ") && row.length > 0
@@ -65,32 +75,63 @@ class MassiveUploadController < ApplicationController
             elsif (row['Email '] == nil || row['Email '] == "" || row['Email '] == " " || (row['Email '] =~ URI::MailTo::EMAIL_REGEXP) == nil) && row.length > 0
                 arr_xlsx_unvalidated.append(row)
             else
-
-                           
+                          
                 if row.length > 0
                     
                     row['Fecha de nacimiento'] = format_data(row['Fecha de nacimiento'])
                     row['Fecha Emisión'] = format_data(row['Fecha Emisión'])
                     row['Fecha Inicio'] = format_data(row['Fecha Inicio'])
                     row['Fecha Fin'] = format_data(row['Fecha Fin'])
+
+                    if row['Sexo'] == 'M' || row['Sexo'] == 'm'
+                        row['Sexo'] = 'Male'
+                    else
+                        row['Sexo'] = 'Female'
+                    end
                     
-                    #Phonelib.valid?(row['Telefono Afiliado']) -> validar
-       
-                    arr_xlsx_validated.append()
+
+                    arr_xlsx_validated.append(row)
                 end
             end
 
 
-
         end
- 
+        idiomas = Array.new
+        hash_idioma = {id:'0be98d3a-4930-4fd1-8c33-a6f9d805252c', native:'english'}
+        idiomas.append(hash_idioma)
+
+        teste = {
+            email: 'andrebatata2@gmail.com',
+            password:  '12345678',
+            document_type: "passport",
+            id_afiliado: '123457',
+            phone: '9894156693',
+            country_code: '+57',
+            area_code: '555',
+            primer_nombre: 'Andres',
+            primer_apellido: 'Batata',
+            fecha_nacimiento: format_data('06/23/2000'),
+            sexo: 'Male',
+            nacionalidad_id: '15fbd19b-b817-4f76-9b06-316f97461695',
+            idiomas: idiomas
+            
+            
+        }
 
 
-        render json: {'validated':arr_xlsx_validated, 'unvalidated':arr_xlsx_unvalidated}
+        # puts find_language('english')
+        
+        # puts nationality
+        puts find_country('United States of America')
+
+        # create(teste)
+
+        render json: {'validated':teste, 'unvalidated':arr_xlsx_unvalidated, 'stop':@stop}
         # render json: arr_xlsx_validated
     end
+    
     private
-
+    
     def format_data(data)
         if (data.instance_of? String)
             if data.include?('/')
@@ -103,4 +144,97 @@ class MassiveUploadController < ApplicationController
         end
         return data
     end
+
+
+    def create(data)
+        params = {
+              email: data[:email],
+              password:  data[:password],
+              document_type: data[:document_type], 
+              # curp
+              # dgp
+              # passport
+              # rfc
+              
+              document_number: data[:id_afiliado],
+              # numero de documento de identidad
+              
+              country_code: data[:country_code],
+              # codigo de pais
+              
+              area_code: data[:area_code],
+              # codigo de area
+
+              phone_number: data[:phone],
+              # telefono
+              
+              first_name: data[:primer_nombre],
+              # separado
+              last_name: data[:primer_apellido],
+
+              birthdate: data[:fecha_nacimiento],
+
+              gneder: data[:sexo], # Male e Female
+
+              nationality_id: data[:nacionalidad_id],
+              # fazer where para buscar o nome/ id
+                            
+              languages: data[:idiomas]
+              # fazer esquema de busca enviar p ele o mesmo 
+              
+            }
+    
+        # puts params
+        
+        unless @stop
+          user = CREATE.user(params)
+          result(user)
+        end
+        result(CREATE.account(@objects[:User], 'patient')) unless @stop
+        result(CREATE.people(@objects[:Account], params)) unless @stop
+        result(CREATE.document(params)) unless @stop # validar o documento
+        result(CREATE.document_person(@objects[:Document], @objects[:People])) unless @stop
+        result(CREATE.phone(params)) unless @stop # deu pau na validação
+        result(CREATE.person_phone(@objects[:People], @objects[:Phone])) unless @stop # deu pau na validação
+        params[:languages].each do |language|
+          result(CREATE.language(@objects[:People], language)) unless @stop
+        end
+        result(CREATE.patient(@objects[:People], request)) unless @stop
+  
+        unless @stop
+          WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
+        end
+
+        puts params
+        puts @message
+        
+        return @status
+      end
+
+    
+    
+    def result(content)
+        if content[:object]
+          hash = { "#{content[:object].class.name}": content[:object] }
+          @objects.merge!(hash)
+        end
+  
+        @message = content[:message]
+        @status = content[:status]
+  
+        DELETE.objects(@objects) if content[:flag]
+  
+        @stop = true if content[:flag]
+    end
+
+    def find_language(language)
+        
+        return Language.find_by(name: language).to_json
+    end
+
+    def find_country(nationality)
+        nationality = nationality.downcase
+        return Nationality.find_by(name: nationality).to_json
+    end
+
 end
