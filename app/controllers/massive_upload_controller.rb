@@ -28,12 +28,18 @@ class MassiveUploadController < ApplicationController
             if (row['Póliza'] == nil || row['Póliza'] == "" || row['Póliza'] == " ") && row.length > 0
                 arr_xlsx_unvalidated.append(row)
 
+            elsif (row['tipo documento'] == nil || row['tipo documento'] == "" || row['tipo documento'] == " ") && row.length > 0
+                arr_xlsx_unvalidated.append(row)
+
             elsif (row['ID afiliado'] == nil || row['ID afiliado'] == "" || row['ID afiliado'] == " ") && row.length > 0
                 arr_xlsx_unvalidated.append(row)
                 
-            elsif (row['Nombre Afiliado'] == nil || row['Nombre Afiliado'] == "" || row['Nombre Afiliado'] == " ") && row.length > 0
+            elsif (row['primer nombre'] == nil || row['primer nombre'] == "" || row['primer nombre'] == " ") && row.length > 0
                 arr_xlsx_unvalidated.append(row)
-                
+
+            elsif (row['ultimo nombre'] == nil || row['ultimo nombre'] == "" || row['ultimo nombre'] == " ") && row.length > 0
+                arr_xlsx_unvalidated.append(row)
+
             elsif (row['Telefono Afiliado'] == nil || row['Telefono Afiliado'] == "" || row['Telefono Afiliado'] == " ") && row.length > 0
                 arr_xlsx_unvalidated.append(row)
                 
@@ -74,60 +80,82 @@ class MassiveUploadController < ApplicationController
                 
             elsif (row['Email '] == nil || row['Email '] == "" || row['Email '] == " " || (row['Email '] =~ URI::MailTo::EMAIL_REGEXP) == nil) && row.length > 0
                 arr_xlsx_unvalidated.append(row)
+
+            elsif (row['Nacionalidad'] == nil || row['Nacionalidad'] == "" || row['Nacionalidad'] == " ") && row.length > 0
+               
+                arr_xlsx_unvalidated.append(row)
+                
+            elsif (row['idioma'] == nil || row['idioma'] == "" || row['idioma'] == " ") && row.length > 0
+               
+                arr_xlsx_unvalidated.append(row)
+
             else
-                          
+
+
                 if row.length > 0
-                    
-                    row['Fecha de nacimiento'] = format_data(row['Fecha de nacimiento'])
-                    row['Fecha Emisión'] = format_data(row['Fecha Emisión'])
-                    row['Fecha Inicio'] = format_data(row['Fecha Inicio'])
-                    row['Fecha Fin'] = format_data(row['Fecha Fin'])
+                    nacionalidad = find_country(row['Nacionalidad'])
 
-                    if row['Sexo'] == 'M' || row['Sexo'] == 'm'
-                        row['Sexo'] = 'Male'
+
+                    if nacionalidad.nil?
+                        arr_xlsx_unvalidated.append(row)
+
                     else
-                        row['Sexo'] = 'Female'
-                    end
-                    
 
-                    arr_xlsx_validated.append(row)
+
+                        row['Fecha de nacimiento'] = format_data(row['Fecha de nacimiento'])
+                        row['Fecha Emisión'] = format_data(row['Fecha Emisión'])
+                        row['Fecha Inicio'] = format_data(row['Fecha Inicio'])
+                        row['Fecha Fin'] = format_data(row['Fecha Fin'])
+
+                        if row['Sexo'] == 'M' || row['Sexo'] == 'm'
+                            row['Sexo'] = 'Male'
+                        else
+                            row['Sexo'] = 'Female'
+                        end
+                        
+
+                        idiomas = Array.new
+                        #hash_idioma = {id:'0be98d3a-4930-4fd1-8c33-a6f9d805252c', native:'english'}
+                        hash_idioma = find_language(row['idioma'].downcase)
+                        puts hash_idioma
+                        idiomas.append(hash_idioma)
+                        nacionalidad_id = nacionalidad.id
+                        
+                        
+                
+                        person = {
+                            email: row['Email '],
+                            password:  '12345678',
+                            document_type: row['tipo documento'],
+                            id_afiliado: row['ID afiliado'],
+                            phone: row['Telefono Afiliado'],
+                            country_code: row['Codigo pais'],
+                            area_code: row['Codigo area'],
+                            primer_nombre: row['primer nombre'],
+                            primer_apellido: row['ultimo nombre'],
+                            fecha_nacimiento: format_data(row['Fecha de nacimiento']),
+                            sexo: row['Sexo'],
+                            nacionalidad_id: nacionalidad_id,
+                            idiomas: idiomas
+                            # plan_id: find_plan(row['Nombre Plan']).id,
+                            # fecha_inicio: format_data(row['Fecha Inicio']),
+                            # fecha_fin: format_data(row['Fecha Fin'])
+                            
+                        }
+
+                        # create(person)
+
+                        arr_xlsx_validated.append(person)
+                    end
                 end
             end
 
 
         end
-        idiomas = Array.new
-        hash_idioma = {id:'0be98d3a-4930-4fd1-8c33-a6f9d805252c', native:'english'}
-        idiomas.append(hash_idioma)
-
-        teste = {
-            email: 'andrebatata2@gmail.com',
-            password:  '12345678',
-            document_type: "passport",
-            id_afiliado: '123457',
-            phone: '9894156693',
-            country_code: '+57',
-            area_code: '555',
-            primer_nombre: 'Andres',
-            primer_apellido: 'Batata',
-            fecha_nacimiento: format_data('06/23/2000'),
-            sexo: 'Male',
-            nacionalidad_id: '15fbd19b-b817-4f76-9b06-316f97461695',
-            idiomas: idiomas
-            
-            
-        }
 
 
-        # puts find_language('english')
-        
-        # puts nationality
-        puts find_country('United States of America')
+        render json: {'validated':arr_xlsx_validated, 'unvalidated':arr_xlsx_unvalidated, 'stop':@stop}
 
-        # create(teste)
-
-        render json: {'validated':teste, 'unvalidated':arr_xlsx_unvalidated, 'stop':@stop}
-        # render json: arr_xlsx_validated
     end
     
     private
@@ -144,7 +172,6 @@ class MassiveUploadController < ApplicationController
         end
         return data
     end
-
 
     def create(data)
         params = {
@@ -209,9 +236,7 @@ class MassiveUploadController < ApplicationController
         puts @message
         
         return @status
-      end
-
-    
+    end
     
     def result(content)
         if content[:object]
@@ -234,7 +259,7 @@ class MassiveUploadController < ApplicationController
 
     def find_country(nationality)
         nationality = nationality.downcase
-        return Nationality.find_by(name: nationality).to_json
+        return Nationality.find_by(name: nationality)
     end
 
 end

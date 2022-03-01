@@ -24,7 +24,7 @@ gem "jbuilder", "~> 2.7"
 # XLSX Reader
 gem "creek"
 
-gem "phonelib"
+# gem "phonelib"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_132140) do
+ActiveRecord::Schema.define(version: 2022_03_01_023037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -400,6 +400,22 @@ ActiveRecord::Schema.define(version: 2021_10_10_132140) do
     t.index ["phone_id"], name: "index_phones_interprets_on_phone_id"
   end
 
+  create_table "plan_to_services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "quantity"
+    t.uuid "plans_id", null: false
+    t.uuid "services_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plans_id"], name: "index_plan_to_services_on_plans_id"
+    t.index ["services_id"], name: "index_plan_to_services_on_services_id"
+  end
+
+  create_table "plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "desctiption"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "respiratories_historics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "pathologicals_historic_id", null: false
     t.uuid "respiratory_disease_id", null: false
@@ -532,6 +548,15 @@ ActiveRecord::Schema.define(version: 2021_10_10_132140) do
     t.index ["vaccine_id"], name: "index_vaccines_historics_on_vaccine_id"
   end
 
+  create_table "validadion_dates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "chekIn", null: false
+    t.date "chekOut", null: false
+    t.uuid "plan_to_services_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_to_services_id"], name: "index_validadion_dates_on_plan_to_services_id"
+  end
+
   add_foreign_key "accounts", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_interprets", "addresses", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_interprets", "interprets", on_update: :cascade, on_delete: :cascade
@@ -579,6 +604,8 @@ ActiveRecord::Schema.define(version: 2021_10_10_132140) do
   add_foreign_key "people_phones", "phones", on_update: :cascade, on_delete: :cascade
   add_foreign_key "phones_interprets", "interprets", on_update: :cascade, on_delete: :cascade
   add_foreign_key "phones_interprets", "phones", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "plan_to_services", "plans", column: "plans_id"
+  add_foreign_key "plan_to_services", "services", column: "services_id"
   add_foreign_key "respiratories_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "respiratories_historics", "respiratory_diseases", on_update: :cascade, on_delete: :cascade
   add_foreign_key "screenings", "doctors", on_update: :cascade, on_delete: :cascade
@@ -589,4 +616,5 @@ ActiveRecord::Schema.define(version: 2021_10_10_132140) do
   add_foreign_key "surgeries_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "surgeries_historics", "surgeries", on_update: :cascade, on_delete: :cascade
   add_foreign_key "vaccines_historics", "vaccines", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "validadion_dates", "plan_to_services", column: "plan_to_services_id"
 end
