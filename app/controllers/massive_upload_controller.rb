@@ -18,8 +18,20 @@ class MassiveUploadController < ApplicationController
         # xlsx = Roo::Excelx.new(params[:uploaded_file])
         xlsx = Creek::Book.new params[:uploaded_file], with_headers: true, check_file_extension: true
         sheet = xlsx.sheets[0]
+        sheet_aux = xlsx.sheets[0]
         arr_xlsx_validated = Array.new
         arr_xlsx_unvalidated = Array.new
+        users = Array.new
+        
+
+        sheet_aux.simple_rows.drop(1).each do |row|
+            if row.length>0
+                users.append(row['Email '])
+            end
+        end
+
+        existent_user = User.where(email:users).pluck(:email)
+        
 
         sheet.simple_rows.drop(1).each do |row|
             
@@ -98,7 +110,10 @@ class MassiveUploadController < ApplicationController
 
                     if nacionalidad.nil?
                         arr_xlsx_unvalidated.append(row)
-
+                    
+                    elsif existent_user.include?(row['Email '])
+                        
+                         arr_xlsx_unvalidated.append(row)
                     else
 
 
@@ -115,15 +130,20 @@ class MassiveUploadController < ApplicationController
                         
 
                         idiomas = Array.new
-                        #hash_idioma = {id:'0be98d3a-4930-4fd1-8c33-a6f9d805252c', native:'english'}
                         hash_idioma = find_language(row['idioma'].downcase)
-                        puts hash_idioma
-                        idiomas.append(hash_idioma)
+                        #puts hash_idioma
+
+                        idiomas.append({
+                            id: hash_idioma.id,
+                            name: hash_idioma.name,
+                            native: TRUE,
+                        })
+                        #puts idiomas
                         nacionalidad_id = nacionalidad.id
                         
                         
                 
-                        person = {
+                        ali_baba = {
                             email: row['Email '],
                             password:  '12345678',
                             document_type: row['tipo documento'],
@@ -136,25 +156,28 @@ class MassiveUploadController < ApplicationController
                             fecha_nacimiento: format_data(row['Fecha de nacimiento']),
                             sexo: row['Sexo'],
                             nacionalidad_id: nacionalidad_id,
-                            idiomas: idiomas
-                            # plan_id: find_plan(row['Nombre Plan']).id,
-                            # fecha_inicio: format_data(row['Fecha Inicio']),
-                            # fecha_fin: format_data(row['Fecha Fin'])
+                            idiomas: idiomas,
+                            plan_id: row['ID PLAN'],
+                            checkIn: format_data(row['Fecha Inicio']),
+                            checkOut: format_data(row['Fecha Fin'])
                             
                         }
 
-                        # create(person)
+                        # puts person_data
 
-                        arr_xlsx_validated.append(person)
+                        create(ali_baba)
+                        
+                        arr_xlsx_validated.append(ali_baba)
+                        # result({ object: {}, flag: false })
                     end
                 end
             end
 
-
+           
         end
 
 
-        render json: {'validated':arr_xlsx_validated, 'unvalidated':arr_xlsx_unvalidated, 'stop':@stop}
+        render json: {'validated':arr_xlsx_validated, 'unvalidated':arr_xlsx_unvalidated}
 
     end
     
@@ -174,7 +197,7 @@ class MassiveUploadController < ApplicationController
     end
 
     def create(data)
-        params = {
+        person_data = {
               email: data[:email],
               password:  data[:password],
               document_type: data[:document_type], 
@@ -198,41 +221,41 @@ class MassiveUploadController < ApplicationController
               first_name: data[:primer_nombre],
               # separado
               last_name: data[:primer_apellido],
-
               birthdate: data[:fecha_nacimiento],
-
-              gneder: data[:sexo], # Male e Female
-
+              gneder: data[:sexo], 
               nationality_id: data[:nacionalidad_id],
-              # fazer where para buscar o nome/ id
-                            
-              languages: data[:idiomas]
-              # fazer esquema de busca enviar p ele o mesmo 
+              languages: data[:idiomas],
+              plan_id: data[:plan_id],
+              checkIn: data[:checkIn],
+              checkOut: data[:checkOut]
+
               
             }
     
         # puts params
         
         unless @stop
-          user = CREATE.user(params)
+          user = CREATE.user(person_data)
           result(user)
         end
         result(CREATE.account(@objects[:User], 'patient')) unless @stop
-        result(CREATE.people(@objects[:Account], params)) unless @stop
-        result(CREATE.document(params)) unless @stop # validar o documento
+        result(CREATE.people(@objects[:Account], person_data)) unless @stop
+        result(CREATE.document(person_data)) unless @stop
         result(CREATE.document_person(@objects[:Document], @objects[:People])) unless @stop
-        result(CREATE.phone(params)) unless @stop # deu pau na validação
-        result(CREATE.person_phone(@objects[:People], @objects[:Phone])) unless @stop # deu pau na validação
-        params[:languages].each do |language|
+        result(CREATE.phone(person_data)) unless @stop
+        result(CREATE.person_phone(@objects[:People], @objects[:Phone])) unless @stop
+        person_data[:languages].each do |language|
           result(CREATE.language(@objects[:People], language)) unless @stop
         end
-        result(CREATE.patient(@objects[:People], request)) unless @stop
+        puts person_data
+        result(CREATE.date_range(person_data)) unless @stop
+
   
         unless @stop
           WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
         end
 
-        puts params
+        puts person_data
         puts @message
         
         return @status
@@ -254,12 +277,15 @@ class MassiveUploadController < ApplicationController
 
     def find_language(language)
         
-        return Language.find_by(name: language).to_json
+        return Language.find_by(name: language)
     end
 
     def find_country(nationality)
         nationality = nationality.downcase
         return Nationality.find_by(name: nationality)
     end
+
+
+    
 
 end
