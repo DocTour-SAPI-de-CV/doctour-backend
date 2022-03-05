@@ -1,4 +1,4 @@
 class ValidationDate < ApplicationRecord
-  belongs_to :Plan
-  belongs_to :User
+  belongs_to :plan
+  belongs_to :user
 end

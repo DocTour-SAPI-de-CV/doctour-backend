@@ -258,14 +258,17 @@ module Register
       end
     end
     
-    def self.date_range(params)
+    def self.date_range(user,params)
+      puts user.id
+      puts params[:plan_id]
       
       validation_data = ValidationDate.new(
+        user_id: user.id,
         checkIn: params[:checkIn],
-        checkOut: params[:checkOut]
-
+        checkOut: params[:checkOut],
+        plan_id: params[:plan_id]
+        
       )
-      # plan_to_services_id: params[:plan_id]
 
       begin
         validation_data.save!

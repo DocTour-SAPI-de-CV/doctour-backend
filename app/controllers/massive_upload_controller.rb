@@ -5,6 +5,7 @@ require 'date'
 
 CREATE = Register::CreateController
 DELETE = Register::DeleteController
+UPDATE = Register::UpdateController
 
 class MassiveUploadController < ApplicationController
     
@@ -30,105 +31,105 @@ class MassiveUploadController < ApplicationController
             end
         end
 
-        existent_user = User.where(email:users).pluck(:email)
+        existent_user = User.where(email:users)
+        existent_user_id = existent_user.pluck(:id)
+        existent_user_email = existent_user.pluck(:email)
+
+
         
 
         sheet.simple_rows.drop(1).each do |row|
-            
-            
-
-            if (row['Póliza'] == nil || row['Póliza'] == "" || row['Póliza'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-
-            elsif (row['tipo documento'] == nil || row['tipo documento'] == "" || row['tipo documento'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-
-            elsif (row['ID afiliado'] == nil || row['ID afiliado'] == "" || row['ID afiliado'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['primer nombre'] == nil || row['primer nombre'] == "" || row['primer nombre'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-
-            elsif (row['ultimo nombre'] == nil || row['ultimo nombre'] == "" || row['ultimo nombre'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-
-            elsif (row['Telefono Afiliado'] == nil || row['Telefono Afiliado'] == "" || row['Telefono Afiliado'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Origen'] == nil || row['Origen'] == "" || row['Origen'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Destino'] == nil || row['Destino'] == "" || row['Destino'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Fecha de nacimiento'] == nil || row['Fecha de nacimiento'] == "" || row['Fecha de nacimiento'] == " ")  && row.length > 0
-                row['Fecha de nacimiento'] = format_data(row['Fecha de nacimiento'])
-                arr_xlsx_unvalidated.append(row)
-
-            elsif (row['Sexo'] == nil || row['Sexo'] == "" || row['Sexo'] == " " || row['Sexo'].match(/[M?F?m?f]/)==nil ) && row.length > 0
-
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Nombre Plan'] == nil || row['Nombre Plan'] == "" || row['Nombre Plan'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Fecha Emisión'] == nil || row['Fecha Emisión'] == "" || row['Fecha Emisión'] == " ")  && row.length > 0
-                row['Fecha Emisión'] = format_data(row['Fecha Emisión'])
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Fecha Inicio'] == nil || row['Fecha Inicio'] == "" || row['Fecha Inicio'] == " ") && row.length > 0
-                row['Fecha Inicio'] = format_data(row['Fecha Inicio'])
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Fecha Fin'] == nil || row['Fecha Fin'] == "" || row['Fecha Fin'] == " ") && row.length > 0
-                row['Fecha Fin'] = format_data(row['Fecha Fin'])
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Edo. Póliza'] == nil || row['Edo. Póliza'] == "" || row['Edo. Póliza'] == " ") && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Edad'] == nil || row['Edad'] == "" || row['Edad'] == " ")  && row.keys.length > 0
-                arr_xlsx_unvalidated.append(row)
-                
-            elsif (row['Email '] == nil || row['Email '] == "" || row['Email '] == " " || (row['Email '] =~ URI::MailTo::EMAIL_REGEXP) == nil) && row.length > 0
-                arr_xlsx_unvalidated.append(row)
-
-            elsif (row['Nacionalidad'] == nil || row['Nacionalidad'] == "" || row['Nacionalidad'] == " ") && row.length > 0
+                  
+            if row.length > 0
                
-                arr_xlsx_unvalidated.append(row)
+
+                if (row['Póliza'] == nil || row['Póliza'] == "" || row['Póliza'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+
+                elsif (row['tipo documento'] == nil || row['tipo documento'] == "" || row['tipo documento'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+
+                elsif (row['ID afiliado'] == nil || row['ID afiliado'] == "" || row['ID afiliado'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['primer nombre'] == nil || row['primer nombre'] == "" || row['primer nombre'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+
+                elsif (row['ultimo nombre'] == nil || row['ultimo nombre'] == "" || row['ultimo nombre'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+
+                elsif (row['Telefono Afiliado'] == nil || row['Telefono Afiliado'] == "" || row['Telefono Afiliado'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Origen'] == nil || row['Origen'] == "" || row['Origen'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Destino'] == nil || row['Destino'] == "" || row['Destino'] == " ") 
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Fecha de nacimiento'] == nil || row['Fecha de nacimiento'] == "" || row['Fecha de nacimiento'] == " ")
+                    row['Fecha de nacimiento'] = format_data(row['Fecha de nacimiento'])
+                    arr_xlsx_unvalidated.append(row)
+
+                elsif (row['Sexo'] == nil || row['Sexo'] == "" || row['Sexo'] == " " || row['Sexo'].match(/[M?F?m?f]/)==nil )
+
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Nombre Plan'] == nil || row['Nombre Plan'] == "" || row['Nombre Plan'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Fecha Emisión'] == nil || row['Fecha Emisión'] == "" || row['Fecha Emisión'] == " ")
+                    row['Fecha Emisión'] = format_data(row['Fecha Emisión'])
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Fecha Inicio'] == nil || row['Fecha Inicio'] == "" || row['Fecha Inicio'] == " ")
+                    row['Fecha Inicio'] = format_data(row['Fecha Inicio'])
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Fecha Fin'] == nil || row['Fecha Fin'] == "" || row['Fecha Fin'] == " ")
+                    row['Fecha Fin'] = format_data(row['Fecha Fin'])
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Edo. Póliza'] == nil || row['Edo. Póliza'] == "" || row['Edo. Póliza'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Edad'] == nil || row['Edad'] == "" || row['Edad'] == " ")
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['Email '] == nil || row['Email '] == "" || row['Email '] == " " || (row['Email '] =~ URI::MailTo::EMAIL_REGEXP) == nil)
+                    arr_xlsx_unvalidated.append(row)
+
+                elsif (row['Nacionalidad'] == nil || row['Nacionalidad'] == "" || row['Nacionalidad'] == " " || find_country(row['Nacionalidad']).nil? )
+
+                    arr_xlsx_unvalidated.append(row)
+                    
+                elsif (row['idioma'] == nil || row['idioma'] == "" || row['idioma'] == " ")
                 
-            elsif (row['idioma'] == nil || row['idioma'] == "" || row['idioma'] == " ") && row.length > 0
-               
-                arr_xlsx_unvalidated.append(row)
+                    arr_xlsx_unvalidated.append(row)
 
-            else
+                else
 
-
-                if row.length > 0
                     nacionalidad = find_country(row['Nacionalidad'])
 
-
-                    if nacionalidad.nil?
-                        arr_xlsx_unvalidated.append(row)
+                    row['Fecha de nacimiento'] = format_data(row['Fecha de nacimiento'])
+                    row['Fecha Emisión'] = format_data(row['Fecha Emisión'])
+                    row['Fecha Inicio'] = format_data(row['Fecha Inicio'])
+                    row['Fecha Fin'] = format_data(row['Fecha Fin'])
                     
-                    elsif existent_user.include?(row['Email '])
-                        
-                         arr_xlsx_unvalidated.append(row)
+                    
+                    if existent_user_email.include?(row['Email '])
+
+                        # update(row)
+                        arr_xlsx_unvalidated.append(row)
+
                     else
-
-
-                        row['Fecha de nacimiento'] = format_data(row['Fecha de nacimiento'])
-                        row['Fecha Emisión'] = format_data(row['Fecha Emisión'])
-                        row['Fecha Inicio'] = format_data(row['Fecha Inicio'])
-                        row['Fecha Fin'] = format_data(row['Fecha Fin'])
 
                         if row['Sexo'] == 'M' || row['Sexo'] == 'm'
                             row['Sexo'] = 'Male'
                         else
                             row['Sexo'] = 'Female'
                         end
-                        
-
+                      
                         idiomas = Array.new
                         hash_idioma = find_language(row['idioma'].downcase)
                         #puts hash_idioma
@@ -145,30 +146,30 @@ class MassiveUploadController < ApplicationController
                 
                         ali_baba = {
                             email: row['Email '],
-                            password:  '12345678',
+                            password:  '12345678'.to_s,
                             document_type: row['tipo documento'],
                             id_afiliado: row['ID afiliado'],
                             phone: row['Telefono Afiliado'],
-                            country_code: row['Codigo pais'],
-                            area_code: row['Codigo area'],
+                            country_code: row['Codigo pais'].to_i,
+                            area_code: row['Codigo area'].to_i,
                             primer_nombre: row['primer nombre'],
                             primer_apellido: row['ultimo nombre'],
                             fecha_nacimiento: format_data(row['Fecha de nacimiento']),
                             sexo: row['Sexo'],
                             nacionalidad_id: nacionalidad_id,
                             idiomas: idiomas,
-                            plan_id: row['ID PLAN'],
+                            plan_id: row['ID PLAN'].to_i,
                             checkIn: format_data(row['Fecha Inicio']),
                             checkOut: format_data(row['Fecha Fin'])
                             
                         }
 
-                        # puts person_data
+                        puts ali_baba
 
                         create(ali_baba)
                         
                         arr_xlsx_validated.append(ali_baba)
-                        # result({ object: {}, flag: false })
+                            # result({ object: {}, flag: false })
                     end
                 end
             end
@@ -247,8 +248,10 @@ class MassiveUploadController < ApplicationController
         person_data[:languages].each do |language|
           result(CREATE.language(@objects[:People], language)) unless @stop
         end
-        puts person_data
-        result(CREATE.date_range(person_data)) unless @stop
+        
+        result(CREATE.patient(@objects[:People], request)) unless @stop
+        result(CREATE.date_range(@objects[:User],person_data)) unless @stop
+        
 
   
         unless @stop
@@ -261,6 +264,51 @@ class MassiveUploadController < ApplicationController
         return @status
     end
     
+    # def update(data)
+
+    #     user = User.where(email: data[:email])
+
+    #     person_data = {
+    #         email: data[:email],
+    #         password:  data[:password],
+    #         document_type: data[:document_type], 
+    #         # curp
+    #         # dgp
+    #         # passport
+    #         # rfc
+            
+    #         document_number: data[:id_afiliado],
+    #         # numero de documento de identidad
+            
+    #         country_code: data[:country_code],
+    #         # codigo de pais
+            
+    #         area_code: data[:area_code],
+    #         # codigo de area
+
+    #         phone_number: data[:phone],
+    #         # telefono
+            
+    #         first_name: data[:primer_nombre],
+    #         # separado
+    #         last_name: data[:primer_apellido],
+    #         birthdate: data[:fecha_nacimiento],
+    #         gneder: data[:sexo], 
+    #         nationality_id: data[:nacionalidad_id],
+    #         languages: data[:idiomas],
+    #         plan_id: data[:plan_id],
+    #         checkIn: data[:checkIn],
+    #         checkOut: data[:checkOut]
+
+            
+    #     }
+  
+    #     # result(UPDATE.date_range(person_data, user)) unless @stop
+  
+    #     render(json: @message, status: @status)
+    # end
+
+
     def result(content)
         if content[:object]
           hash = { "#{content[:object].class.name}": content[:object] }

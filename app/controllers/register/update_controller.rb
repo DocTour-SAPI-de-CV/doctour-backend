@@ -80,5 +80,24 @@ module Register
         VERIFY.result({ object: patient, update: true, flag: true, status: :unprocessable_entity })
       end
     end
+
+    def self.date_range(params, user)
+      
+
+
+      validation_data = ValidationDate.new(
+        checkIn: params[:checkIn],
+        checkOut: params[:checkOut]
+
+      )
+      # plan_to_services_id: params[:plan_id]
+
+      begin
+        validation_data.save!
+        VERIFY.result({ object: validation_data, flag: false })
+      rescue ActiveRecord::RecordInvalid
+        VERIFY.result({ object: validation_data, flag: true, status: :unprocessable_entity })
+      end
+    end
   end
 end
