@@ -552,9 +552,11 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
     t.date "checkIn", null: false
     t.date "checkOut", null: false
     t.integer "plan_to_services_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["plan_to_services_id"], name: "index_validation_dates_on_plan_to_services_id"
+    t.index ["user_id"], name: "index_validation_dates_on_user_id"
   end
 
   add_foreign_key "accounts", "users", on_update: :cascade, on_delete: :cascade
@@ -617,4 +619,5 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
   add_foreign_key "surgeries_historics", "surgeries", on_update: :cascade, on_delete: :cascade
   add_foreign_key "vaccines_historics", "vaccines", on_update: :cascade, on_delete: :cascade
   add_foreign_key "validation_dates", "plan_to_services", column: "plan_to_services_id"
+  add_foreign_key "validation_dates", "users"
 end

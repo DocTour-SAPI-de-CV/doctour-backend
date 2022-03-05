@@ -4,7 +4,7 @@ class CreatePlanToServices < ActiveRecord::Migration[6.0]
     create_table :plan_to_services, id: :integer do |t|
       
       t.integer :quantity
-      t.references :plans, type: :integer ,null: false, foreign_key: true
+      t.references :plans, type: :integer, null: false, foreign_key: true
       t.references :services, type: :integer, null: false, foreign_key: true
       
 

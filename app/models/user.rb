@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :received_messages, class_name: "ChatMessage", foreign_key: "to_id"
   has_many :user_chat_rooms
   has_many :chat_rooms, through: :user_chat_rooms
+  has_many :validation_date, class_name: "validation_date", foreign_key: "id"
+
   validates :email,
             presence: true,
             uniqueness: { case_sensitive: false },
