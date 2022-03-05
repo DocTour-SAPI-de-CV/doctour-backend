@@ -402,12 +402,12 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
 
   create_table "plan_to_services", id: :serial, force: :cascade do |t|
     t.integer "quantity"
-    t.integer "plans_id", null: false
-    t.integer "services_id", null: false
+    t.integer "plan_id", null: false
+    t.integer "service_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["plans_id"], name: "index_plan_to_services_on_plans_id"
-    t.index ["services_id"], name: "index_plan_to_services_on_services_id"
+    t.index ["plan_id"], name: "index_plan_to_services_on_plan_id"
+    t.index ["service_id"], name: "index_plan_to_services_on_service_id"
   end
 
   create_table "plans", id: :serial, force: :cascade do |t|
@@ -551,11 +551,11 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
   create_table "validation_dates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "checkIn", null: false
     t.date "checkOut", null: false
-    t.integer "plan_to_services_id", null: false
+    t.integer "plan_id", null: false
     t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["plan_to_services_id"], name: "index_validation_dates_on_plan_to_services_id"
+    t.index ["plan_id"], name: "index_validation_dates_on_plan_id"
     t.index ["user_id"], name: "index_validation_dates_on_user_id"
   end
 
@@ -606,8 +606,8 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
   add_foreign_key "people_phones", "phones", on_update: :cascade, on_delete: :cascade
   add_foreign_key "phones_interprets", "interprets", on_update: :cascade, on_delete: :cascade
   add_foreign_key "phones_interprets", "phones", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "plan_to_services", "plans", column: "plans_id"
-  add_foreign_key "plan_to_services", "services", column: "services_id"
+  add_foreign_key "plan_to_services", "plans"
+  add_foreign_key "plan_to_services", "services"
   add_foreign_key "respiratories_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "respiratories_historics", "respiratory_diseases", on_update: :cascade, on_delete: :cascade
   add_foreign_key "screenings", "doctors", on_update: :cascade, on_delete: :cascade
@@ -618,6 +618,6 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
   add_foreign_key "surgeries_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "surgeries_historics", "surgeries", on_update: :cascade, on_delete: :cascade
   add_foreign_key "vaccines_historics", "vaccines", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "validation_dates", "plan_to_services", column: "plan_to_services_id"
+  add_foreign_key "validation_dates", "plans"
   add_foreign_key "validation_dates", "users"
 end

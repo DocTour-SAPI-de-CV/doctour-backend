@@ -109,6 +109,26 @@ namespace :populate do
 
     #######
 
+    plan_to_services = [
+      { quantity: 1 }
+    ]
+
+    insert_plan_to_service = []
+
+    plan_to_services.each do |plan_to_service|
+      insert_plan_to_service << {
+        quantity: plan_to_service[:quantity],
+        plan_id: 1,
+        service_id: 1,
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    PlanToService.insert_all(insert_plan_to_service)
+
+    #######
+
     specializations = [
       "Medicina General", "Pediatría", "Geriatría",
       "Nutrición", "Psicología", "Medicina tropical",
