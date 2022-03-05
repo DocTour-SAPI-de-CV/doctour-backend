@@ -5,7 +5,7 @@ class CreateValidationDates < ActiveRecord::Migration[6.0]
      
       t.date :checkIn, null: false
       t.date :checkOut, null: false
-      t.references :plan_to_services, type: :uuid, null: false, foreign_key: true
+      t.references :plan_to_services, type: :integer, null: false, foreign_key: true
 
       t.timestamps
     end

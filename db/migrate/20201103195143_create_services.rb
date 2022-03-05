@@ -3,7 +3,7 @@
 class CreateServices < ActiveRecord::Migration[6.0]
   enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
   def change
-    create_table :services, id: :uuid, default: 'gen_random_uuid()' do |t|
+    create_table :services, id: :integer do |t|
       t.string  :name,
                 null: false,
                 index: { unique: true }

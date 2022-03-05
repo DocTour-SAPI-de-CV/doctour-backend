@@ -400,18 +400,18 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
     t.index ["phone_id"], name: "index_phones_interprets_on_phone_id"
   end
 
-  create_table "plan_to_services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "plan_to_services", id: :serial, force: :cascade do |t|
     t.integer "quantity"
-    t.uuid "plans_id", null: false
-    t.uuid "services_id", null: false
+    t.integer "plans_id", null: false
+    t.integer "services_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["plans_id"], name: "index_plan_to_services_on_plans_id"
     t.index ["services_id"], name: "index_plan_to_services_on_services_id"
   end
 
-  create_table "plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "desctiption"
+  create_table "plans", id: :serial, force: :cascade do |t|
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -457,7 +457,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "services", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.float "price", null: false
     t.text "description"
@@ -548,13 +548,13 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
     t.index ["vaccine_id"], name: "index_vaccines_historics_on_vaccine_id"
   end
 
-  create_table "validadion_dates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.date "chekIn", null: false
-    t.date "chekOut", null: false
-    t.uuid "plan_to_services_id", null: false
+  create_table "validation_dates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "checkIn", null: false
+    t.date "checkOut", null: false
+    t.integer "plan_to_services_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["plan_to_services_id"], name: "index_validadion_dates_on_plan_to_services_id"
+    t.index ["plan_to_services_id"], name: "index_validation_dates_on_plan_to_services_id"
   end
 
   add_foreign_key "accounts", "users", on_update: :cascade, on_delete: :cascade
@@ -616,5 +616,5 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
   add_foreign_key "surgeries_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "surgeries_historics", "surgeries", on_update: :cascade, on_delete: :cascade
   add_foreign_key "vaccines_historics", "vaccines", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "validadion_dates", "plan_to_services", column: "plan_to_services_id"
+  add_foreign_key "validation_dates", "plan_to_services", column: "plan_to_services_id"
 end
