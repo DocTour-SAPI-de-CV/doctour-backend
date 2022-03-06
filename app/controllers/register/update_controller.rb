@@ -81,22 +81,34 @@ module Register
       end
     end
 
-    def self.date_range(params, user)
+    def self.date_range(user,params)
+
+      validation_data = ValidationDate.where(user_id: user.id)
+     
       
-
-
-      validation_data = ValidationDate.new(
-        checkIn: params[:checkIn],
-        checkOut: params[:checkOut]
-
-      )
-      # plan_to_services_id: params[:plan_id]
-
       begin
-        validation_data.save!
+        
+        validation_data.update(
+          checkIn: params[:checkIn],
+          checkOut: params[:checkOut],
+          plan_id: params[:plan_id]
+        )
+
         VERIFY.result({ object: validation_data, flag: false })
       rescue ActiveRecord::RecordInvalid
         VERIFY.result({ object: validation_data, flag: true, status: :unprocessable_entity })
+      end
+    end
+
+    def self.search_user(params)
+      
+
+      begin
+        user = User.where(email: params[:email]).first
+
+        VERIFY.result({ object: user, flag: false })
+      rescue ActiveRecord::RecordInvalid
+        VERIFY.result({ object: user, flag: true, status: :unprocessable_entity })
       end
     end
   end

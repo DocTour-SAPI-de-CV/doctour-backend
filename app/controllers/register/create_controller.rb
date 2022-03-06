@@ -259,8 +259,6 @@ module Register
     end
     
     def self.date_range(user,params)
-      puts user.id
-      puts params[:plan_id]
       
       validation_data = ValidationDate.new(
         user_id: user.id,
