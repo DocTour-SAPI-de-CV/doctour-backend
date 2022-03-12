@@ -68,6 +68,67 @@ namespace :populate do
 
     #######
 
+    plans = [
+      { description: 'Plano 1' },
+      { description: 'Plano 2' }
+    ]
+
+    insert_plans = []
+
+    plans.each do |plan|
+      insert_plans << {
+        description: plans,
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    Plan.insert_all(insert_plans)
+
+    #######
+
+    services = [
+      { name: 'Serviço 1', price: 10.5, description: 'Descrição serviço 1' },
+      { name: 'Serviço 2', price: 50.5, description: 'Descrição serviço 2' },
+    ]
+
+    insert_services = []
+
+    services.each do |service|
+      puts service.to_json
+      insert_services << {
+        name: service[:name],
+        price: service[:price],
+        description: service[:description],
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    Service.insert_all(insert_services)
+
+    #######
+
+    plan_to_services = [
+      { quantity: 1 }
+    ]
+
+    insert_plan_to_service = []
+
+    plan_to_services.each do |plan_to_service|
+      insert_plan_to_service << {
+        quantity: plan_to_service[:quantity],
+        plan_id: 1,
+        service_id: 1,
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    PlanToService.insert_all(insert_plan_to_service)
+
+    #######
+
     specializations = [
       "Medicina General", "Pediatría", "Geriatría",
       "Nutrición", "Psicología", "Medicina tropical",

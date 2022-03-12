@@ -80,5 +80,36 @@ module Register
         VERIFY.result({ object: patient, update: true, flag: true, status: :unprocessable_entity })
       end
     end
+
+    def self.date_range(user,params)
+
+      validation_data = ValidationDate.where(user_id: user.id)
+     
+      
+      begin
+        
+        validation_data.update(
+          checkIn: params[:checkIn],
+          checkOut: params[:checkOut],
+          plan_id: params[:plan_id]
+        )
+
+        VERIFY.result({ object: validation_data, flag: false })
+      rescue ActiveRecord::RecordInvalid
+        VERIFY.result({ object: validation_data, flag: true, status: :unprocessable_entity })
+      end
+    end
+
+    def self.search_user(params)
+      
+
+      begin
+        user = User.where(email: params[:email]).first
+
+        VERIFY.result({ object: user, flag: false })
+      rescue ActiveRecord::RecordInvalid
+        VERIFY.result({ object: user, flag: true, status: :unprocessable_entity })
+      end
+    end
   end
 end

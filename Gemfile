@@ -23,7 +23,8 @@ gem "email_validator"
 gem "jbuilder", "~> 2.7"
 # XLSX Reader
 gem "creek"
-gem "roo"
+
+# gem "phonelib"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
