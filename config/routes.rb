@@ -62,6 +62,9 @@ Rails.application.routes.draw do
   # massive_upload 
   #resources :massive_upload
   post "massive_upload", to: "massive_upload#upload_file"
+  post "status_data_range", to: "massive_upload#status_data_range"
+  
+
 
   # unification
   # post 'user_register', to: 'unification#user_register'

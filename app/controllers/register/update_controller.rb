@@ -83,9 +83,7 @@ module Register
 
     def self.date_range(user,params)
 
-      validation_data = ValidationDate.where(user_id: user.id)
-     
-      
+      validation_data = ValidationDate.where(user_id: user.id)  
       begin
         
         validation_data.update(
@@ -111,5 +109,31 @@ module Register
         VERIFY.result({ object: user, flag: true, status: :unprocessable_entity })
       end
     end
+
+    def self.pathological_history_update
+      patient_history = Patient.where(patient_id: params[:id])
+
+      respiratories_history = patient_history.respiratories_historics
+      respiratories_history.respiratory_disease.update( params[:respiratory_disease] )
+
+      
+      begin
+
+        patient_history.update(
+          hypertension: params[:hypertension],
+          diabetes: params[:diabetes],
+          respiratory_disease: params[:respiratory_disease],
+          allergy: params[:allergy],
+          surgical_historic: params[:surgical_historic],
+          medicine: params[:medicine]
+        )
+        
+        VERIFY.result({ object: patient_history, flag: false })
+      rescue ActiveRecord::RecordInvalid
+        VERIFY.result({ object: patient_history, flag: true, status: :unprocessable_entity })
+      end
+      
+    end
+
   end
 end

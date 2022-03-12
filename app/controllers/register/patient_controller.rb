@@ -94,5 +94,6 @@ module Register
 
       render json: user.medical_history, status: :ok
     end
+
   end
 end
