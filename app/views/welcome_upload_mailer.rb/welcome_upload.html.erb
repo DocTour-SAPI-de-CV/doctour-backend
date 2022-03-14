@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head></head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900;700&display=swap');
+</style> 
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+</style> 
+
+<body style="background-color: #eee; box-sizing: border-box; margin: 0; padding: 0;">
+  <style></style>
+  <div class="email-container"
+    style="background: white; box-sizing: border-box; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin: auto; max-width: 680px; padding: 16px 8px; text-align: center;">
+    <div class="header" style="background-color: white; box-sizing: border-box; margin: 0; padding: 0;">
+      <img src="https://doctour.s3-sa-east-1.amazonaws.com/mailers/bemvindo.png" alt="Recuperação de Senha"
+        style="box-sizing: border-box; margin: 0; padding: 0; width: 100%;">
+    </div>
+
+    <div class="body" style="box-sizing: border-box; display: grid; margin: 0; padding: 32px 48px; row-gap: 32px;">
+      <h2 style="box-sizing: border-box; margin: 16px auto; padding: 0;text-transform: uppercase; font-size: 28px; letter-spacing: 3px; color: #006F4A; font-family: 'Lato', sans-serif; font-weight: 900;">
+      Olá, <br> <span style="color: black"> <%= @full_name %> </span>
+       </h2>
+      <p style="box-sizing: border-box; margin: 8px auto; font-size: 15px ;padding: 0; color: black; line-height: 17px ;margin-left:10%; width: 80%; font-family: 'Roboto', sans-serif; font-weight: 400;">
+        Você foi cadastrado na plataforma Doctour!<br>
+        Clique no botão abaixo para começar a utilizar o sistema<br>
+        ou copie o link no seu navegador</p>
+      <a href="<%= @redirect_url %>" role="button"
+        style="background-color: rgb( 0,179,128,1); font-family: 'Roboto', sans-serif; font-weight: 900; height: 35px;
+        line-height: 27px; border-radius: 25px; margin: 22px auto; width: 50%; box-sizing: border-box; font-size: 13px;color: rgb(244,244,250);padding: 5px;text-decoration: none; text-transform: uppercase;">Começar</a>
+      <span style="box-sizing: border-box; margin: 0; padding: 0;"><%= @redirect_url %></span>
+    </div>
+
+    <div class="footer" style="position: relative;
+    width: 80%;
+    margin-left: 10%;
+    height: 50px;
+    background-color: rgb(251,251,251,1);">
+      <p style="box-sizing: border-box; margin: 0; font-family: 'Roboto', sans-serif; font-weight: 700; font-size:14px; padding: 0; color: #767B7A; line-height: 50px;">@ Doctour | v0.1 </p>
+    </div>
+  </div>
+</body>
+
+</html>
