@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WelcomeUploadMailer < ApplicationMailer
-  def send_email
+  def welcome_upload
     @email = params[:email]
     @full_name = params[:full_name]
     @redirect_url = 'https://doctour-staging.netlify.com'
