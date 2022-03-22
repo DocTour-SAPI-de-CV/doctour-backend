@@ -39,12 +39,15 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => "3bdaca96318cf9",
-    :password => "158233a057325c",
-    :address => "smtp.mailtrap.io",
-    :domain => "smtp.mailtrap.io",
-    :port => "2525",
-    :authentication => :cram_md5,
+    :user_name => "aalba@doctour.com.mx",
+    :password => "K9z#2PAGcgS7/yH",
+    :address => "smtp.zoho.com",
+    :domain => "doctour.com.mx",
+    :port => "465",
+    :authentication=> "plain",
+    :ssl=> false,
+    :tls=> true,
+    :enable_starttls_auto=> true
   }
 
   # Print deprecation notices to the Rails logger.
