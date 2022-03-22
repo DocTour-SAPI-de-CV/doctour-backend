@@ -3,9 +3,9 @@
 class ApplicationControllerJsonApi < ApplicationController
   include JSONAPI::ActsAsResourceController
 
-  def context
-    { current_user: current_user }
-  end
+  # def context
+  #   { current_user: current_user }
+  # end
 
   # before_action :authenticate_user
   # Prevent CSRF attacks by raising an exception.

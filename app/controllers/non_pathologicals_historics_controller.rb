@@ -1,0 +1,2 @@
+class NonPathologicalsHistoricsController < ApplicationControllerJsonApi
+end
