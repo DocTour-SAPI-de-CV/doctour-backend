@@ -294,32 +294,34 @@ Rails.application.routes.draw do
   # delete 'document_partner/:id', to: 'documents_partner#delete'
 
   # interprets
-  # post 'interpret', to: 'interpret#create'
-  # put 'interpret/:id', to: 'interpret#update'
-  # get 'interpret', to: 'interpret#show'
-  # get 'interpret/:id', to: 'interpret#index'
-  # delete 'interpret/:id', to: 'interpret#delete'
+  post 'interpret', to: 'interpret#create'
+  put 'interpret/:id', to: 'interpret#update'
+  get 'interpret', to: 'interpret#show'
+  get 'interpret/:id', to: 'interpret#index'
+  delete 'interpret/:id', to: 'interpret#delete'
 
   # languages interprets
-  # post 'languages_interpret', to: 'languages_interpret#create'
-  # put 'languages_interpret/:id', to: 'languages_interpret#update'
-  # get 'languages_interpret', to: 'languages_interpret#show'
-  # get 'languages_interpret/:id', to: 'languages_interpret#index'
-  # delete 'languages_interpret/:id', to: 'languages_interpret#delete'
+  post 'languages_interpret', to: 'languages_interpret#create'
+  put 'languages_interpret/:id', to: 'languages_interpret#update'
+  get 'languages_interpret', to: 'languages_interpret#show'
+  get 'languages_interpret/:id', to: 'languages_interpret#index'
+  delete 'languages_interpret/:id', to: 'languages_interpret#delete'
 
   # phones interprets
-  # post 'phones_interpret', to: 'phones_interpret#create'
-  # put 'phones_interpret/:id', to: 'phones_interpret#update'
-  # get 'phones_interpret', to: 'phones_interpret#show'
-  # get 'phones_interpret/:id', to: 'phones_interpret#index'
-  # delete 'phones_interpret/:id', to: 'phones_interpret#delete'
+  post 'phones_interpret', to: 'phones_interpret#create'
+  put 'phones_interpret/:id', to: 'phones_interpret#update'
+  get 'phones_interpret', to: 'phones_interpret#show'
+  get 'phones_interpret/:id', to: 'phones_interpret#index'
+  delete 'phones_interpret/:id', to: 'phones_interpret#delete'
 
   # addressess interprets
-  # post 'addressess_interpret', to: 'addressess_interpret#create'
-  # put 'addressess_interpret/:id', to: 'addressess_interpret#update'
-  # get 'addressess_interpret', to: 'addressess_interpret#show'
-  # get 'addressess_interpret/:id', to: 'addressess_interpret#index'
-  # delete 'addressess_interpret/:id', to: 'addressess_interpret#delete'
+  post 'addressess_interpret', to: 'addressess_interpret#create'
+  put 'addressess_interpret/:id', to: 'addressess_interpret#update'
+  get 'addressess_interpret', to: 'addressess_interpret#show'
+  get 'addressess_interpret/:id', to: 'addressess_interpret#index'
+  delete 'addressess_interpret/:id', to: 'addressess_interpret#delete'
+
+
   jsonapi_resources :feedbacks
   jsonapi_resources :chat_messages, only: [:index, :show, :update] do
     collection do

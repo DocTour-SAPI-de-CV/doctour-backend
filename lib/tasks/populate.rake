@@ -129,6 +129,102 @@ namespace :populate do
 
     #######
 
+    vaccines = [
+      { name: "vacina de catapora" },
+      { name: "Vacina de Cachumba" }
+    ]
+
+    insert_vaccines = []
+
+    vaccines.each do |vaccine|
+      insert_vaccines << {
+        name: vaccine[:name],
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    Vaccine.insert_all(insert_vaccines)
+    
+    #######
+
+    drugs = [
+      { name: "machonha" },
+      { name: "cocaina" }
+    ]
+
+    insert_drugs = []
+
+    drugs.each do |drug|
+      insert_drugs << {
+        name: drug[:name],
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    Drug.insert_all(insert_drugs)
+    
+     
+    #######
+
+    allergies = [
+      { name: "cholate" },
+      { name: "pimenta" }
+    ]
+
+    insert_allergies = []
+
+    allergies.each do |allergy|
+      insert_allergies << {
+        name: allergy[:name],
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    Allergy.insert_all(insert_allergies)
+    
+    #######
+
+    respiratories = [
+      { name: "cholate" },
+      { name: "pimenta" }
+    ]
+
+    insert_respiratories = []
+
+    respiratories.each do |respiratory|
+      insert_respiratories << {
+        name: respiratory[:name],
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    RespiratoryDisease.insert_all(insert_respiratories)
+    
+    #######
+
+    surgeries = [
+      { name: "vasectomia" },
+      { name: "buchectomia" }
+    ]
+
+    insert_surgeries = []
+
+    surgeries.each do |surgery|
+      insert_surgeries << {
+        name: surgery[:name],
+        created_at: DateTime.now,
+        updated_at: DateTime.now,
+      }
+    end
+
+    Surgery.insert_all(insert_surgeries)
+    
+    #######
+
     specializations = [
       "Medicina General", "Pediatría", "Geriatría",
       "Nutrición", "Psicología", "Medicina tropical",

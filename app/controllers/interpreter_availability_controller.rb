@@ -1,0 +1,2 @@
+class InterpreterAvailabilityController < ApplicationController
+end

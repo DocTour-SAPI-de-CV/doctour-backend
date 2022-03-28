@@ -1,7 +1,7 @@
 class CreateVaccinesHistorics < ActiveRecord::Migration[6.0]
   def change
     create_table :vaccines_historics, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.references :non_phatologicals_historic,
+      t.references :non_pathologicals_historic,
                    type: :uuid,
                    null: false,
                    foreign_key: {
