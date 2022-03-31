@@ -11,7 +11,7 @@ class PasswordMailerSender
                                 token: token,
                                 id: id)
                           .password_recovery
-                          .deliver_later
+                          .deliver
   end
 
   private_class_method def self.populate_user(email)
