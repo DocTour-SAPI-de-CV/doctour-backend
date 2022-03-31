@@ -271,7 +271,7 @@ class MassiveUploadController < ApplicationController
 
   
         unless @stop
-          WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
+          WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver
         end
 
         return @status

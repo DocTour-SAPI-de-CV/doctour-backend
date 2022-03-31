@@ -40,7 +40,7 @@ module Register
       result(CREATE.person_phone(@objects[:People], @objects[:Phone])) unless @stop
 
       unless @stop
-        WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
+        WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver
       end
       render(json: @message, status: @status)
     end

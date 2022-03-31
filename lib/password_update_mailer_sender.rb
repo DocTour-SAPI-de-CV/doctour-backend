@@ -9,7 +9,7 @@ class PasswordUpdateMailerSender
     PasswordUpdateMailer.with(email: email,
                                 id: id)
                           .password_update
-                          .deliver_later
+                          .deliver
   end
 
   private_class_method def self.populate_user(email)
