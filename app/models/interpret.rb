@@ -9,6 +9,7 @@ class Interpret < ApplicationRecord
 
   has_many :phones_interprets, dependent: :destroy
   has_many :phones, through: :phones_interprets
+  has_one :interpreter_availability
 
   validates :email,
             presence: true,

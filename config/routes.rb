@@ -293,6 +293,7 @@ Rails.application.routes.draw do
   # get 'document_partner/:id', to: 'documents_partner#index'
   # delete 'document_partner/:id', to: 'documents_partner#delete'
 
+
   # interprets
   post 'interpret', to: 'interpret#create'
   put 'interpret/:id', to: 'interpret#update'
@@ -342,12 +343,18 @@ Rails.application.routes.draw do
   jsonapi_resources :surgeries
   jsonapi_resources :respiratories_historics
   jsonapi_resources :respiratory_diseases
+  jsonapi_resources :interpreter_availability
+  jsonapi_resources :interprets
+  jsonapi_resources :languages
+  jsonapi_resources :addresses
 
   jsonapi_resources :non_pathologicals_historics
   jsonapi_resources :vaccines_historics
   jsonapi_resources :vaccines
   jsonapi_resources :drugs_historics
   jsonapi_resources :drugs
+
+  
   # Validations
   get "email_available", to: "validation#email_available"
   get "document_valid", to: "validation#document_valid"

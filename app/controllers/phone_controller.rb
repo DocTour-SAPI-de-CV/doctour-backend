@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PhoneController < ApplicationController
+class PhoneController < ApplicationControllerJsonApi
   include ErrorSerializer
 
   # rescue_from ActionController::ParameterMissing, with: :missing_params
