@@ -130,8 +130,9 @@ namespace :populate do
     #######
 
     vaccines = [
-      { name: "vacina de catapora" },
-      { name: "Vacina de Cachumba" }
+      { name: "Fiebre Amarilla" },
+      { name: "Gripe" },
+      { name: "Coronavirus" }
     ]
 
     insert_vaccines = []
@@ -149,8 +150,9 @@ namespace :populate do
     #######
 
     drugs = [
-      { name: "machonha" },
-      { name: "cocaina" }
+      { name: "Marihuana" },
+      { name: "Cocaína" },
+      { name: "Otro" }
     ]
 
     insert_drugs = []
@@ -164,13 +166,35 @@ namespace :populate do
     end
 
     Drug.insert_all(insert_drugs)
-    
-     
+
+    #######
+
+    # TODO: Implementar na sequência
+    # amount_alcohol = [
+    #   { name: "Social" },
+    #   { name: "Leve" },
+    #   { name: "Moderado" },
+    #   { name: "Alto" }
+    # ]
+
+    # insert_amount_alcohol = []
+
+    # amount_alcohol.each do |amount|
+    #   insert_amount_alcohol << {
+    #     name: amount[:name],
+    #     created_at: DateTime.now,
+    #     updated_at: DateTime.now,
+    #   }
+    # end
+
+    # Alcohol.insert_all(insert_amount_alcohol)
+
     #######
 
     allergies = [
-      { name: "cholate" },
-      { name: "pimenta" }
+      { name: "Polen" },
+      { name: "Gatos" },
+      { name: "Polvo" }
     ]
 
     insert_allergies = []
@@ -226,8 +250,8 @@ namespace :populate do
     #######
 
     specializations = [
-      "Medicina General", "Pediatría", "Geriatría",
-      "Nutrición", "Psicología", "Medicina tropical",
+      "Medicina general", "Pediatría", "Geriatría",
+      "Nutrición", "Psicología", "Medicina tropical", "Traumatologia", "Cirugía genereal"
     ]
 
     insert_specializations = []
