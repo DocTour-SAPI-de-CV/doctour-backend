@@ -95,7 +95,6 @@ namespace :populate do
     insert_services = []
 
     services.each do |service|
-      puts service.to_json
       insert_services << {
         name: service[:name],
         price: service[:price],
