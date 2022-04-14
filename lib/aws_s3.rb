@@ -10,8 +10,6 @@ class AwsS3
     aws_region = 'us-east-2'
 
     @s3 = Aws::S3::Resource.new(region: aws_region, access_key_id: aws_access_key_id, secret_access_key: aws_secret_access_key)
-
-    aws_bucket = 'doctour-bucket'
   end
 
   def self.upload(file, file_path)
@@ -19,7 +17,7 @@ class AwsS3
 
     file_name =   file_path.to_s
     upload_file = file.tempfile
-    obj = @s3.bucket(aws_doctour_bucket).object(file_name)
+    obj = @s3.bucket('doctour-bucket').object(file_name)
     obj.upload_file(upload_file, { acl: 'public-read' })
 
     obj.public_url
@@ -28,7 +26,7 @@ class AwsS3
   def self.delete(file_path)
     access_codes
 
-    object = @s3.bucket(aws_doctour_bucket).object("#{file_path}")
+    object = @s3.bucket('doctour-bucket').object("#{file_path}")
 
     object.delete
   end
