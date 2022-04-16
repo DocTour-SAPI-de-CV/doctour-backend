@@ -13,6 +13,7 @@ Backend of the DocTour project
 ## Emails
 Acessar: `http://localhost:3000/rails/mailers`
 
-
 ## Deploy Heroku
+`heroku login`
+Configurar o remote
 `git push heroku master`
