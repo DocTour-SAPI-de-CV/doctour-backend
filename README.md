@@ -1,7 +1,6 @@
 # DocTour - Backend
 Backend of the DocTour project
 
-
 ## Passos para rodar o projeto:
 ### 1º Passo:
 `docker-compose build`
@@ -13,3 +12,7 @@ Backend of the DocTour project
 
 ## Emails
 Acessar: `http://localhost:3000/rails/mailers`
+
+
+## Deploy Heroku
+`git push heroku master`
