@@ -293,7 +293,7 @@ Rails.application.routes.draw do
   # interprets
   # post 'interpret', to: 'interpret#create'
   # put 'interpret/:id', to: 'interpret#update'
-  # get 'interpret', to: 'interpret#show'
+  get 'interpret', to: 'interpret#show'
   # get 'interpret/:id', to: 'interpret#index'
   # delete 'interpret/:id', to: 'interpret#delete'
 
