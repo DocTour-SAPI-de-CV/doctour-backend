@@ -17,7 +17,7 @@ class AwsS3
 
     file_name =   file_path.to_s
     upload_file = file.tempfile
-    obj = @s3.bucket('doctour-bucket').object(file_name)
+    obj = @s3.bucket('doctour-internal').object(file_name)
     obj.upload_file(upload_file, { acl: 'public-read' })
 
     obj.public_url
@@ -26,7 +26,7 @@ class AwsS3
   def self.delete(file_path)
     access_codes
 
-    object = @s3.bucket('doctour-bucket').object("#{file_path}")
+    object = @s3.bucket('doctour-internal').object("#{file_path}")
 
     object.delete
   end
