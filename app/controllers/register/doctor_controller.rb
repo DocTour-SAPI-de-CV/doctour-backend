@@ -51,7 +51,7 @@ module Register
       end
 
       unless @stop
-        WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
+        WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver
       end
       render(json: @message, status: @status)
     end

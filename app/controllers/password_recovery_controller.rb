@@ -8,14 +8,15 @@ class PasswordRecoveryController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :missing_params
 
   def index
-    PasswordMailerSender.send_email(email)
+    user = User.find_by(email: email)
+    PasswordMailerSender.send_email(user.email)
 
     head(:no_content)
   end
 
   def recovery
     @user = User.find(id)
-    @user.update(password: new_password)
+    @user.update(password: new_password) if PasswordUpdateMailerSender.send_email(@user.email)
   end
 
   private

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WelcomeMailer < ApplicationMailer
+class WelcomeUploadMailer < ApplicationMailer
   def send_email
     @email = params[:email]
     @full_name = params[:full_name]

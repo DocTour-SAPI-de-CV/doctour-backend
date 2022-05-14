@@ -46,7 +46,8 @@ class Patient < ApplicationRecord
       privacy_policy: privacy_policy,
       terms_use: terms_use,
       client_ip: client_ip.to_s,
-      last_medical_history: last_medical_history
+      last_medical_history: last_medical_history,
+      created_at_mask: created_at_mask
     }
   end
 end

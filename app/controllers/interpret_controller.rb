@@ -36,6 +36,6 @@ class InterpretController < ApplicationController
   private
 
   def interpret_params
-    params.require(:interpret).permit(:first_name, :last_name, :email)
+    params.require(:interpret).permit(:first_name, :last_name, :email, :phone, :languages, :available_times)
   end
 end

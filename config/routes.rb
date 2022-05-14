@@ -91,9 +91,9 @@ Rails.application.routes.draw do
   # delete 'assistant/:id', to: 'assistant#delete'
 
   # Services
-  # post 'service', to: 'service#create'
+  post 'service', to: 'service#create'
   # put 'service/:id', to: 'service#update'
-  # get 'service', to: 'service#show'
+  get 'service', to: 'service#show'
   # get 'service/:id', to: 'service#index'
   # delete 'service/:id', to: 'service#delete'
 
@@ -295,11 +295,11 @@ Rails.application.routes.draw do
 
 
   # interprets
-  post 'interpret', to: 'interpret#create'
-  put 'interpret/:id', to: 'interpret#update'
+  # post 'interpret', to: 'interpret#create'
+  # put 'interpret/:id', to: 'interpret#update'
   get 'interpret', to: 'interpret#show'
-  get 'interpret/:id', to: 'interpret#index'
-  delete 'interpret/:id', to: 'interpret#delete'
+  # get 'interpret/:id', to: 'interpret#index'
+  # delete 'interpret/:id', to: 'interpret#delete'
 
   # languages interprets
   post 'languages_interpret', to: 'languages_interpret#create'

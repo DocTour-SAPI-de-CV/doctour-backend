@@ -112,7 +112,7 @@ class UnificationController < ApplicationController
   end
 
   def send_welcome_email
-    WelcomeMailer.with(email: @user.email, full_name: @people.full_name).send_email.deliver_later
+    WelcomeMailer.with(email: @user.email, full_name: @people.full_name).send_email.deliver
   end
 
   def base_create(params)

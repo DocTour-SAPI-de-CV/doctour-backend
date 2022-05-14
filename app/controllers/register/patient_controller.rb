@@ -46,7 +46,7 @@ module Register
       result(CREATE.patient(@objects[:People], request)) unless @stop
 
       unless @stop
-        WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver_later
+        WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver
       end
       # chat_room = ChatRoom.create(name: "Bem vindo novo usuário", kind: "assistant")
       # chat_room.users += [user, Account.where(category: "assistant").first.user]

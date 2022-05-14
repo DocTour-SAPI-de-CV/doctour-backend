@@ -1,7 +1,6 @@
 # DocTour - Backend
 Backend of the DocTour project
 
-
 ## Passos para rodar o projeto:
 ### 1º Passo:
 `docker-compose build`
@@ -10,3 +9,11 @@ Backend of the DocTour project
 `docker-compose run --rm server bash`
 `bundle exec rake db:drop db:create db:migrate`
 `bundle exec rails db:migrate populate:setup accounts:setup`
+
+## Emails
+Acessar: `http://localhost:3000/rails/mailers`
+
+## Deploy Heroku
+`heroku login`
+Configurar o remote
+`git push heroku master`

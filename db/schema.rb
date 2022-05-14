@@ -249,6 +249,9 @@ ActiveRecord::Schema.define(version: 2022_03_28_225156) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
+    t.string "phone", null: false
+    t.string "languages", null: false
+    t.text "available_times", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
