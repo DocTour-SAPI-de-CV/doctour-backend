@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LanguageController < ApplicationController
+class LanguageController < ApplicationControllerJsonApi
   before_action :authenticate_user, except: :show
 
   include ErrorSerializer

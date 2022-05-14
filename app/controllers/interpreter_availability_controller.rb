@@ -1,0 +1,2 @@
+class InterpreterAvailabilityController < ApplicationControllerJsonApi
+end

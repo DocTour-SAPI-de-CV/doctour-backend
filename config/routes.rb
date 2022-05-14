@@ -62,6 +62,9 @@ Rails.application.routes.draw do
   # massive_upload 
   #resources :massive_upload
   post "massive_upload", to: "massive_upload#upload_file"
+  post "status_data_range", to: "massive_upload#status_data_range"
+  
+
 
   # unification
   # post 'user_register', to: 'unification#user_register'
@@ -290,6 +293,7 @@ Rails.application.routes.draw do
   # get 'document_partner/:id', to: 'documents_partner#index'
   # delete 'document_partner/:id', to: 'documents_partner#delete'
 
+
   # interprets
   # post 'interpret', to: 'interpret#create'
   # put 'interpret/:id', to: 'interpret#update'
@@ -298,25 +302,27 @@ Rails.application.routes.draw do
   # delete 'interpret/:id', to: 'interpret#delete'
 
   # languages interprets
-  # post 'languages_interpret', to: 'languages_interpret#create'
-  # put 'languages_interpret/:id', to: 'languages_interpret#update'
-  # get 'languages_interpret', to: 'languages_interpret#show'
-  # get 'languages_interpret/:id', to: 'languages_interpret#index'
-  # delete 'languages_interpret/:id', to: 'languages_interpret#delete'
+  post 'languages_interpret', to: 'languages_interpret#create'
+  put 'languages_interpret/:id', to: 'languages_interpret#update'
+  get 'languages_interpret', to: 'languages_interpret#show'
+  get 'languages_interpret/:id', to: 'languages_interpret#index'
+  delete 'languages_interpret/:id', to: 'languages_interpret#delete'
 
   # phones interprets
-  # post 'phones_interpret', to: 'phones_interpret#create'
-  # put 'phones_interpret/:id', to: 'phones_interpret#update'
-  # get 'phones_interpret', to: 'phones_interpret#show'
-  # get 'phones_interpret/:id', to: 'phones_interpret#index'
-  # delete 'phones_interpret/:id', to: 'phones_interpret#delete'
+  post 'phones_interpret', to: 'phones_interpret#create'
+  put 'phones_interpret/:id', to: 'phones_interpret#update'
+  get 'phones_interpret', to: 'phones_interpret#show'
+  get 'phones_interpret/:id', to: 'phones_interpret#index'
+  delete 'phones_interpret/:id', to: 'phones_interpret#delete'
 
   # addressess interprets
-  # post 'addressess_interpret', to: 'addressess_interpret#create'
-  # put 'addressess_interpret/:id', to: 'addressess_interpret#update'
-  # get 'addressess_interpret', to: 'addressess_interpret#show'
-  # get 'addressess_interpret/:id', to: 'addressess_interpret#index'
-  # delete 'addressess_interpret/:id', to: 'addressess_interpret#delete'
+  post 'addressess_interpret', to: 'addressess_interpret#create'
+  put 'addressess_interpret/:id', to: 'addressess_interpret#update'
+  get 'addressess_interpret', to: 'addressess_interpret#show'
+  get 'addressess_interpret/:id', to: 'addressess_interpret#index'
+  delete 'addressess_interpret/:id', to: 'addressess_interpret#delete'
+
+
   jsonapi_resources :feedbacks
   jsonapi_resources :chat_messages, only: [:index, :show, :update] do
     collection do
@@ -337,12 +343,18 @@ Rails.application.routes.draw do
   jsonapi_resources :surgeries
   jsonapi_resources :respiratories_historics
   jsonapi_resources :respiratory_diseases
+  jsonapi_resources :interpreter_availability
+  jsonapi_resources :interprets
+  jsonapi_resources :languages
+  jsonapi_resources :addresses
 
   jsonapi_resources :non_pathologicals_historics
   jsonapi_resources :vaccines_historics
   jsonapi_resources :vaccines
   jsonapi_resources :drugs_historics
   jsonapi_resources :drugs
+
+  
   # Validations
   get "email_available", to: "validation#email_available"
   get "document_valid", to: "validation#document_valid"

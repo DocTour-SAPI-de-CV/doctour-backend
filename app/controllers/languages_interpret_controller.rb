@@ -2,7 +2,7 @@
 
 # rubocop:disable Style/GuardClause
 
-class LanguagesInterpretController < ApplicationController
+class LanguagesInterpretController < ApplicationControllerJsonApi
   include ErrorSerializer
 
   # rescue_from ActionController::ParameterMissing, with: :missing_params

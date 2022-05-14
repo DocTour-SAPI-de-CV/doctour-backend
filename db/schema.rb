@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_01_023037) do
+ActiveRecord::Schema.define(version: 2022_03_28_225156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -234,6 +234,15 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "interpreter_availabilities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "availability_in", null: false
+    t.datetime "availability_out", null: false
+    t.uuid "interprets_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interprets_id"], name: "index_interpreter_availabilities_on_interprets_id"
   end
 
   create_table "interprets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -545,9 +554,11 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
   end
 
   create_table "vaccines_historics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "non_pathologicals_historic_id", null: false
     t.uuid "vaccine_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["non_pathologicals_historic_id"], name: "index_vaccines_historics_on_non_pathologicals_historic_id"
     t.index ["vaccine_id"], name: "index_vaccines_historics_on_vaccine_id"
   end
 
@@ -590,6 +601,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
   add_foreign_key "documents_people", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "drugs_historics", "drugs", on_update: :cascade, on_delete: :cascade
   add_foreign_key "drugs_historics", "non_pathologicals_historics", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "interpreter_availabilities", "interprets", column: "interprets_id"
   add_foreign_key "languages_interprets", "interprets", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_interprets", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_people", "languages", on_update: :cascade, on_delete: :cascade
@@ -620,6 +632,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_023037) do
   add_foreign_key "subjectives_soaps", "subjectives", on_update: :cascade, on_delete: :cascade
   add_foreign_key "surgeries_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "surgeries_historics", "surgeries", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "vaccines_historics", "non_pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "vaccines_historics", "vaccines", on_update: :cascade, on_delete: :cascade
   add_foreign_key "validation_dates", "plans"
   add_foreign_key "validation_dates", "users"

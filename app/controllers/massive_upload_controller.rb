@@ -197,7 +197,24 @@ class MassiveUploadController < ApplicationController
         render json: {'validated':arr_xlsx_validated, 'updated':arr_xlsx_updated ,'unvalidated':arr_xlsx_unvalidated}
 
     end
+
     
+    def status_data_range
+        
+        validationDate = ValidationDate.where(user_id: params['user_id']).first()
+        today = Date.today
+        status = false
+        checkOut = validationDate.checkOut
+        checkIn = validationDate.checkIn
+
+        if (validationDate.checkOut - today).to_i > 0
+            status = true
+        end
+
+        render json: {'status':status, 'checkIn':checkIn ,'checkOut':checkOut}
+    end
+
+
     private
     
     def format_data(data)
@@ -354,6 +371,7 @@ class MassiveUploadController < ApplicationController
 
         return Nationality.where(name: nacionality_arr)
     end
+
 
 
 end

@@ -6,11 +6,11 @@ class Interpret < ApplicationRecord
 
   # TODO: remove this after testing new migrate for interprets with phone, languagens, and available_times
 
+  has_many :phones_interprets, dependent: :destroy
+  has_many :phones, through: :phones_interprets
+  has_one :interpreter_availability
   # has_many :languages_interprets, dependent: :destroy
   # has_many :languages, through: :languages_interprets
-
-  # has_many :phones_interprets, dependent: :destroy
-  # has_many :phones, through: :phones_interprets
 
   validates :email,
             presence: true,
