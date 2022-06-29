@@ -152,7 +152,7 @@ Rails.application.routes.draw do
   # delete 'specialization/:id', to: 'specialization#delete'
 
   # Doctors
-  # post 'doctor', to: 'doctor#create'
+  post 'update_status', to: 'doctor#update_status'
   # put 'doctor/:id', to: 'doctor#update'
   # get 'doctor', to: 'doctor#show'
   # get 'doctor/:id', to: 'doctor#index'

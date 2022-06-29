@@ -33,6 +33,13 @@ class DoctorController < ApplicationController
     render(json: { error: doctor.errors }) unless doctor.update(doctor_params)
   end
 
+  def update_status
+    doctor = Doctor.find(params[:id])
+    render(json: { doctor: doctor }) if doctor.update(doctor_params)
+
+    render(json: { error: doctor.errors }) unless doctor.update(doctor_params)
+  end
+
   private
 
   def doctor_params
