@@ -35,8 +35,11 @@ Rails.application.routes.draw do
   post "patient", to: "register/patient#create"
   get "patient", to: "register/patient#show"
   patch "patient", to: "register/patient#update"
+  # Returns all the user's medical queries
   get "medical_history/:id", to: "register/patient#medical_history"
+  # Returns info patient: email, full_name, gender and etc
   get "patients_summary", to: "register/patient#summary"
+  # Returns all medical appointments
   get "medical_histories", to: "register/patient#medical_histories"
 
   post "doctor", to: "register/doctor#create"
