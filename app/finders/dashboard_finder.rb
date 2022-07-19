@@ -3,13 +3,15 @@
 class DashboardFinder < ApplicationFinder
   def find
     {
-      people_count: people_count,
-      service_count: service_count,
-      screening_count: screening_count,
-      soap_count: soap_count,
+      account_count: account_count,
       doctor_count: doctor_count,
+      doctors_online_count: doctors_online_count,
       partner_count: partner_count,
-      account_count: account_count
+      people_count: people_count,
+      screening_count: screening_count,
+      screening_today_count: screening_today_count,
+      service_count: service_count,
+      soap_count: soap_count
     }
   end
 
@@ -41,5 +43,13 @@ class DashboardFinder < ApplicationFinder
 
   def account_count
     Account.count
+  end
+
+  def doctors_online_count
+    Doctor.where(status: 1).count
+  end
+
+  def screening_today_count
+    Screening.where(created_at: Date.today.all_day).count
   end
 end

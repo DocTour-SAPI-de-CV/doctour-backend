@@ -21,6 +21,11 @@ class FilterController < ApplicationController
     end
   end
 
+  def dashboard
+    @dashboard = DashboardFinder.new(nil).find
+    render(json: { dashboard: @dashboard })
+  end
+
   def diagnostic
     @diagnostic = DiagnosticFinder.new(nil).find(params)
     render(json: { diagnostic: @diagnostic })

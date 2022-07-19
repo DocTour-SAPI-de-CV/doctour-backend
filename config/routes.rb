@@ -84,6 +84,7 @@ Rails.application.routes.draw do
   get "patient_name_filter/:name", to: "filter#patient_name"
   get "diagnostic_filter", to: "filter#diagnostic"
   get "doctors_status", to: "filter#doctors_status"
+  get "dashboard_filter", to: "filter#dashboard"
   get "doctor_report/:start_date" + "&" + ":end_date", to: "filter#doctor_report"
 
   # Assistant
