@@ -15,6 +15,8 @@ class CreateScreenings < ActiveRecord::Migration[6.0]
                      on_delete: :cascade
                    }
 
+      t.string :reason_consultation
+
       t.float :temperature
 
       t.integer :heart_rate

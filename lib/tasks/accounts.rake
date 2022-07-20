@@ -156,6 +156,7 @@ namespace :accounts do
         return: true,
         # doctor: @doctor,
         patient: @patient,
+        reason_consultation: 'Dor',
         temperature: '36',
         heart_rate: '93',
         respiratory_frequency: '5/9',

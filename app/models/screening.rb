@@ -17,6 +17,9 @@ class Screening < ApplicationRecord
 
   validates :return,
             inclusion: { in: [true, false] }
+  
+  validates :reason_consultation,
+            presence: true
 
   validates :temperature,
             numericality: {

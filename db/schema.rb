@@ -447,6 +447,7 @@ ActiveRecord::Schema.define(version: 2022_03_28_225156) do
     t.datetime "performed_at", null: false
     t.boolean "return", null: false
     t.uuid "patient_id", null: false
+    t.string "reason_consultation"
     t.float "temperature"
     t.integer "heart_rate"
     t.string "respiratory_frequency"
