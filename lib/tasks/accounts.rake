@@ -152,15 +152,16 @@ namespace :accounts do
       )
 
       Screening.create(
-        performed_at: DateTime.new(2020, 0o5, 31, 14, 31).utc,
+        performed_at: DateTime.now.utc,
         return: true,
-        doctor: @doctor,
+        # doctor: @doctor,
         patient: @patient,
         temperature: '36',
         heart_rate: '93',
-        blood_pressure: '5/9',
+        respiratory_frequency: '5/9',
         weight: '88.4',
-        height: '176'
+        height: '176',
+        bmi: '1'
       )
     end
   end

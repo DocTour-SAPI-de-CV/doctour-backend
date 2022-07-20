@@ -7,14 +7,6 @@ class CreateScreenings < ActiveRecord::Migration[6.0]
 
       t.boolean :return, null: false
 
-      t.references :doctor,
-                   type: :uuid,
-                   null: false,
-                   foreign_key: {
-                     on_update: :cascade,
-                     on_delete: :cascade
-                   }
-
       t.references :patient,
                    type: :uuid,
                    null: false,
@@ -27,11 +19,13 @@ class CreateScreenings < ActiveRecord::Migration[6.0]
 
       t.integer :heart_rate
 
-      t.string :blood_pressure
+      t.string :respiratory_frequency
 
       t.float :weight, null: false
 
       t.integer :height, null: false
+
+      t.string :bmi
 
       t.timestamps
     end

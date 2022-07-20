@@ -446,16 +446,15 @@ ActiveRecord::Schema.define(version: 2022_03_28_225156) do
   create_table "screenings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "performed_at", null: false
     t.boolean "return", null: false
-    t.uuid "doctor_id", null: false
     t.uuid "patient_id", null: false
     t.float "temperature"
     t.integer "heart_rate"
-    t.string "blood_pressure"
+    t.string "respiratory_frequency"
     t.float "weight", null: false
     t.integer "height", null: false
+    t.string "bmi"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["doctor_id"], name: "index_screenings_on_doctor_id"
     t.index ["patient_id"], name: "index_screenings_on_patient_id"
   end
 
@@ -625,7 +624,6 @@ ActiveRecord::Schema.define(version: 2022_03_28_225156) do
   add_foreign_key "plan_to_services", "services"
   add_foreign_key "respiratories_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "respiratories_historics", "respiratory_diseases", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "screenings", "doctors", on_update: :cascade, on_delete: :cascade
   add_foreign_key "screenings", "patients", on_update: :cascade, on_delete: :cascade
   add_foreign_key "soaps", "screenings", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subjectives_soaps", "soaps", on_update: :cascade, on_delete: :cascade

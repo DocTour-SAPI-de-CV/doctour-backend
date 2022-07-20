@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Screening < ApplicationRecord
-  belongs_to :doctor
+  # belongs_to :doctor
   belongs_to :patient
 
   has_one :soap, dependent: :destroy
 
-  validates :doctor,
-            presence: true
+  # validates :doctor,
+            # presence: true
 
   validates :patient,
             presence: true
@@ -32,7 +32,7 @@ class Screening < ApplicationRecord
               less_than_or_equal_to: 240
             }
 
-  validates :blood_pressure,
+  validates :respiratory_frequency,
             format: { with: %r{([1-9]{1,1}[0-9]?/[1-9]{1,1}[0-9]?)} },
             length: { in: 3..5 }
 
@@ -51,6 +51,9 @@ class Screening < ApplicationRecord
               greater_than_or_equal_to: 23,
               less_than_or_equal_to: 240
             }
+
+  validates :bmi,
+            presence: true
 
   def bmi
     height / (weight * weight)
