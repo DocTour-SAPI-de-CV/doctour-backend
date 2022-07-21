@@ -228,7 +228,7 @@ Rails.application.routes.draw do
   # delete 'diagnostic/:id', to: 'diagnostic#delete'
 
   # Screenings
-  # post 'screening', to: 'screening#create'
+  post 'screening', to: 'screening#create'
   # put 'screening/:id', to: 'screening#update'
   # get 'screening', to: 'screening#show'
   # get 'screening/:id', to: 'screening#index'

@@ -36,7 +36,8 @@ class ScreeningController < ApplicationController
   private
 
   def screening_params
-    params.require(:screening).permit(:performed_at, :return, :doctor_id, :patient_id,
+    params.require(:screening).permit(:performed_at, :reason_consultation, :return,
+                                      :patient_id, :respiratory_frequency, :bmi,
                                       :temperature, :heart_rate, :blood_pressure,
                                       :weight, :height)
   end

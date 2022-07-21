@@ -9,7 +9,7 @@ class Screening < ApplicationRecord
   # validates :doctor,
             # presence: true
 
-  validates :patient,
+  validates :patient_id,
             presence: true
 
   validates :performed_at,
@@ -58,9 +58,9 @@ class Screening < ApplicationRecord
   validates :bmi,
             presence: true
 
-  def bmi
-    height / (weight * weight)
-  end
+  # def bmi
+  #   height / (weight * weight)
+  # end
 
   def performed_date
     performed_at&.strftime('%m/%d/%Y')
@@ -75,10 +75,10 @@ class Screening < ApplicationRecord
       id: id,
       performed_date: performed_date,
       performed_hour: performed_hour,
-      patient_name: patient.full_name,
+      # patient_name: patient.full_name,
       return: self.return,
-      doctor_name: doctor.full_name,
-      doctor_document: doctor.doctor_document
+      # doctor_name: doctor.full_name,
+      # doctor_document: doctor.doctor_document
     }
   end
 end
