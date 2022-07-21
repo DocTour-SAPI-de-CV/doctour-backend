@@ -354,9 +354,13 @@ ActiveRecord::Schema.define(version: 2022_03_28_225156) do
     t.boolean "hypertension"
     t.boolean "diabetes"
     t.boolean "respiratory_disease"
+    t.text "respiratory_disease_text"
     t.boolean "allergy"
+    t.text "allergy_text"
     t.boolean "surgical_historic"
+    t.text "surgical_historic_text"
     t.boolean "medicine"
+    t.text "medicine_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["patient_id"], name: "index_pathologicals_historics_on_patient_id"
@@ -580,8 +584,8 @@ ActiveRecord::Schema.define(version: 2022_03_28_225156) do
   add_foreign_key "addresses_partners", "partners", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_people", "addresses", on_update: :cascade, on_delete: :cascade
   add_foreign_key "addresses_people", "people", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "allergies_historics", "allergies", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "allergies_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
+  # add_foreign_key "allergies_historics", "allergies", on_update: :cascade, on_delete: :cascade
+  # add_foreign_key "allergies_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "assistants", "people", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "attachment_types", on_update: :cascade, on_delete: :cascade
   add_foreign_key "attachments_people", "attachments", on_update: :cascade, on_delete: :cascade
@@ -606,8 +610,8 @@ ActiveRecord::Schema.define(version: 2022_03_28_225156) do
   add_foreign_key "languages_interprets", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_people", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "languages_people", "people", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "medicines_historics", "medicines", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "medicines_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
+  # add_foreign_key "medicines_historics", "medicines", on_update: :cascade, on_delete: :cascade
+  # add_foreign_key "medicines_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "non_pathologicals_historics", "patients", on_update: :cascade, on_delete: :cascade
   add_foreign_key "objectives_soaps", "objectives", on_update: :cascade, on_delete: :cascade
   add_foreign_key "objectives_soaps", "soaps", on_update: :cascade, on_delete: :cascade
@@ -623,14 +627,14 @@ ActiveRecord::Schema.define(version: 2022_03_28_225156) do
   add_foreign_key "phones_interprets", "phones", on_update: :cascade, on_delete: :cascade
   add_foreign_key "plan_to_services", "plans"
   add_foreign_key "plan_to_services", "services"
-  add_foreign_key "respiratories_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "respiratories_historics", "respiratory_diseases", on_update: :cascade, on_delete: :cascade
+  # add_foreign_key "respiratories_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
+  # add_foreign_key "respiratories_historics", "respiratory_diseases", on_update: :cascade, on_delete: :cascade
   add_foreign_key "screenings", "patients", on_update: :cascade, on_delete: :cascade
   add_foreign_key "soaps", "screenings", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subjectives_soaps", "soaps", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subjectives_soaps", "subjectives", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "surgeries_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "surgeries_historics", "surgeries", on_update: :cascade, on_delete: :cascade
+  # add_foreign_key "surgeries_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
+  # add_foreign_key "surgeries_historics", "surgeries", on_update: :cascade, on_delete: :cascade
   add_foreign_key "vaccines_historics", "non_pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "vaccines_historics", "vaccines", on_update: :cascade, on_delete: :cascade
   add_foreign_key "validation_dates", "plans"

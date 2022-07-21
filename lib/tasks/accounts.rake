@@ -164,6 +164,20 @@ namespace :accounts do
         height: '176',
         bmi: '1'
       )
+
+      PathologicalsHistoric.create(
+        patient: @patient,
+        hypertension: true,
+        diabetes: true,
+        respiratory_disease: true,
+        respiratory_disease_text: 'Respiratory disease',
+        allergy: true,
+        allergy_text: 'Allergy text',
+        surgical_historic: false,
+        surgical_historic_text: '',
+        medicine: false,
+        medicine_text: ''
+      )
     end
   end
 end

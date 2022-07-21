@@ -14,9 +14,13 @@ class CreatePathologicalsHistorics < ActiveRecord::Migration[6.0]
       t.boolean :hypertension
       t.boolean :diabetes
       t.boolean :respiratory_disease
+      t.text  :respiratory_disease_text
       t.boolean :allergy
+      t.text  :allergy_text
       t.boolean :surgical_historic
+      t.text    :surgical_historic_text
       t.boolean :medicine
+      t.text  :medicine_text
 
       t.timestamps
     end
