@@ -178,6 +178,36 @@ namespace :accounts do
         medicine: false,
         medicine_text: ''
       )
+
+      NonPathologicalsHistoric.create(
+        patient: @patient,
+        alcoholic_beverages: true,
+        drugs: true,
+        drugs_name: 'Maconha',
+        tobacco_wallets: 2,
+        vaccines: false,
+        vaccines_name: '',
+      )
+
+      FamilyHistoric.create(
+        patient: @patient,
+        history_family_illnesses: true,
+        side_family: 'both_sides', 
+        mother_side: 'Mother side',
+        father_side: 'Father side'
+      )
+
+      GynecologicalObstetricHistoric.create(
+        patient: @patient,
+        last_menstrual_cycle: DateTime.now.utc,
+        pregnancy: true,
+        number_pregnancies: 1,
+        normal_deliveries: 1,
+        cesarean_deliveries: 0,
+        abortion: 0,
+        contraceptive_methods: true
+      )
+
     end
   end
 end
