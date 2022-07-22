@@ -358,7 +358,9 @@ Rails.application.routes.draw do
   jsonapi_resources :drugs_historics
   jsonapi_resources :drugs
 
-  
+  jsonapi_resources :family_historics
+  jsonapi_resources :gynecological_obstetric_historics
+
   # Validations
   get "email_available", to: "validation#email_available"
   get "document_valid", to: "validation#document_valid"

@@ -9,8 +9,10 @@ class CreateNonPathologicalsHistorics < ActiveRecord::Migration[6.0]
                      on_delete: :cascade
                    }
       t.boolean :drugs
+      t.string  :drugs_name
       t.boolean :vaccines
-      t.string :alcoholic_beverages
+      t.string  :vaccines_name
+      t.string  :alcoholic_beverages
       t.integer :tobacco_wallets
 
       t.timestamps
