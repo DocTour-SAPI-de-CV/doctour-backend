@@ -192,7 +192,7 @@ namespace :accounts do
       FamilyHistoric.create(
         patient: @patient,
         history_family_illnesses: true,
-        side_family: 'both_sides', 
+        side_family: 'both_sides',
         mother_side: 'Mother side',
         father_side: 'Father side'
       )

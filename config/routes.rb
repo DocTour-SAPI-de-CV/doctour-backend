@@ -228,6 +228,13 @@ Rails.application.routes.draw do
   # delete 'diagnostic/:id', to: 'diagnostic#delete'
 
   # Screenings
+  post 'pathologicals_historics', to: 'pathologicals_historics#create'
+  # put 'pathologicals_historics/:id', to: 'pathologicals_historics#update'
+  # get 'pathologicals_historics', to: 'pathologicals_historics#show'
+  # get 'pathologicals_historics/:id', to: 'pathologicals_historics#index'
+  # delete 'pathologicals_historics/:id', to: 'pathologicals_historics#delete'
+
+  # Pathological historic
   post 'screening', to: 'screening#create'
   # put 'screening/:id', to: 'screening#update'
   # get 'screening', to: 'screening#show'
@@ -338,24 +345,23 @@ Rails.application.routes.draw do
 
   jsonapi_resources :chat_contacts, only: [:index, :show]
 
-  jsonapi_resources :pathologicals_historics
-  jsonapi_resources :allergies_historics
-  jsonapi_resources :allergies
-  jsonapi_resources :medicines_historics
-  jsonapi_resources :medicines
-  jsonapi_resources :surgeries_historics
-  jsonapi_resources :surgeries
-  jsonapi_resources :respiratories_historics
-  jsonapi_resources :respiratory_diseases
+  # jsonapi_resources :allergies_historics
+  # jsonapi_resources :allergies
+  # jsonapi_resources :medicines_historics
+  # jsonapi_resources :medicines
+  # jsonapi_resources :surgeries_historics
+  # jsonapi_resources :surgeries
+  # jsonapi_resources :respiratories_historics
+  # jsonapi_resources :respiratory_diseases
   jsonapi_resources :interpreter_availability
   jsonapi_resources :interprets
   jsonapi_resources :languages
   jsonapi_resources :addresses
 
   jsonapi_resources :non_pathologicals_historics
-  jsonapi_resources :vaccines_historics
+  # jsonapi_resources :vaccines_historics
   jsonapi_resources :vaccines
-  jsonapi_resources :drugs_historics
+  # jsonapi_resources :drugs_historics
   jsonapi_resources :drugs
 
   jsonapi_resources :family_historics
