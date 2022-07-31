@@ -241,6 +241,14 @@ Rails.application.routes.draw do
   # get 'non_pathologicals_historics/:id', to: 'non_pathologicals_historics#index'
   # delete 'non_pathologicals_historics/:id', to: 'non_pathologicals_historics#delete'
 
+  # Family historics
+  post 'family_historics', to: 'family_historics#create'
+  # put 'family_historics/:id', to: 'family_historics#update'
+  # get 'family_historics', to: 'family_historics#show'
+  # get 'family_historics/:id', to: 'family_historics#index'
+  # delete 'family_historics/:id', to: 'family_historics#delete'
+  
+
   # Screening
   post 'screening', to: 'screening#create'
   # put 'screening/:id', to: 'screening#update'
@@ -371,8 +379,8 @@ Rails.application.routes.draw do
   # jsonapi_resources :drugs_historics
   jsonapi_resources :drugs
 
-  jsonapi_resources :family_historics
-  jsonapi_resources :gynecological_obstetric_historics
+  # jsonapi_resources :family_historics
+  # jsonapi_resources :gynecological_obstetric_historics
 
   # Validations
   get "email_available", to: "validation#email_available"

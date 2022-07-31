@@ -1,5 +1,5 @@
 class FamilyHistoric < ApplicationRecord
   belongs_to :patient
 
-  validates :patient, uniqueness: true
+  validates :patient, presence: true
 end
