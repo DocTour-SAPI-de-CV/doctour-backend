@@ -335,7 +335,9 @@ ActiveRecord::Schema.define(version: 2022_07_22_232035) do
     t.string "drugs_name"
     t.boolean "vaccines"
     t.string "vaccines_name"
+    t.boolean "alcoholic"
     t.string "alcoholic_beverages"
+    t.boolean "tobacco"
     t.integer "tobacco_wallets"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

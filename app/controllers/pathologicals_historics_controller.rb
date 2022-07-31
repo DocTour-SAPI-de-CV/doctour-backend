@@ -12,11 +12,6 @@ class PathologicalsHistoricsController < ApplicationController
   end
 
   def create
-    puts "create \n\n\n"
-    puts pathological_historic_params
-    puts params
-    puts "fim \n\n\n\n"
-
     pathological_historic = PathologicalsHistoric.new(pathological_historic_params)
     render(json: { pathologicals_historic: pathological_historic }) if pathological_historic.save
 
