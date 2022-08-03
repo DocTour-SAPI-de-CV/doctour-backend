@@ -82,4 +82,4 @@ end
 
 gem "concurrent-ruby", "~> 1.1"
 
-gem 'prometheus_exporter'
+# gem 'prometheus_exporter'
