@@ -249,12 +249,13 @@ ActiveRecord::Schema.define(version: 2022_07_22_232035) do
 
   create_table "gynecological_obstetric_historics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "patient_id", null: false
-    t.datetime "last_menstrual_cycle", null: false
+    t.datetime "last_menstrual_cycle"
     t.boolean "pregnancy"
     t.integer "number_pregnancies"
     t.integer "normal_deliveries"
     t.integer "cesarean_deliveries"
-    t.integer "abortion"
+    t.boolean "abortion"
+    t.integer "number_abortion"
     t.boolean "contraceptive_methods"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

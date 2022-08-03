@@ -9,12 +9,13 @@ class CreateGynecologicalObstetricHistorics < ActiveRecord::Migration[6.0]
                      on_delete: :cascade
                    }
 
-      t.datetime :last_menstrual_cycle, null: false
+      t.datetime :last_menstrual_cycle
       t.boolean  :pregnancy
       t.integer  :number_pregnancies
       t.integer  :normal_deliveries
       t.integer  :cesarean_deliveries
-      t.integer  :abortion
+      t.boolean  :abortion
+      t.integer  :number_abortion
       t.boolean  :contraceptive_methods
 
       t.timestamps

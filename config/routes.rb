@@ -248,6 +248,12 @@ Rails.application.routes.draw do
   # get 'family_historics/:id', to: 'family_historics#index'
   # delete 'family_historics/:id', to: 'family_historics#delete'
   
+  # Gynecological obstetric historics
+  post 'gynecological_obstetric_historics', to: 'gynecological_obstetric_historics#create'
+  # put 'gynecological_obstetric_historics/:id', to: 'gynecological_obstetric_historics#update'
+  # get 'gynecological_obstetric_historics', to: 'gynecological_obstetric_historics#show'
+  # get 'gynecological_obstetric_historics/:id', to: 'gynecological_obstetric_historics#index'
+  # delete 'gynecological_obstetric_historics/:id', to: 'gynecological_obstetric_historics#delete'
 
   # Screening
   post 'screening', to: 'screening#create'
