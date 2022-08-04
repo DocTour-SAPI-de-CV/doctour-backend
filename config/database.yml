@@ -7,11 +7,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
+  host: db-prod-ecs.ctbnspuq26es.us-east-2.rds.amazonaws.com
   port: 5432
-  username: <%= ENV["POSTGRES_USER"] %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
-  #url: <%= ENV["DATABASE_URL"]&.sub("postgres://","postgres://") %>
+  username: postgres
+  password: Q2w-qjqa9h
+  url: 'postgresql://postgres:Q2w-qjqa9h@db-prod-ecs.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctourdb'
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
