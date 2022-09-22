@@ -7,23 +7,23 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db-prod-ecs.ctbnspuq26es.us-east-2.rds.amazonaws.com
+  host: doctourdbfree.ctbnspuq26es.us-east-2.rds.amazonaws.com
   port: 5432
   username: postgres
-  password: Q2w-qjqa9h
-  url: 'postgresql://postgres:Q2w-qjqa9h@db-prod-ecs.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctourdb'
+  password: 30271255
+  url: 'postgresql://postgres:30271255@doctourdbfree.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctourdbfree'
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: doctourdb
+  database: doctourdbfree
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: doctourdb
+  database: doctourdbfree
 
 production:
   database: d8052m390lsdmb

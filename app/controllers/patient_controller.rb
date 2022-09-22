@@ -46,6 +46,10 @@ class PatientController < ApplicationController
     end
   end
 
+  def find_user
+    render(json: { user: User.find_user(params[:email]) })
+  end
+
   private
 
   def patient_params

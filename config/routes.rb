@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "show_account/:id", to: "register/show#account"
 
   post "patient", to: "register/patient#create"
+  post "patient", to: "register/patient#find_user"
   get "patient", to: "register/patient#show"
   patch "patient", to: "register/patient#update"
   # Returns all the user's medical queries

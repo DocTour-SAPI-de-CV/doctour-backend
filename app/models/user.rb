@@ -96,4 +96,9 @@ class User < ApplicationRecord
   def name
     account.people.full_name
   end
+
+  def self.find_user(email)
+    ActiveRecord::Base.connection.execute("SELECT * FROM public.users as users INNER JOIN public.accounts ON users.id=accounts.user_id INNER JOIN public.people ON people.account_id=accounts.id INNER JOIN public.patients ON patients.person_id=people.id WHERE users.email=\'#{email}\'").first()
+  end
+
 end
