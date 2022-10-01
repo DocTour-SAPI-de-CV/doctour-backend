@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post "find_or_create_chat_with_patient", to: "chat_rooms#find_or_create_chat_with_patient"
   get "find_or_create_chat_with_assistant", to: "chat_rooms#find_or_create_chat_with_assistant"
 
+  mount ActionCable.server => '/cable'
+
   resources :service_rooms
   #Routes for divese
   devise_for :users,
@@ -33,12 +35,12 @@ Rails.application.routes.draw do
   get "show_account/:id", to: "register/show#account"
 
   post "patient", to: "register/patient#create"
-  post "patient", to: "register/patient#find_user"
+  get "find_patient/:email", to: "register/patient#find_user", constraints: { email: /[^\/]+/} 
   get "patient", to: "register/patient#show"
   patch "patient", to: "register/patient#update"
   # Returns all the user's medical queries
   get "medical_history/:id", to: "register/patient#medical_history"
-  # Returns info patient: email, full_name, gender and etc
+  # Returns info patients: email, full_name, gender and etc
   get "patients_summary", to: "register/patient#summary"
   # Returns all medical appointments
   get "medical_histories", to: "register/patient#medical_histories"

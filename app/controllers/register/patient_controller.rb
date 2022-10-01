@@ -80,6 +80,18 @@ module Register
       render json: patients, status: :ok
     end
 
+    def summary_meeting
+      puts "summary_meeting"
+      puts params[:id]
+      puts "params[:id] \n\n\n"
+      accounts = Account.where(user_id: params[:id]).all
+      patients = accounts.map do |account|
+        account.user.patient_summary
+      end
+
+      render json: patients, status: :ok
+    end
+
     def medical_histories
       accounts = Account.where(category: 'patient').all
       medical_histories = accounts.map do |account|
@@ -95,5 +107,15 @@ module Register
       render json: user.medical_history, status: :ok
     end
 
+    def find_user
+      puts params[:email]
+      puts "params[:email] \n\n\n"
+      puts params
+      puts "params \n\n\n"
+      @user = User.find_user(params[:email])
+      puts @user
+      puts "@user \n\n\n"
+      render(json: { user: @user } )
+    end
   end
 end
