@@ -21,7 +21,7 @@ class FilterController < ApplicationController
     end
   end
 
-  def dashboard
+  def dashboard_filter
     @dashboard = DashboardFinder.new(nil).find
     render(json: { dashboard: @dashboard })
   end
