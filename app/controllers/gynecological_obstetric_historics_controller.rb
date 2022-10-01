@@ -15,9 +15,12 @@ class GynecologicalObstetricHistoricsController < ApplicationController
 
   def create
     gyne_historic = GynecologicalObstetricHistoric.new(gynecological_obstetric_historic_params)
-    render(json: { gynecological_obstetric_historic: gyne_historic }) if gyne_historic.save
-
-    render(json: { error: gyne_historic.errors }) unless gyne_historic.save
+    if gyne_historic.save
+      render(json: { gynecological_obstetric_historic: gyne_historic })
+      ScreeningChannel.broadcast_to 'new_screening', screening_id: 1
+    else
+      render(json: { error: gyne_historic.errors })
+    end
   end
 
   def delete
