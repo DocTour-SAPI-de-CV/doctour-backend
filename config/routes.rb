@@ -262,7 +262,7 @@ Rails.application.routes.draw do
   post 'screening', to: 'screening#create'
   # put 'screening/:id', to: 'screening#update'
   # get 'screening', to: 'screening#show'
-  # get 'screening/:id', to: 'screening#index'
+  get 'screening/:id', to: 'screening#screening_patient'
   # delete 'screening/:id', to: 'screening#delete'
 
   # disagnostics soap

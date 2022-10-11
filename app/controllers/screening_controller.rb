@@ -15,9 +15,11 @@ class ScreeningController < ApplicationController
 
   def create
     screening = Screening.new(screening_params)
-    render(json: { screening: screening }) if screening.save
-
-    render(json: { error: screening.errors }) unless screening.save
+    if screening.save
+      render(json: { screening: screening }) 
+    else
+      render(json: { error: screening.errors })
+    end
   end
 
   def delete
@@ -33,12 +35,18 @@ class ScreeningController < ApplicationController
     render(json: { error: screening.errors }) unless screening.update(screening_params)
   end
 
+  def screening_patient
+    # data = Screening.find_screening_patient(params[:id])
+    s = Screening.where(patient_id: params[:id]).last
+    # puts data.errors.to_json
+    render(json: { data: s })
+  end
+
   private
 
   def screening_params
     params.require(:screening).permit(:performed_at, :reason_consultation, :return,
                                       :patient_id, :respiratory_frequency, :bmi,
-                                      :temperature, :heart_rate, :blood_pressure,
-                                      :weight, :height)
+                                      :temperature, :heart_rate, :weight, :height)
   end
 end

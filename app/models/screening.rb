@@ -21,46 +21,8 @@ class Screening < ApplicationRecord
   validates :reason_consultation,
             presence: true
 
-  validates :temperature,
-            numericality: {
-              only_float: true,
-              greater_than_or_equal_to: 20,
-              less_than_or_equal_to: 50
-            }
-
-  validates :heart_rate,
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 1,
-              less_than_or_equal_to: 240
-            }
-
-  validates :respiratory_frequency,
-            format: { with: %r{([1-9]{1,1}[0-9]?/[1-9]{1,1}[0-9]?)} },
-            length: { in: 3..5 }
-
-  validates :weight,
-            numericality: {
-              only_float: true,
-              greater_than_or_equal_to: 1,
-              less_than_or_equal_to: 500
-            },
-            presence: true
-
-  validates :height,
-            presence: true,
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 23,
-              less_than_or_equal_to: 240
-            }
-
   validates :bmi,
-            presence: true
-
-  # def bmi
-  #   height / (weight * weight)
-  # end
+           presence: true
 
   def performed_date
     performed_at&.strftime('%m/%d/%Y')
@@ -70,15 +32,16 @@ class Screening < ApplicationRecord
     performed_at&.strftime('%H:%M')
   end
 
-  def as_json
-    {
-      id: id,
-      performed_date: performed_date,
-      performed_hour: performed_hour,
-      # patient_name: patient.full_name,
-      return: self.return,
-      # doctor_name: doctor.full_name,
-      # doctor_document: doctor.doctor_document
-    }
-  end
+  # def as_json
+  #   {
+  #     id: id,
+  #     performed_date: performed_date,
+  #     performed_hour: performed_hour,
+  #     # patient_name: patient.full_name,
+  #     return: self.return,
+  #     # doctor_name: doctor.full_name,
+  #     # doctor_document: doctor.doctor_document
+  #   }
+  # end
+
 end
