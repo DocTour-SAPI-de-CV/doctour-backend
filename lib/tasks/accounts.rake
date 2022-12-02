@@ -52,7 +52,17 @@ namespace :accounts do
       { email: 'gloyo@doctour.com.mx', password: 'DrDocTour1@',
         first_name: 'Guillermo' , last_name: 'Loyo',
         gender: 'male', category: 'doctor',
-        document_number: 'ROAA220101HBCDNN017' }
+        document_number: 'ROAA220101HBCDNN017' },
+
+      { email: 'cachoytap@gmail.com', password: 'PAdoctour@',
+        first_name: 'Patricia' , last_name: 'Arreguín',
+        gender: 'female', category: 'doctor',
+        document_number: 'CAAP830430MDFCRTOO' },
+
+      { email: 'info@holanutricion.com', password: 'ATDoctour@',
+        first_name: 'Ana Ivette' , last_name: 'Tamayo',
+        gender: 'female', category: 'doctor',
+        document_number: '5615152' }
     ]
 
     accounts.each do |account|
