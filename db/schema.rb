@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_22_232035) do
+ActiveRecord::Schema.define(version: 2023_01_15_225307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -121,9 +121,9 @@ ActiveRecord::Schema.define(version: 2022_07_22_232035) do
     t.uuid "to_id", null: false
     t.uuid "from_id", null: false
     t.boolean "readed", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "chat_room_id", null: false
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.uuid "chat_room_id"
     t.index ["from_id"], name: "index_chat_messages_on_from_id"
     t.index ["readed"], name: "index_chat_messages_on_readed"
     t.index ["to_id"], name: "index_chat_messages_on_to_id"
@@ -477,6 +477,49 @@ ActiveRecord::Schema.define(version: 2022_07_22_232035) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "screening_data", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "patient_id", null: false
+    t.uuid "user_id", null: false
+    t.string "reason_consultation"
+    t.float "temperature"
+    t.integer "heart_rate"
+    t.string "respiratory_frequency"
+    t.float "weight"
+    t.integer "height"
+    t.string "bmi"
+    t.string "peea"
+    t.boolean "neurological"
+    t.boolean "genitourinario"
+    t.boolean "respiratory"
+    t.boolean "cardiologic"
+    t.boolean "gastrointestinal"
+    t.boolean "extremities"
+    t.string "discoveries"
+    t.boolean "exam_request"
+    t.string "exam_name"
+    t.string "exam_result"
+    t.boolean "need_return"
+    t.string "main_diagnosis"
+    t.string "full_diagnosis"
+    t.text "secondary_diagnoses"
+    t.string "prognosis"
+    t.string "medication"
+    t.string "dosage"
+    t.string "presentation"
+    t.string "route_of_administration"
+    t.string "frequency"
+    t.string "duration"
+    t.string "medicine"
+    t.string "name"
+    t.string "observation"
+    t.string "exam_medication"
+    t.text "general_indications"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_screening_data_on_patient_id"
+    t.index ["user_id"], name: "index_screening_data_on_user_id"
+  end
+
   create_table "screenings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "performed_at", null: false
     t.boolean "return", null: false
@@ -661,6 +704,7 @@ ActiveRecord::Schema.define(version: 2022_07_22_232035) do
   add_foreign_key "plan_to_services", "services"
   add_foreign_key "respiratories_historics", "pathologicals_historics", on_update: :cascade, on_delete: :cascade
   add_foreign_key "respiratories_historics", "respiratory_diseases", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "screening_data", "patients", on_update: :cascade, on_delete: :cascade
   add_foreign_key "screenings", "patients", on_update: :cascade, on_delete: :cascade
   add_foreign_key "soaps", "screenings", on_update: :cascade, on_delete: :cascade
   add_foreign_key "subjectives_soaps", "soaps", on_update: :cascade, on_delete: :cascade

@@ -69,8 +69,11 @@ Rails.application.routes.draw do
   #resources :massive_upload
   post "massive_upload", to: "massive_upload#upload_file"
   post "status_data_range", to: "massive_upload#status_data_range"
-  
 
+
+  # Save screening data after medical appointment
+  post "screening_data", to: "screening_data#create"
+  get 'screening_data', to: 'screening_data#show'
 
   # unification
   # post 'user_register', to: 'unification#user_register'
