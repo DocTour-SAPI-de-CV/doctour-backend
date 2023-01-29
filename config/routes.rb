@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   post "patient_room", to: "chat_rooms#patient_room"
   post "find_or_create_chat_with_patient", to: "chat_rooms#find_or_create_chat_with_patient"
   get "find_or_create_chat_with_assistant", to: "chat_rooms#find_or_create_chat_with_assistant"
-
+  get "health_check", to:"health_check#all"
+  
   mount ActionCable.server => '/cable'
 
   resources :service_rooms
@@ -74,6 +75,8 @@ Rails.application.routes.draw do
   # Save screening data after medical appointment
   post "screening_data", to: "screening_data#create"
   get 'screening_data', to: 'screening_data#show'
+
+  post "user_request", to: "user_request#create"
 
   # unification
   # post 'user_register', to: 'unification#user_register'
