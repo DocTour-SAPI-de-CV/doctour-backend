@@ -17,3 +17,10 @@ Acessar: `http://localhost:3000/rails/mailers`
 `heroku login`
 Configurar o remote
 `git push heroku master`
+
+
+### Comandos úteis
+`bundle exec rake db:migrate`
+
+#### This command will list all table in a rails app in rails console
+`ActiveRecord::Base.connection.tables`

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_29_230150) do
+ActiveRecord::Schema.define(version: 2023_02_13_225638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2023_01_29_230150) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_accounts_on_user_id", unique: true
+  end
+
+  create_table "actions_to_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "description"
+    t.string "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "actions_users", force: :cascade do |t|
@@ -519,6 +526,7 @@ ActiveRecord::Schema.define(version: 2023_01_29_230150) do
     t.text "general_indications"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "doctor_id"
     t.index ["patient_id"], name: "index_screening_data_on_patient_id"
     t.index ["user_id"], name: "index_screening_data_on_user_id"
   end
