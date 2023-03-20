@@ -2,7 +2,7 @@
 
 class PasswordUpdateMailer < ApplicationMailer
   # RECOVERY_REDIRECT_URL = Rails.application.credentials.mailer[:redirect_url]
-  RECOVERY_REDIRECT_URL = 'https://doctour-staging.netlify.com/sign_in'
+  RECOVERY_REDIRECT_URL = 'https://app.doctour.com.mx/sign_in'
   # RECOVERY_REDIRECT_URL = 'http://192.168.8.94:8080/sign_in'
 
   def password_update
