@@ -4,6 +4,7 @@ VERIFY = Register::VerificationController
 module Register
   class CreateController < ApplicationController
     def self.user(params)
+
       password = if params[:password].nil?
                    Devise.friendly_token.first(32)
                  else

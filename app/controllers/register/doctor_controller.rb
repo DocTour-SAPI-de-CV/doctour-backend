@@ -33,28 +33,49 @@ module Register
     def create
       result(VERIFY.check_category(params[:category], 'doctor'))
 
+      params[:password]='doctourdr1231@'
+      params[:nationality_id] = Nationality.first.id
+      
+
       result(CREATE.user(params)) unless @stop
+
       result(CREATE.account(@objects[:User], 'doctor')) unless @stop
       result(CREATE.people(@objects[:Account], params)) unless @stop
       result(CREATE.document(params)) unless @stop
       result(CREATE.document_person(@objects[:Document], @objects[:People])) unless @stop
       result(CREATE.phone(params)) unless @stop
       result(CREATE.person_phone(@objects[:People], @objects[:Phone])) unless @stop
-      params[:languages].each do |language|
-        result(CREATE.language(@objects[:People], language)) unless @stop
-      end
-      # result(CREATE.address(params)) unless @stop
-      # result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
+      # params[:languages].each do |language|
+      language = {id: Language.first.id, native: true }
+      logger.debug @objects
+      result(CREATE.language(@objects[:People], language)) unless @stop
+      # end
+      result(CREATE.address(params)) unless @stop
+      result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
       result(CREATE.doctor(@objects[:People], params)) unless @stop
-      params[:specializations].each do |specialization|
-        result(CREATE.specialization(specialization, @objects[:Doctor])) unless @stop
-      end
+      # params[:specializations].each do |specialization|
+      result(CREATE.specialization(Specialization.first.id, @objects[:Doctor])) unless @stop
+      # end
+      
+      
 
       unless @stop
         WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver
       end
       render(json: @message, status: @status)
     end
+
+    def delete
+      result(VERIFY.check_category(params[:category], 'doctor'))
+      user = User.find(params[:id])
+      account = Account.where(user_id: user[:id])
+      people = People.where(account_id: account[0][:id])
+      # DocumentsPerson.where()
+
+      render json: doctors, status: :ok
+    end
+
+
 
     def update
       user = User.find(params[:id])
