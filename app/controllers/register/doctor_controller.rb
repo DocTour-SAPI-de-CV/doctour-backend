@@ -41,17 +41,17 @@ module Register
 
       result(CREATE.account(@objects[:User], 'doctor')) unless @stop
       result(CREATE.people(@objects[:Account], params)) unless @stop
-      result(CREATE.document(params)) unless @stop
-      result(CREATE.document_person(@objects[:Document], @objects[:People])) unless @stop
-      result(CREATE.phone(params)) unless @stop
-      result(CREATE.person_phone(@objects[:People], @objects[:Phone])) unless @stop
+      # result(CREATE.document(params)) unless @stop
+      # result(CREATE.document_person(@objects[:Document], @objects[:People])) unless @stop
+      # result(CREATE.phone(params)) unless @stop
+      # result(CREATE.person_phone(@objects[:People], @objects[:Phone])) unless @stop
       # params[:languages].each do |language|
       language = {id: Language.first.id, native: true }
       logger.debug @objects
-      result(CREATE.language(@objects[:People], language)) unless @stop
+      # result(CREATE.language(@objects[:People], language)) unless @stop
       # end
-      result(CREATE.address(params)) unless @stop
-      result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
+      # result(CREATE.address(params)) unless @stop
+      # result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
       result(CREATE.doctor(@objects[:People], params)) unless @stop
       # params[:specializations].each do |specialization|
       result(CREATE.specialization(Specialization.first.id, @objects[:Doctor])) unless @stop
@@ -66,13 +66,10 @@ module Register
     end
 
     def delete
-      result(VERIFY.check_category(params[:category], 'doctor'))
-      user = User.find(params[:id])
-      account = Account.where(user_id: user[:id])
-      people = People.where(account_id: account[0][:id])
-      # DocumentsPerson.where()
-
-      render json: doctors, status: :ok
+      # result(VERIFY.check_category(params[:category], 'doctor'))
+      user = User.find(params[:id]).delete
+      
+      render json: user, status: :ok
     end
 
 

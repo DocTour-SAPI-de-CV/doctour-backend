@@ -31,9 +31,6 @@ ActiveRecord::Schema.define(version: 2023_02_13_225638) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "actions_users", force: :cascade do |t|
-  end
-
   create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "street", null: false
     t.integer "street_number", null: false
@@ -131,9 +128,9 @@ ActiveRecord::Schema.define(version: 2023_02_13_225638) do
     t.uuid "to_id", null: false
     t.uuid "from_id", null: false
     t.boolean "readed", default: false
-    t.datetime "created_at", precision: 6
-    t.datetime "updated_at", precision: 6
-    t.uuid "chat_room_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "chat_room_id", null: false
     t.index ["from_id"], name: "index_chat_messages_on_from_id"
     t.index ["readed"], name: "index_chat_messages_on_readed"
     t.index ["to_id"], name: "index_chat_messages_on_to_id"

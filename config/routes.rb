@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get "medical_histories", to: "register/patient#medical_histories"
 
   post "doctor", to: "register/doctor#create"
+  delete "doctor/:id", to: "register/doctor#delete"
   get "doctor", to: "register/doctor#show"
   patch "doctor", to: "register/doctor#update"
 
