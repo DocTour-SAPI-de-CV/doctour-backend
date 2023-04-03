@@ -47,7 +47,7 @@ module Register
       # result(CREATE.person_phone(@objects[:People], @objects[:Phone])) unless @stop
       # params[:languages].each do |language|
       language = {id: Language.first.id, native: true }
-      logger.debug @objects
+      # logger.debug @objects
       # result(CREATE.language(@objects[:People], language)) unless @stop
       # end
       # result(CREATE.address(params)) unless @stop
@@ -66,10 +66,14 @@ module Register
     end
 
     def delete
-      # result(VERIFY.check_category(params[:category], 'doctor'))
-      user = User.find(params[:id]).delete
-      
-      render json: user, status: :ok
+      result(VERIFY.check_category(params[:category], 'doctor'))
+      # user = User.find(params[:id]).delete
+      # logger.debug "------------------------"
+      # logger.debug params
+      User.find(params[:id]).delete
+
+
+      render json: {info:'user deleted'}, status: :ok
     end
 
 
