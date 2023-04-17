@@ -29,7 +29,7 @@ module Register
     end
 
     def create
-      result(VERIFY.check_category(params[:category], 'patient'))
+      # result(VERIFY.check_category(params[:category], 'patient'))
       unless @stop
         user = CREATE.user(params)
         result(user)
@@ -48,15 +48,12 @@ module Register
       unless @stop
         WelcomeMailer.with(email: @objects[:User].email, full_name: @objects[:People].full_name).send_email.deliver
       end
-      # chat_room = ChatRoom.create(name: "Bem vindo novo usuário", kind: "assistant")
-      # chat_room.users += [user, Account.where(category: "assistant").first.user]
-      # chat_room.save
       render(json: @message, status: @status)
     end
 
     def update
       user = User.find(params[:id])
-      result(VERIFY.check_category(user.account.category, 'patient'))
+      # result(VERIFY.check_category(user.account.category, 'patient'))
       result(UPDATE.patient(params, user)) unless @stop
 
       render(json: @message, status: @status)
