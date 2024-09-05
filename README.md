@@ -1,6 +1,14 @@
 # DocTour - Backend
 Backend of the DocTour project
 
+# AVISO IMPORTANTE
+Se realizaron cambios (# Commented out) para parar conexiones en los siguientes archivos:
+1. docker-compose.yaml
+2. .env 
+3. database.yml 
+4. Procfile
+
+
 ## Passos para rodar o projeto:
 ### 1º Passo:
 `docker-compose build`
