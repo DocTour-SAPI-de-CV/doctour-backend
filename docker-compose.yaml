@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/api/Dockerfile
-    command: bin/server
+    # command: bin/server # Commented out to prevent server from starting automatically
     volumes:
       - .:/doctour
     ports:
@@ -41,4 +41,4 @@ services:
       - .env
     volumes:
       - .:/doctour
-    command: bundle exec prometheus_exporter -b 0.0.0.0 -p 9394 --prefix 'doctour_'
+    # command: bundle exec prometheus_exporter -b 0.0.0.0 -p 9394 --prefix 'doctour_' # Commented out to stop the propetheus exporter from running automatically
