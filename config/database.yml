@@ -39,13 +39,13 @@ development:
 test:
   <<: *default
   database: doctourdbfree
-
-production:
-  database: d8052m390lsdmb
-  timeout: 5000
-  uri: postgres://xpgkmgcuvejnui:2fe42fc7977571bf5f72644839a0b4714031578aa438204966bb490977045c34@ec2-54-144-196-35.compute-1.amazonaws.com:5432/d8052m390lsdmb
-  username: xpgkmgcuvejnui
-  password: 2fe42fc7977571bf5f72644839a0b4714031578aa438204966bb490977045c34
-  port: 5432
-  host: ec2-54-144-196-35.compute-1.amazonaws.com
-
+# COMMENTED OUT TO STOP DB TO CONNECT TO PRODUCTION DB
+# production: # COMMENTED OUT TO STOP DB TO CONNECT TO PRODUCTION DB
+#  database: d8052m390lsdmb 
+#  timeout: 5000  
+#  uri: postgres://xpgkmgcuvejnui:2fe42fc7977571bf5f72644839a0b4714031578aa438204966bb490977045c34@ec2-54-144-196-35.compute-1.amazonaws.com:5432/d8052m390lsdmb
+#  username: xpgkmgcuvejnui
+#  password: 2fe42fc7977571bf5f72644839a0b4714031578aa438204966bb490977045c34
+#  port: 5432 
+#  host: ec2-54-144-196-35.compute-1.amazonaws.com # COMMENTED OUT TO STOP DB TO CONNECT TO PRODUCTION DB
+# COMMENTED OUT TO STOP DB TO CONNECT TO PRODUCTION DB
