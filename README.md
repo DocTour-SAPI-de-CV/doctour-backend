@@ -5,7 +5,7 @@ Backend of the DocTour project
 Se realizaron cambios (# Commented out) para parar conexiones en los siguientes archivos:
 1. docker-compose.yaml
 2. .env 
-3. database.yml 
+3. database.yml # Se hizo la conexión para la BD de producción para AZURE
 4. Procfile
 
 
