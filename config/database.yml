@@ -7,11 +7,11 @@
 default: &default
   # adapter: postgresql
   # encoding: unicode
-  # host: doctourdbfree.ctbnspuq26es.us-east-2.rds.amazonaws.com
+  # host: appdoctour-postgres.postgres.database.azure.com
   # port: 5432
-  # username: postgres
-  # password: 30271255
-  # url: 'postgresql://postgres:30271255@doctourdbfree.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctourdbfree'
+  # username: DTApp@appdoctour-postgres
+  # password: Rzw;-Bc:qV5$F5#
+  # url: 'appdoctour-postgres.postgres.database.azure.com'
   # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   adapter: postgresql
   encoding: unicode
