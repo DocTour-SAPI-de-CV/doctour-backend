@@ -42,11 +42,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => "aalba@doctour.com.mx",
-    :password => "K9z#2PAGcgS7/yH",
-    :address => "smtp.zoho.com",
-    :domain => "doctour.com.mx",
-    :port => "465",
+    :user_name => ENV['SMTP_USERNAME'] || "aalba@doctour.com.mx",  
+    :password =>  ENV['SMTP_PASSWORD'] || "default_password",
+    :address => ENV['SMTP_ADDRESS'] || "smtp.zoho.com",
+    :domain => ENV['SMTP_DOMAIN'] || "doctour.com.mx", 
+    :port => ENV['SMTP_PORT'] || "465",
     :authentication=> "plain",
     :ssl=> false,
     :tls=> true,
