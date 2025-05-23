@@ -4,65 +4,89 @@ namespace :accounts do
   desc 'Populate default accounts'
   task setup: :environment do
     accounts = [
-      { email: 'doutor@doctour.com', password: 'doctourdr1231@',
-        first_name: 'José', last_name: 'Ricardo',
-        gender: 'male', category: 'doctor',
-        document_number: 'ROAA220101HBCDNN012' },
-
-      { email: 'doutor2@doctour.com', password: 'doctourdr1232@',
-        first_name: 'Carla', last_name: 'Mendes',
-        gender: 'female', category: 'doctor',
-        document_number: 'ROAA220101HBCDNN013' },
-
-      { email: 'paciente@doctour.com', password: 'doctourpaciente1231@',
-        first_name: 'Antonio', last_name: 'Rodrigo',
-        gender: 'male', category: 'patient',
-        document_number: 'ROAA220101HBCDNN011' },
-
-      { email: 'paciente2@doctour.com', password: 'doctourpaciente1232@',
-        first_name: 'Thaise', last_name: 'Gabriela',
-        gender: 'male', category: 'patient',
-        document_number: 'ROAA220101HBCDNN046' },
-
-      { email: 'paciente3@doctour.com', password: 'doctourpaciente1233@',
-        first_name: 'Diego', last_name: 'Eduardo',
-        gender: 'male', category: 'patient',
-        document_number: 'ROAA220101HBCDNN044' },
-
-      { email: 'assistente@doctour.com', password: 'doctourassistente1231@',
-        first_name: 'Amanda', last_name: 'Santos',
-        gender: 'female', category: 'assistant',
-        document_number: 'ROAA220101HBCDNN020' },
-
-      { email: 'assistente2@doctour.com', password: 'doctourassistente1232@',
-        first_name: 'Fátima', last_name: 'Silva',
-        gender: 'female', category: 'assistant',
-        document_number: 'ROAA220101HBCDNN014' },
-
-      { email: 'assistente3@doctour.com', password: 'doctourassistente1233@',
-        first_name: 'Junior', last_name: 'Carvalho',
-        gender: 'male', category: 'assistant',
-        document_number: 'ROAA220101HBCDNN015' },
-
-      { email: 'admin@doctour.com', password: 'doctouradmin123@',
-        first_name: 'Andressa', last_name: 'Souza',
-        gender: 'female', category: 'admin',
-        document_number: 'ROAA220101HBCDNN016' },
-
-      { email: 'gloyo@doctour.com.mx', password: 'DrDocTour1@',
-        first_name: 'Guillermo' , last_name: 'Loyo',
-        gender: 'male', category: 'doctor',
-        document_number: 'ROAA220101HBCDNN017' },
-
-      { email: 'cachoytap@gmail.com', password: 'PAdoctour@',
-        first_name: 'Patricia' , last_name: 'Arreguín',
-        gender: 'female', category: 'doctor',
-        document_number: 'CAAP830430MDFCRTOO' },
-
-      { email: 'info@holanutricion.com', password: 'ATDoctour@',
-        first_name: 'Ana Ivette' , last_name: 'Tamayo',
-        gender: 'female', category: 'doctor',
-        document_number: '5615152' }
+      { email: ENV['DOCTOR1_EMAIL'] || 'doutor@doctour.com',   
+        password: ENV['DOCTOR1_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['DOCTOR1_FIRST_NAME'] || 'José',   
+        last_name: ENV['DOCTOR1_LAST_NAME'] || 'Ricardo',  
+        gender: 'male', category: 'doctor',  
+        document_number: ENV['DOCTOR1_DOCUMENT'] || 'ROAA220101HBCDNN012' },  
+  
+      { email: ENV['DOCTOR2_EMAIL'] || 'doutor2@doctour.com',   
+        password: ENV['DOCTOR2_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['DOCTOR2_FIRST_NAME'] || 'Carla',   
+        last_name: ENV['DOCTOR2_LAST_NAME'] || 'Mendes',  
+        gender: 'female', category: 'doctor',  
+        document_number: ENV['DOCTOR2_DOCUMENT'] || 'ROAA220101HBCDNN013' },  
+  
+      { email: ENV['PATIENT1_EMAIL'] || 'paciente@doctour.com',   
+        password: ENV['PATIENT1_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['PATIENT1_FIRST_NAME'] || 'Antonio',   
+        last_name: ENV['PATIENT1_LAST_NAME'] || 'Rodrigo',  
+        gender: 'male', category: 'patient',  
+        document_number: ENV['PATIENT1_DOCUMENT'] || 'ROAA220101HBCDNN011' },  
+  
+      { email: ENV['PATIENT2_EMAIL'] || 'paciente2@doctour.com',   
+        password: ENV['PATIENT2_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['PATIENT2_FIRST_NAME'] || 'Thaise',   
+        last_name: ENV['PATIENT2_LAST_NAME'] || 'Gabriela',  
+        gender: 'male', category: 'patient',  
+        document_number: ENV['PATIENT2_DOCUMENT'] || 'ROAA220101HBCDNN046' },  
+  
+      { email: ENV['PATIENT3_EMAIL'] || 'paciente3@doctour.com',   
+        password: ENV['PATIENT3_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['PATIENT3_FIRST_NAME'] || 'Diego',   
+        last_name: ENV['PATIENT3_LAST_NAME'] || 'Eduardo',  
+        gender: 'male', category: 'patient',  
+        document_number: ENV['PATIENT3_DOCUMENT'] || 'ROAA220101HBCDNN044' },  
+  
+      { email: ENV['ASSISTANT1_EMAIL'] || 'assistente@doctour.com',   
+        password: ENV['ASSISTANT1_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['ASSISTANT1_FIRST_NAME'] || 'Amanda',   
+        last_name: ENV['ASSISTANT1_LAST_NAME'] || 'Santos',  
+        gender: 'female', category: 'assistant',  
+        document_number: ENV['ASSISTANT1_DOCUMENT'] || 'ROAA220101HBCDNN020' },  
+  
+      { email: ENV['ASSISTANT2_EMAIL'] || 'assistente2@doctour.com',   
+        password: ENV['ASSISTANT2_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['ASSISTANT2_FIRST_NAME'] || 'Fátima',   
+        last_name: ENV['ASSISTANT2_LAST_NAME'] || 'Silva',  
+        gender: 'female', category: 'assistant',  
+        document_number: ENV['ASSISTANT2_DOCUMENT'] || 'ROAA220101HBCDNN014' },  
+  
+      { email: ENV['ASSISTANT3_EMAIL'] || 'assistente3@doctour.com',   
+        password: ENV['ASSISTANT3_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['ASSISTANT3_FIRST_NAME'] || 'Junior',   
+        last_name: ENV['ASSISTANT3_LAST_NAME'] || 'Carvalho',  
+        gender: 'male', category: 'assistant',  
+        document_number: ENV['ASSISTANT3_DOCUMENT'] || 'ROAA220101HBCDNN015' },  
+  
+      { email: ENV['ADMIN_EMAIL'] || 'admin@doctour.com',   
+        password: ENV['ADMIN_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['ADMIN_FIRST_NAME'] || 'Andressa',   
+        last_name: ENV['ADMIN_LAST_NAME'] || 'Souza',  
+        gender: 'female', category: 'admin',  
+        document_number: ENV['ADMIN_DOCUMENT'] || 'ROAA220101HBCDNN016' },  
+  
+      { email: ENV['DOCTOR_GLOYO_EMAIL'] || 'gloyo@doctour.com.mx',   
+        password: ENV['DOCTOR_GLOYO_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['DOCTOR_GLOYO_FIRST_NAME'] || 'Guillermo',   
+        last_name: ENV['DOCTOR_GLOYO_LAST_NAME'] || 'Loyo',  
+        gender: 'male', category: 'doctor',  
+        document_number: ENV['DOCTOR_GLOYO_DOCUMENT'] || 'ROAA220101HBCDNN017' },  
+  
+      { email: ENV['DOCTOR_PATRICIA_EMAIL'] || 'cachoytap@gmail.com',   
+        password: ENV['DOCTOR_PATRICIA_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['DOCTOR_PATRICIA_FIRST_NAME'] || 'Patricia',   
+        last_name: ENV['DOCTOR_PATRICIA_LAST_NAME'] || 'Arreguín',  
+        gender: 'female', category: 'doctor',  
+        document_number: ENV['DOCTOR_PATRICIA_DOCUMENT'] || 'CAAP830430MDFCRTOO' },  
+  
+      { email: ENV['DOCTOR_ANA_EMAIL'] || 'info@holanutricion.com',   
+        password: ENV['DOCTOR_ANA_PASSWORD'] || SecureRandom.alphanumeric(16),  
+        first_name: ENV['DOCTOR_ANA_FIRST_NAME'] || 'Ana Ivette',   
+        last_name: ENV['DOCTOR_ANA_LAST_NAME'] || 'Tamayo',  
+        gender: 'female', category: 'doctor',  
+        document_number: ENV['DOCTOR_ANA_DOCUMENT'] || '5615152' }
     ]
 
     accounts.each do |account|
@@ -81,7 +105,7 @@ namespace :accounts do
         account_id: @account.id,
         first_name: account[:first_name],
         last_name: account[:last_name],
-        birthdate: '1975-07-11',
+        birthdate: ENV['DEFAULT_BIRTHDATE'] || Date.current - 30.years,
         gender: account[:gender],
         nationality_id: Nationality.first.id
       )
@@ -97,9 +121,9 @@ namespace :accounts do
       )
 
       @phone = Phone.create(
-        country_code: '55',
-        area_code: '51',
-        number: '985868852'
+        country_code: ENV['DEFAULT_COUNTRY_CODE'] || '55',
+        area_code: ENV['DEFAULT_AREA_CODE'] || '51',
+        number: ENV['DEFAULT_PHONE'] || '000000000'
       )
 
       @person_phone = PeoplePhone.create(
@@ -158,7 +182,7 @@ namespace :accounts do
         photo: 'foto.png',
         privacy_policy: true,
         terms_use: true,
-        client_ip: '192.168.1.1'
+        client_ip: ENV['SETUP_CLIENT_IP'] || 'SYSTEM_SETUP'
       )
 
       Screening.create(
