@@ -148,7 +148,7 @@ class MassiveUploadController < ApplicationController
                     
                     ali_baba = {
                         email: row['Email '],
-                        password:  '12345678'.to_s,
+                        password:  SecureRandom.alphanumeric(12),
                         document_type: row['tipo documento'],
                         id_afiliado: row['ID afiliado'],
                         phone: row['Telefono Afiliado'],
