@@ -5,33 +5,17 @@
 #   gem 'sqlite3'
 #
 default: &default
-  # adapter: postgresql
-  # encoding: unicode
-  # host: doctourdbfree.ctbnspuq26es.us-east-2.rds.amazonaws.com
-  # port: 5432
-  # username: postgres
-  # password: 30271255
-  # url: 'postgresql://postgres:30271255@doctourdbfree.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctourdbfree'
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   adapter: postgresql
   encoding: unicode
-  host: database-dev.ctbnspuq26es.us-east-2.rds.amazonaws.com
-  port: 5432
-  username: postgres
-  password: 30271255
-  url: 'postgresql://postgres:30271255@database-dev.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctour'
+  host: <%= ENV.fetch('DEV_DB_HOST', 'database-dev.ctbnspuq26es.us-east-2.rds.amazonaws.com') %> 
+  port: <%= ENV.fetch('DEV_DB_PORT', 5432) %>
+  username: <%= ENV.fetch('DEV_DB_USERNAME', 'postgres') %>
+  password: <%= ENV.fetch('DEV_DB_PASSWORD', 'default_password') %>
+  url: <%= ENV.fetch('DEV_DATABASE_URL', 'postgresql://postgres:default_password@database-dev.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctour') %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
-  host: database-dev.ctbnspuq26es.us-east-2.rds.amazonaws.com
-  port: 5432
-  username: postgres
-  password: 30271255
-  url: 'postgresql://postgres:30271255@database-dev.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctour'
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -41,10 +25,14 @@ test:
   database: doctourdbfree
 
 production:
-  database: appdoctour 
-  timeout: 5000  
-  url: 'appdoctour.postgres.database.azure.com'
-  username: AppDocTour
-  password: Rzw;-Bc:qV5$F5#
-  port: 5432 
-  host: appdoctour.postgres.database.azure.com 
+  host: <%= ENV.fetch('PROD_DB_HOST', 'appdoctour.postgres.database.azure.com') %> 
+  port: <%= ENV.fetch('PROD_DB_PORT', 5432) %>
+  database: <%= ENV.fetch('PROD_DB_NAME', 'appdoctour') %> 
+  username: <%= ENV.fetch('PROD_DB_USERNAME', 'AppDocTour') %>
+  password: <%= ENV.fetch('PROD_DB_PASSWORD', 'default_password') %>
+  url: <%= ENV.fetch('PROD_DATABASE_URL', 'appdoctour.postgres.database.azure.com') %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: <%= ENV.fetch('PROD_DB_TIMEOUT', 5000) %>  
+ 
+  
+  
