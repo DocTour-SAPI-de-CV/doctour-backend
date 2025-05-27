@@ -1,3 +1,4 @@
+<% unless Rails.env.production? %> 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined. If you add columns to the
@@ -43,3 +44,4 @@ bruna:
     email: ana@assistant.com.br
     encrypted_password: <%= User.new(:password => 'ana123123').encrypted_password %>
     jti: a63d6e56-b21a-43e5-bf0b-3a9bdc6db8fc
+<% end %>
