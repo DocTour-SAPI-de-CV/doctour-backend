@@ -55,7 +55,8 @@ module Register
       result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
       result(CREATE.doctor(@objects[:People], params)) unless @stop
       # params[:specializations].each do |specialization|
-      result(CREATE.specialization(Specialization.first.id, @objects[:Doctor])) unless @stop
+      specialization_id = params[:specialization_id] || Specialization.first.id  
+      result(CREATE.specialization(specialization_id, @objects[:Doctor])) unless @stop
       # end
       
       
