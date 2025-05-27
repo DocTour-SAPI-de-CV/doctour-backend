@@ -156,7 +156,7 @@ namespace :accounts do
       if account[:category] == 'assistant'
         @assistant = Assistant.create(
           person_id: @person.id,
-          photo: 'foto.png',
+          photo: ENV['DEFAULT_PHOTO'] || 'foto.png',
           status: 0
         )
       end
@@ -164,13 +164,13 @@ namespace :accounts do
       if account[:category] == 'doctor'
         @doctor = Doctor.create(
           person_id: @person.id,
-          photo: 'foto.png',
-          about: 'Doctor of DocTour',
+          photo: ENV['DEFAULT_PHOTO'] || 'foto.png',
+          about: 'Médico de DocTour',
           status: 0
         )
 
         @specialization_doctor = DoctorsSpecialization.create(
-          specialization_id: Specialization.first.id,
+          specialization_id: ENV['DEFAULT_DOCTOR_SPECIALIZATION_ID'] || 'Médico',
           doctor_id: @doctor.id
         )
       end
@@ -179,7 +179,7 @@ namespace :accounts do
 
       @patient = Patient.create(
         person_id: @person.id,
-        photo: 'foto.png',
+        photo: ENV['DEFAULT_PHOTO'] || 'foto.png',
         privacy_policy: true,
         terms_use: true,
         client_ip: ENV['SETUP_CLIENT_IP'] || 'SYSTEM_SETUP'
@@ -190,7 +190,7 @@ namespace :accounts do
         return: true,
         # doctor: @doctor,
         patient: @patient,
-        reason_consultation: 'Dor',
+        reason_consultation: 'Dolor',
         temperature: '36',
         heart_rate: '93',
         respiratory_frequency: '5/9',
@@ -217,7 +217,7 @@ namespace :accounts do
         patient: @patient,
         alcoholic_beverages: true,
         drugs: true,
-        drugs_name: 'Maconha',
+        drugs_name: 'Alcohol',
         tobacco_wallets: 2,
         vaccines: false,
         vaccines_name: '',
