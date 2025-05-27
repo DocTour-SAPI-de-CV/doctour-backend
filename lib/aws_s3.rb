@@ -5,10 +5,9 @@ require 'aws-sdk-s3'
 class AwsS3
 
   def self.access_codes
-    aws_access_key_id = 'AKIAWJTXOR34JD4BRMAB'
-    aws_secret_access_key = 'nPie3R7djpAmz5TOLRZ9lZ5TWG0miZehWKCM79bF'
-    aws_region = 'us-east-2'
-
+    aws_access_key_id = ENV['AWS_ACCESS_KEY_ID'] || 'your_aws_access_key'
+    aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY'] || 'your_aws_secret_key'
+    aws_region = ENV['AWS_REGION'] || 'us-east-2'
     @s3 = Aws::S3::Resource.new(region: aws_region, access_key_id: aws_access_key_id, secret_access_key: aws_secret_access_key)
   end
 

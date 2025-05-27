@@ -178,7 +178,7 @@ module Register
     def self.doctor(person, params)
       doctor = Doctor.new(
         person_id: person.id,
-        photo: 'foto.png',
+        photo: ENV['DEFAULT_PHOTO'] || 'foto.png',
         about: params[:about],
         status: 0
       )
@@ -197,7 +197,7 @@ module Register
     def self.assistant(person)
       assistant = Assistant.new(
         person_id: person.id,
-        photo: 'foto.png',
+        photo: ENV['DEFAULT_PHOTO'] || 'foto.png',
         status: 0
       )
 

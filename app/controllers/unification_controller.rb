@@ -185,7 +185,7 @@ class UnificationController < ApplicationController
   def create_doctor(params)
     @doctor = Doctor.new(
       person_id: @people.id,
-      photo: 'foto.pdf',
+      photo: params[:photo] || ENV['DEFAULT_DOCTOR_PHOTO'] || 'default_doctor.png',
       about: params[:about],
       status: 0
     )

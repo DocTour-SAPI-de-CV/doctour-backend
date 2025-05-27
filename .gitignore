@@ -31,3 +31,6 @@
 # Ignore master key for decrypting credentials and more.
 # /config/master.key
 vendor/
+
+# Ignore .env file with the variables
+.env 
