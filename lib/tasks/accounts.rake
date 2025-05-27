@@ -107,7 +107,7 @@ namespace :accounts do
         last_name: account[:last_name],
         birthdate: ENV['DEFAULT_BIRTHDATE'] || Date.current - 30.years,
         gender: account[:gender],
-        nationality_id: Nationality.first.id
+        nationality_id: ENV['DEFAULT_NATIONALITY_ID'] || Nationality.first.id
       )
 
       @document = Document.create(
@@ -132,7 +132,7 @@ namespace :accounts do
       )
 
       @language_person = LanguagesPerson.create(
-        language_id: Language.first.id,
+        language_id: ENV['DEFAULT_LANGUAGE_ID'] || Language.first.id,
         person_id: @person.id,
         native: true
       )
