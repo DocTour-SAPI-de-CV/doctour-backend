@@ -33,8 +33,8 @@ module Register
     def create
       result(VERIFY.check_category(params[:category], 'doctor'))
 
-      params[:password]='doctourdr1231@'
-      params[:nationality_id] = Nationality.first.id
+      params[:password] = SecureRandom.alphanumeric(16)
+      params[:nationality_id] = params[:nationality_id] || ENV['DEFAULT_NATIONALITY_ID']
       
 
       result(CREATE.user(params)) unless @stop
@@ -55,7 +55,7 @@ module Register
       result(CREATE.address_person(@objects[:Address], @objects[:People])) unless @stop
       result(CREATE.doctor(@objects[:People], params)) unless @stop
       # params[:specializations].each do |specialization|
-      specialization_id = params[:specialization_id] || Specialization.first.id  
+      specialization_id = params[:specialization_id] || ENV['DEFAULT_SPECIALIZATION_ID']  
       result(CREATE.specialization(specialization_id, @objects[:Doctor])) unless @stop
       # end
       
