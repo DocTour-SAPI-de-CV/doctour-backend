@@ -7,11 +7,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: <%= ENV.fetch('DEV_DB_HOST', 'database-dev.ctbnspuq26es.us-east-2.rds.amazonaws.com') %> 
-  port: <%= ENV.fetch('DEV_DB_PORT', 5432) %>
-  username: <%= ENV.fetch('DEV_DB_USERNAME', 'postgres') %>
-  password: <%= ENV.fetch('DEV_DB_PASSWORD', 'default_password') %>
-  url: <%= ENV.fetch('DEV_DATABASE_URL', 'postgresql://postgres:default_password@database-dev.ctbnspuq26es.us-east-2.rds.amazonaws.com/doctour') %>
+  host: <%= ENV.fetch('DEV_DB_HOST') %> 
+  port: <%= ENV.fetch('DEV_DB_PORT') %>
+  username: <%= ENV.fetch('DEV_DB_USERNAME') %>
+  password: <%= ENV.fetch('DEV_DB_PASSWORD') %>
+  url: <%= ENV.fetch('DEV_DATABASE_URL') %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -25,12 +25,12 @@ test:
   database: doctourdbfree
 
 production:
-  host: <%= ENV.fetch('PROD_DB_HOST', 'appdoctour.postgres.database.azure.com') %> 
-  port: <%= ENV.fetch('PROD_DB_PORT', 5432) %>
-  database: <%= ENV.fetch('PROD_DB_NAME', 'appdoctour') %> 
-  username: <%= ENV.fetch('PROD_DB_USERNAME', 'AppDocTour') %>
-  password: <%= ENV.fetch('PROD_DB_PASSWORD', 'default_password') %>
-  url: <%= ENV.fetch('PROD_DATABASE_URL', 'appdoctour.postgres.database.azure.com') %>
+  host: <%= ENV.fetch('PROD_DB_HOST') %> 
+  port: <%= ENV.fetch('PROD_DB_PORT') %>
+  database: <%= ENV.fetch('PROD_DB_NAME') %> 
+  username: <%= ENV.fetch('PROD_DB_USERNAME') %>
+  password: <%= ENV.fetch('PROD_DB_PASSWORD') %>
+  url: <%= ENV.fetch('PROD_DATABASE_URL') %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: <%= ENV.fetch('PROD_DB_TIMEOUT', 5000) %>  
  
