@@ -9,17 +9,15 @@ class PasswordRecoveryMailer < ApplicationMailer
     @email = params[:email]
     @token = params[:token]
     @id = params[:id]
-    @full_name = People.find_by(
-      account: Account.find_by(
-        user_id: User.find(@id).id
-      )
-    ).full_name
-    @recovery_url = password_recovery_url
+    @full_name = People.find_by(account: Account.find_by(user_id: @id))&.full_name  
+    @recovery_url = password_recovery_url(@token, @id)
 
     mail(to: @email, subject: 'Password Recover')
   end
 
-  def password_recovery_url
-    RECOVERY_REDIRECT_URL + "?token=#{@token}&id=#{@id}"
+  private 
+
+  def password_recovery_url(token, id)
+    "#{RECOVERY_REDIRECT_URL}?reset_password_token=#{token}&id=#{id}"
   end
 end
