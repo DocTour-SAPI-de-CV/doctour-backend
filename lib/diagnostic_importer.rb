@@ -2,7 +2,8 @@
 
 require 'creek'
 
-# rubocop:disable Metrics/AbcSize
+# Utility class for importing diagnostic data from XLSX files  
+# Processes medical diagnostic codes and names from uploaded spreadsheets  
 class DiagnosticImporter
   def self.file(params)
     @creek = Creek::Book.new(params[:file])
