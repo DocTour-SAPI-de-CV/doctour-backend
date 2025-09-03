@@ -13,11 +13,16 @@ AllCops:
     - "log/**/*"
     - "scripts/**/*"
 
-Style/AsciiComments:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
+Style/AsciiComments:  
+  Enabled: true  
+    
+Style/Documentation:  
+  Enabled: true  
+  Exclude:  
+    - "spec/**/*"  
+    - "test/**/*"  
+    - "db/migrate/*"  
+    - "config/**/*"
 
 Style/HashEachMethods:
   Enabled: true
