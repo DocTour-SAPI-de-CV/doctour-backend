@@ -11,7 +11,7 @@ class PasswordRecoveryController < ApplicationController
     if user  
       # Generate secure reset token  
       token = user.send_reset_password_instructions  
-      PasswordMailerSender.send_email(user.email, token)  
+      PasswordMailerSender.send_email(user.email, token, user.id)
     end  
   
     # Always return success to prevent email enumeration  
