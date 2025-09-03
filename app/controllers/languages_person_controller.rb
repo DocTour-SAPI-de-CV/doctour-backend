@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/GuardClause
+# Controller for managing language-person associations  
+# Handles CRUD operations for linking people to their spoken languages  
 class LanguagesPersonController < ApplicationController
   include ErrorSerializer
 
