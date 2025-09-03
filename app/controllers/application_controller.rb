@@ -43,18 +43,39 @@ class ApplicationController < ActionController::API
     devise_parameter_sanitizer.permit(:sign_up, keys: [:cpf])
   end
 
-  def authenticate_user
-    auth = request.headers["Authorization"] || request.cookies["auth._token.local"]
-    return unauthorized("user") if auth.blank?
-    token = auth.split.last
-    begin
-      jwt_payload = JWT.decode(token, Rails.application.credentials.devise_jwt_secret)
-      @current_user = User.find_by(jti: jwt_payload[0]["jti"])
-
-      @current_user
-    rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
-      unauthorized("user")
-    end
+  def authenticate_user  
+    auth = request.headers["Authorization"] || request.cookies["auth._token.local"]  
+    return unauthorized("user") if auth.blank?  
+    
+    # Validate token format  
+    token_parts = auth.split  
+    return unauthorized("user") if token_parts.length != 2 || token_parts.first.downcase != "bearer"  
+    
+    token = token_parts.last  
+    return unauthorized("user") if token.blank?  
+    
+    begin  
+      jwt_payload = JWT.decode(token, Rails.application.credentials.devise_jwt_secret)  
+      
+      # Validate JWT payload structure  
+      return unauthorized("user") if jwt_payload.blank? || jwt_payload[0].blank?  
+      return unauthorized("user") unless jwt_payload[0].key?("jti")  
+      
+      jti = jwt_payload[0]["jti"]  
+      return unauthorized("user") if jti.blank?  
+      
+      # Find user and validate existence  
+      @current_user = User.find_by(jti: jti)  
+      return unauthorized("user") if @current_user.nil?  
+      
+      @current_user  
+    rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError => e  
+      Rails.logger.warn "JWT authentication failed: #{e.message}"  
+      unauthorized("user")  
+    rescue StandardError => e  
+      Rails.logger.error "Unexpected error in authentication: #{e.message}"  
+      unauthorized("user")  
+    end  
   end
 
   def unauthorized(type)
