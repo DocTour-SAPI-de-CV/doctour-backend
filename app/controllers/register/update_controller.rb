@@ -25,7 +25,7 @@ module Register
     def self.assistant(params, user)
       assistant = Assistant.find_by(person: user.account.people)
       if params[:photo]
-        upload_url = AwsS3.upload(
+        upload_url = StorageAdapter.upload(
           params[:photo],
           "assistants_photos/#{user.id}_photo.png"
         )
