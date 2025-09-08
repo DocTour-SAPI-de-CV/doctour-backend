@@ -34,8 +34,9 @@ gem "creek"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-# AWS SDK
+# AWS / AZURE SDK
 gem "aws-sdk-s3", "~> 1.0.0.rc2"
+gem "azure-storage-blob", "~> 2.0"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
