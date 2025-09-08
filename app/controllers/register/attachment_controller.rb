@@ -39,8 +39,8 @@ module Register
     def delete
       attachment = Attachment.find(params[:id])
 
-      file_path = attachment.file.gsub('https://doctour.s3.sa-east-1.amazonaws.com/', '')
-      AwsS3.delete(file_path)
+      file_path = extract_file_path_from_url(attachment.file)
+      StorageAdapter.delete(file_path)
 
       render(json: attachment.delete )
     end
