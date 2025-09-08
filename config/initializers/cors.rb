@@ -9,7 +9,7 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # origins 'https://app.doctour.com.mx'
-    origins '*'
+    origins ENV.fetch('CORS_ORIGINS', 'https://app.doctour.com.mx').split(',')
     resource '*',
       headers: :any,
       expose: ['Authorization'],
