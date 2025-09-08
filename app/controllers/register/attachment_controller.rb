@@ -26,7 +26,7 @@ module Register
     end
 
     def create
-      upload_url = AwsS3.upload(
+      upload_url = StorageAdapter.upload(
         params[:file],
         "attachments/#{params[:person_patient_id]}_#{SecureRandom.hex(10)}"
       )
