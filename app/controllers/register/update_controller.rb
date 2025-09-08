@@ -44,7 +44,7 @@ module Register
     def self.doctor(params, user)
       doctor = Doctor.find_by(person: user.account.people)
       if params[:photo]
-        upload_url = AwsS3.upload(
+        upload_url = StorageAdapter.upload(
           params[:photo],
           "doctors_photos/#{user.id}_photo.png"
         )
@@ -65,7 +65,7 @@ module Register
     def self.patient(params, user)
       patient = Patient.find_by(person: user.account.people)
       if params[:photo]
-        upload_url = AwsS3.upload(
+        upload_url = StorageAdapter.upload(
           params[:photo],
           "patients_photos/#{user.id}_photo.png"
         )
