@@ -70,6 +70,5 @@ Rails.application.configure do
   #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_cable.url = "ws://localhost:3000/cable"
 
-  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+  config.action_cable.allowed_request_origins = [ENV.fetch('ACTION_CABLE_ALLOWED_ORIGINS', 'https://app.doctour.com.mx').split(',')].flatten
 end
-Rails.application.config.action_cable.allowed_request_origins = [%r{http[s]?://\S+}]
