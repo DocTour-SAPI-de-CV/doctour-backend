@@ -55,7 +55,9 @@ class ApplicationController < ActionController::API
     return unauthorized("user") if token.blank?  
     
     begin  
-      jwt_payload = JWT.decode(token, Rails.application.credentials.devise_jwt_secret)  
+      # Ensure JWT secret is properly configured  
+      jwt_secret = Rails.application.credentials.devise_jwt_secret || ENV.fetch('DEVISE_JWT_SECRET_KEY')  
+      return unauthorized("user") if jwt_secret.blank?   
       
       # Validate JWT payload structure  
       return unauthorized("user") if jwt_payload.blank? || jwt_payload[0].blank?  
