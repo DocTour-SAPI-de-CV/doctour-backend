@@ -5,7 +5,7 @@ require 'azure/storage/blob'
 class AzureBlobStorage  
   def initialize  
     @client = Azure::Storage::Blob::BlobService.create(  
-      storage_account_name: ENV.fetch('AZURE_STORAGE_ACCOUNT_NAME'),  
+      storage_account_name: ENV.fetch('AZURE_STORAGE_ACCOUNT'),  
       storage_access_key: ENV.fetch('AZURE_STORAGE_ACCESS_KEY')  
     )  
     @container_name = ENV.fetch('AZURE_STORAGE_CONTAINER_NAME', 'doctour-files')  
@@ -31,6 +31,6 @@ class AzureBlobStorage
   end  
   
   def get_url(file_path)  
-    "https://#{ENV.fetch('AZURE_STORAGE_ACCOUNT_NAME')}.blob.core.windows.net/#{@container_name}/#{file_path}"  
+    "https://#{ENV.fetch('AZURE_STORAGE_ACCOUNT')}.blob.core.windows.net/#{@container_name}/#{file_path}"  
   end  
 end
