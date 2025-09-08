@@ -44,5 +44,17 @@ module Register
 
       render(json: attachment.delete )
     end
+    
+    private  
+  
+    def extract_file_path_from_url(url)  
+      if ENV.fetch('STORAGE_PROVIDER', 'aws') == 'azure'  
+        # Extract path from Azure Blob Storage URL  
+        url.gsub("https://#{ENV.fetch('AZURE_STORAGE_ACCOUNT')}.blob.core.windows.net/#{ENV.fetch('AZURE_STORAGE_CONTAINER_NAME', 'doctour-files')}/", '')  
+      else  
+        # Extract path from AWS S3 URL using environment variable  
+        url.gsub(ENV.fetch('AWS_S3_BASE_URL', 'https://doctour.s3.sa-east-1.amazonaws.com/'), '')  
+      end  
+    end
   end
 end
