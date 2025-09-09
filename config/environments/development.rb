@@ -42,15 +42,14 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => ENV['SMTP_USERNAME'],  
-    :password =>  ENV['SMTP_PASSWORD'],
-    :address => ENV['SMTP_ADDRESS'],
-    :domain => ENV['SMTP_DOMAIN'], 
-    :port => ENV['SMTP_PORT'],
-    :authentication=> "plain",
-    :ssl=> false,
-    :tls=> true,
-    :enable_starttls_auto=> true
+    :user_name => ENV.fetch('SMTP_USERNAME'),  
+    :password =>  ENV.fetch('SMTP_PASSWORD'),
+    :address => ENV.fetch('SMTP_ADDRESS', 'smtp.office365.com'),
+    :domain => ENV.fetch('SMTP_DOMAIN', 'doctour.com.mx'), 
+    :port => ENV.fetch('SMTP_PORT', '587'),
+    :authentication => 'login',
+    :tls => true,
+    :enable_starttls_auto => true
   }
 
   # Print deprecation notices to the Rails logger.
