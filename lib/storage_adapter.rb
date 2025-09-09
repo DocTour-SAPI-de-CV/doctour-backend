@@ -19,7 +19,7 @@ class StorageAdapter
     def provider  
       @provider ||= case ENV.fetch('STORAGE_PROVIDER', 'aws')  
                     when 'aws'  
-                      AwsS3Storage.new  
+                      AwsS3  
                     when 'azure'  
                       AzureBlobStorage.new  
                     else  
