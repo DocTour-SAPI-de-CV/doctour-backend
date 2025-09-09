@@ -33,4 +33,14 @@ class AzureBlobStorage
   def get_url(file_path)  
     "https://#{ENV.fetch('AZURE_STORAGE_ACCOUNT')}.blob.core.windows.net/#{@container_name}/#{file_path}"  
   end  
+
+  def get_signed_url(file_path, expires_in = 1.hour)  
+    # Generate signed URL for private blob access  
+    @client.generate_blob_uri(  
+      @container_name,   
+      file_path,  
+      permissions: 'r',  
+      expiry: expires_in.from_now  
+    )  
+  end  
 end
